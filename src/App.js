@@ -1,10 +1,10 @@
 import LandingPage from "./pages/companion/LandingPage";
-import SuperUserUi from "./pages/superUser/SuperUserUi"
+import SuperUserDashBoard from "./pages/superUser/SuperUserDashBoard"
 import { BrowserRouter,Routes,Route, Navigate } from "react-router-dom"
 import Cookies from 'js-cookie';
 import { getApi } from "./api/axiosCalls";
 import { useEffect ,useContext } from "react";
-import { MyContext } from './Context'
+import { MyContext } from './context/Context'
 import SuperUserProfile from "./pages/superUser/SuperUserProfile"
 
 function App() {
@@ -24,9 +24,9 @@ function App() {
     {
     <BrowserRouter>
       <Routes>
-      <Route path='/' element={superUserLoggedIn?<Navigate to='/dashboard'/>:<LandingPage/>}/>
-      <Route path='/dashboard' element={superUserLoggedIn?<SuperUserUi/>:<Navigate to='/'/>}/>
-      <Route path='/profile' element={<SuperUserProfile/>}/>
+        <Route path='/' element={superUserLoggedIn?<Navigate to='/dashboard'/>:<LandingPage/>}/>
+        <Route path='/dashboard' element={superUserLoggedIn?<SuperUserDashBoard/>:<Navigate to='/'/>}/>
+        <Route path='/profile' element={<SuperUserProfile/>}/>
       </Routes>
     </BrowserRouter>
     }

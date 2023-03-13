@@ -1,21 +1,21 @@
 import React, {useState} from 'react'
-import Navbar from '../../components/superUser/Navbar'
-import SideBar from '../../components/superUser/SideBar'
+import Navbar from '../../components/common/Navbar'
+import SideBar from '../../components/common/SideBar'
 
 import './superUser.css'
 
-function SuperUserUi() {
+function SuperUserDashBoard() {
   const [showSideBar, setShowSideBar] = useState(true)
   const [loading,setLoading]=useState(true)
   return (
-    <body className='background h-screen flex'>
+    <div className='background h-screen flex'>
     <SideBar state={showSideBar} loading={loading}/>
     <div className='w-full overflow-hidden'>
     <Navbar state={showSideBar} setState={setShowSideBar} setLoading={setLoading} loading={loading}/>
 
     </div>
-    </body>
+    </div>
   )
 }
 
-export default SuperUserUi
+export default SuperUserDashBoard

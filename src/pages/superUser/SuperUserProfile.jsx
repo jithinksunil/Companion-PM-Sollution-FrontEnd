@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import Navbar from '../../components/superUser/Navbar'
-import SideBar from '../../components/superUser/SideBar'
-import UserBody from '../../components/superUser/UserBody'
+import Navbar from '../../components/common/Navbar'
+import SideBar from '../../components/common/SideBar'
+import SuperUserProfileBody from '../../components/superUser/SuperUserProfileBody'
 import './superUser.css'
 
 function SuperUserProfile() {
@@ -12,7 +12,7 @@ function SuperUserProfile() {
     <SideBar state={showSideBar} loading={loading}/>
     <div className='w-full overflow-hidden'>
     <Navbar state={showSideBar} setState={setShowSideBar} setLoading={setLoading} loading={loading}/>
-    <UserBody/>
+    <SuperUserProfileBody/>
     </div>
     </div>
   )

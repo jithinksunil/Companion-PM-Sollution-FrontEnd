@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getApi } from '../../api/axiosCalls'
 
-function UserBody() {
+function SuperUserProfileBody() {
   const [superUser, setSuperUser] = useState({})
   const navigate=useNavigate()
   console.log(superUser);
@@ -21,4 +21,4 @@ function UserBody() {
   )
 }
 
-export default UserBody
+export default SuperUserProfileBody

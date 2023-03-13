@@ -1,6 +1,6 @@
 import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
-import {MyContext} from '../../Context'
+import {MyContext} from '../../context/Context'
 import { postApi } from "../../api/axiosCalls"
 import Cookies from 'js-cookie';
 function Login() {
@@ -28,8 +28,8 @@ function Login() {
     <div className="flex justify-center ">
     <img className="w-32 py-2" src="campanion/companion.png" alt=""/>
     </div>
-      <input className="block my-2 rounded-xl h-9 border-gray-500" required type="email" name="" id="" placeholder="Email" onChange={(e)=>{setEmail(e.target.value)}}/>
-      <input className="block my-2 rounded-xl h-9 border-gray-500" required type="password" name="" id="" placeholder="Password" onChange={(e)=>{setPassword(e.target.value)}}/>
+      <input className="block my-2 rounded-xl h-9 border-gray-500" required type="email" placeholder="Email" onChange={(e)=>{setEmail(e.target.value)}}/>
+      <input className="block my-2 rounded-xl h-9 border-gray-500" required type="password"  placeholder="Password" onChange={(e)=>{setPassword(e.target.value)}}/>
       <div className="flex justify-center py-2">
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl" onClick={handleLogin} >
             Login
