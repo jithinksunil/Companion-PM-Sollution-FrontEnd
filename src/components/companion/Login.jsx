@@ -15,7 +15,7 @@ function Login() {
             (response)=>{
                 if(response.data.verified){
                     Cookies.set('superUserToken', response.data.superUserToken, { expires: 7000 })
-                    navigate('/superuser/dashboard')
+                    navigate('/dashboard')
                     setSuperUserLoggedIn(true)
                 }
                 alert(response.data.message)

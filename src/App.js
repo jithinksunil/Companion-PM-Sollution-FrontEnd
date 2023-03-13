@@ -5,8 +5,7 @@ import Cookies from 'js-cookie';
 import { getApi } from "./api/axiosCalls";
 import { useEffect ,useContext } from "react";
 import { MyContext } from './Context'
-import SuperUserProfile from "./pages/superUser/SuperUserProfile";
-
+import SuperUserProfile from "./pages/superUser/SuperUserProfile"
 
 function App() {
   const {superUserLoggedIn,setSuperUserLoggedIn}=useContext( MyContext )
@@ -16,7 +15,7 @@ function App() {
       getApi('/verifyToken',(response)=>{
         if(response.data.superUserTokenVerified){
           setSuperUserLoggedIn(true)
-        }},(reject)=>{console.log(reject)})
+        }})
     }
   },[])
 
@@ -25,9 +24,9 @@ function App() {
     {
     <BrowserRouter>
       <Routes>
-      <Route path='/' element={superUserLoggedIn?<Navigate to='/superuser/dashboard'/>:<LandingPage/>}/>
-      <Route path='/superuser/dashboard' element={superUserLoggedIn?<SuperUserUi/>:<Navigate to='/'/>}/>
-      <Route path='/superuser/profile' element={<SuperUserProfile/>}/>
+      <Route path='/' element={superUserLoggedIn?<Navigate to='/dashboard'/>:<LandingPage/>}/>
+      <Route path='/dashboard' element={superUserLoggedIn?<SuperUserUi/>:<Navigate to='/'/>}/>
+      <Route path='/profile' element={<SuperUserProfile/>}/>
       </Routes>
     </BrowserRouter>
     }

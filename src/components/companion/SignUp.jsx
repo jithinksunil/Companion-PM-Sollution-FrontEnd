@@ -15,7 +15,7 @@ function SignUp() {
         (response)=>{
           alert("SignIn Successful")
           console.log(response.data.status)
-          navigate('/superuser/dashboard')
+          navigate('/dashboard')
         }
       )
     }
