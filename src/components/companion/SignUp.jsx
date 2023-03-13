@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import axios from "../../constants/axiosBaseUrl"
+import { postApi } from "../../api/axiosCalls"
 
 function SignUp() {
 
@@ -11,10 +11,13 @@ function SignUp() {
     const navigate=useNavigate()
 
     const handleSignUp=()=>{
-        axios.post("/signup",superUserData,{withCredentials: true}).then((response)=>{alert("SignIn Successful")
-        console.log(response.data.status)
-        navigate('/superuser/profile')
-      }).catch((err)=>{console.log(err);})
+      postApi("/signup",superUserData,
+        (response)=>{
+          alert("SignIn Successful")
+          console.log(response.data.status)
+          navigate('/superuser/dashboard')
+        }
+      )
     }
 
   return (
@@ -22,7 +25,6 @@ function SignUp() {
     <div className="flex justify-center ">
     <img className="w-32 py-2" src="campanion/companion.png" alt=""/>
     </div>
-
       <input className="block my-2 rounded-xl h-9 border-gray-500" required type="email" name="" id="" placeholder="Email" onChange={(e)=>{setEmail(e.target.value)}}/>
       <input className="block my-2 rounded-xl h-9 border-gray-500" required type="text" name="" id="" placeholder="Company Name" onChange={(e)=>{setCompanyName(e.target.value)}}/>
       <input className="block my-2 rounded-xl h-9 border-gray-500" required type="password" name="" id="" placeholder="Password" onChange={(e)=>{setPassword(e.target.value)}}/>

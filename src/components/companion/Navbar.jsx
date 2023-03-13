@@ -1,10 +1,11 @@
 import { Fragment, useState } from "react";
+import Login from "./Login";
 import SignUp from "./SignUp"
-import { Link } from 'react-router-dom'
 
 function Navbar() {
   const [list, setList] = useState(true)
-  const [popUp, setPopUp] = useState(false)
+  const [signUpPopUp, setSignUpPopUp] = useState(false)
+  const [logInPopUp, setLogInPopUp] = useState(false)
   function handleToggle(){
     setList(list=>!list)
   }
@@ -27,15 +28,13 @@ function Navbar() {
               <h5>Pricing</h5>
             </li>
             <li className="pt-1 pb-5 md:hidden">
-            <Link to='/superuser/profile'>
-            <h5>Login</h5>
-            </Link>
+            <h5 onClick={()=>{setLogInPopUp(!logInPopUp);setSignUpPopUp(false)}}>Login</h5>
             </li>
           </ul>
 
-          <div className=" flex absolute right-3 top-5 md:top-auto md:right-10 gap-4">
-            <h1 className="items-center hidden md:flex ">Login</h1>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-3xl" onClick={()=>{setPopUp(!popUp)}}>
+          <div className=" flex absolute right-3 top-5 md:top-auto md:right-10 gap-4" >
+            <h1 className="items-center hidden md:flex cursor-pointer hover:border-blue-700  border-2 rounded-3xl px-5" onClick={()=>{setLogInPopUp(!logInPopUp);setSignUpPopUp(false)}}>Login</h1>
+            <button className="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-3xl" onClick={()=>{setSignUpPopUp(!signUpPopUp);setLogInPopUp(false)}}>
               Sign Up for free
             </button>
             <div className=" flex items-center md:hidden" onClick={handleToggle}>
@@ -45,7 +44,8 @@ function Navbar() {
             </div>
           </div>
         </nav>
-      {popUp&&<div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0"><SignUp/></div>}
+        {logInPopUp&&<div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0"><Login/></div>}
+      {signUpPopUp&&<div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0"><SignUp/></div>}
     </Fragment>
   )
 }
