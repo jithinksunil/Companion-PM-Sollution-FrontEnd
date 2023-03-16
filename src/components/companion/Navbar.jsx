@@ -1,11 +1,13 @@
-import { Fragment, useState } from "react";
-import Login from "./Login";
+import { Fragment, useContext, useState } from "react";
+import Login from "../common/Login";
 import SignUp from "./SignUp"
+import {MyContext} from '../../context/Context'
+import { Route,Routes, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const {setSuperUserLoggedIn}=useContext(MyContext)
   const [list, setList] = useState(true)
-  const [signUpPopUp, setSignUpPopUp] = useState(false)
-  const [logInPopUp, setLogInPopUp] = useState(false)
+  const navigate=useNavigate()
   function handleToggle(){
     setList(list=>!list)
   }
@@ -28,13 +30,13 @@ function Navbar() {
               <h5>Pricing</h5>
             </li>
             <li className="pt-1 pb-5 md:hidden">
-            <h5 onClick={()=>{setLogInPopUp(!logInPopUp);setSignUpPopUp(false)}}>Login</h5>
+            <h5 onClick={()=>{navigate('/login')}}>Login</h5>
             </li>
           </ul>
 
           <div className=" flex absolute right-3 top-5 md:top-auto md:right-10 gap-4" >
-            <h1 className="items-center hidden md:flex cursor-pointer hover:border-blue-700  border-2 rounded-3xl px-5" onClick={()=>{setLogInPopUp(!logInPopUp);setSignUpPopUp(false)}}>Login</h1>
-            <button className="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-3xl" onClick={()=>{setSignUpPopUp(!signUpPopUp);setLogInPopUp(false)}}>
+            <h1 className="items-center hidden md:flex cursor-pointer hover:border-blue-700  border-2 rounded-3xl px-5" onClick={()=>{navigate('/login')}}>Login</h1>
+            <button className="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-3xl" onClick={()=>{navigate('/signup')}}>
               Sign Up for free
             </button>
             <div className=" flex items-center md:hidden" onClick={handleToggle}>
@@ -44,8 +46,11 @@ function Navbar() {
             </div>
           </div>
         </nav>
-        {logInPopUp&&<div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0"><Login/></div>}
-      {signUpPopUp&&<div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0"><SignUp/></div>}
+        <Routes>
+        <Route path='/login' element={<div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0"><Login formName={'Super User'} setLoggedIn={setSuperUserLoggedIn} url={'/login'} tokenName={'superUserToken'} navigateTo={'/superuser/dashboard'}/></div>}/>
+        <Route path='/signup' element={<div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0"><SignUp/></div>}/>
+        </Routes>
+        
     </Fragment>
   )
 }

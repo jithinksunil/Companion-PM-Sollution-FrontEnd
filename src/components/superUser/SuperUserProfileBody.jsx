@@ -16,7 +16,7 @@ function SuperUserProfileBody() {
   },[])
   return (
     <div className='w-screen md:w-full h-40'>
-      <p className='text-white'>fsdf</p>
+      <p className='text-white'>Profile</p>
     </div>
   )
 }

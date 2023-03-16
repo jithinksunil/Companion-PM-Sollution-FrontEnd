@@ -1,13 +1,14 @@
-import LandingPage from "./pages/companion/LandingPage";
-import SuperUserDashBoard from "./pages/superUser/SuperUserDashBoard"
+import LandingPage from "./pages/companion/LandingPage"
+import SuperUserUI from "./pages/superUser/SuperUserUI"
 import { BrowserRouter,Routes,Route, Navigate } from "react-router-dom"
 import Cookies from 'js-cookie';
 import { getApi } from "./api/axiosCalls";
 import { useEffect ,useContext } from "react";
 import { MyContext } from './context/Context'
-import SuperUserProfile from "./pages/superUser/SuperUserProfile"
-
+import AdminLoginPage from "./pages/admin/AdminLoginPage";
+import AdminUI from "./pages/admin/AdminUI";
 function App() {
+  
   const {superUserLoggedIn,setSuperUserLoggedIn}=useContext( MyContext )
   useEffect(()=>{
     const superUserToken=Cookies.get('superUserToken')
@@ -24,14 +25,18 @@ function App() {
     {
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={superUserLoggedIn?<Navigate to='/dashboard'/>:<LandingPage/>}/>
-        <Route path='/dashboard' element={superUserLoggedIn?<SuperUserDashBoard/>:<Navigate to='/'/>}/>
-        <Route path='/profile' element={<SuperUserProfile/>}/>
+        <Route path='/*' element={superUserLoggedIn?<Navigate to='/superuser/dashboard'/>:<LandingPage/>}/>
+        <Route path='/superuser/*' element={<SuperUserUI/>}/>
+        <Route path='/admin/login' element={<AdminLoginPage/>}/>
+        <Route path='/admin/*' element={ <AdminUI/> }/>
       </Routes>
     </BrowserRouter>
     }
+
     </div>
   );
 }
 
 export default App;
+
+
