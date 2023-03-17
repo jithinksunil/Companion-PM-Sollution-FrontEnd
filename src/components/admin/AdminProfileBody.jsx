@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getApi } from '../../api/axiosCalls'
 
-function AdminDashBoardBody() {
+function AdminProfileBody() {
     const [admin, setAdmin] = useState({})
     const navigate=useNavigate()
     console.log(admin);
@@ -16,9 +16,9 @@ function AdminDashBoardBody() {
     },[])
     return (
       <Fragment>
-        <p className='text-white'>fs d f f f f f f f ff f ff f ff f f ff f ff f f ff f f f ff f ff ff f f ff f f ff f ff f f ff f f ff f f f ff f ff f f ff f f ff f s ds d  s d f sd f sd   fs d f sd f sd f   s df s df s d fs df s d  sd f sd f sd fs  d  sd f sd fs d f </p>
+        <p className='text-white'>profile</p>
       </Fragment>
     )
 }
 
-export default AdminDashBoardBody
+export default AdminProfileBody

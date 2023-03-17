@@ -6,7 +6,7 @@ function AdminLoginPage() {
     const {setAdminLoggedIn}=useContext(MyContext)
   return (
     <div className='background h-screen'>
-    <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2"><Login formName='Admin' setLoggedIn={setAdminLoggedIn} url={'/admin/login'} tokenName={'adminToken'} navigateTo={'/admin/dashboard'}/></div>
+    <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2"><Login formName='Admin' setLoggedIn={setAdminLoggedIn} apiCall={'/admin/login'} tokenName={'adminToken'} responseRoute={'/admin/dashboard'}/></div>
     </div>
   )
 }

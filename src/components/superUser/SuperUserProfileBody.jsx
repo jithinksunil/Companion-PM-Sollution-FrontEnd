@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getApi } from '../../api/axiosCalls'
 
@@ -15,9 +15,9 @@ function SuperUserProfileBody() {
     })
   },[])
   return (
-    <div className='w-screen md:w-full h-40'>
+    <Fragment>
       <p className='text-white'>Profile</p>
-    </div>
+    </Fragment>
   )
 }
 

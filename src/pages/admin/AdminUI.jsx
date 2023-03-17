@@ -1,31 +1,22 @@
-import React, {useState} from 'react'
-import Navbar from '../../components/common/Navbar'
-import SideBar from '../../components/common/SideBar'
+import React from 'react'
 import AdminDashBoardBody from '../../components/admin/AdminDashBoardBody'
-import './admin.css'
+import AdminProfileBody from '../../components/admin/AdminProfileBody'
 import { Route,Routes } from 'react-router-dom'
-
+import Layout from '../../layout/Layout'
 
 function AdminUI() {
-  const [showSideBar, setShowSideBar] = useState(true)
-  const [loading,setLoading]=useState(true)
   
   return (
-    <div className='background h-screen flex'>
-    <SideBar state={showSideBar} loading={loading}/>
-    <div className='w-full overflow-hidden'>
-    <Navbar state={showSideBar} setState={setShowSideBar} setLoading={setLoading} loading={loading}/>
-    
+    <Layout links={{profile:'/admin/profile',message:'/',notification:'/',userManagement:'/'}}>
     <Routes>
-      <Route path='/dashboard' element={<AdminDashBoardBody/>}/>
+    <Route path='/dashboard' element={<AdminDashBoardBody/>}/>
+    <Route path='/profile' element={<AdminProfileBody/>}/>
     </Routes>
-    
-    
-    </div>
-    </div>
+    </Layout>
   )
 }
 
 export default AdminUI
+
 
 

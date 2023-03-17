@@ -6,17 +6,17 @@ import { Route,Routes, useNavigate } from "react-router-dom";
 
 function Navbar() {
   const {setSuperUserLoggedIn}=useContext(MyContext)
-  const [list, setList] = useState(true)
+  const [hideList, setHideList] = useState(true)
   const navigate=useNavigate()
   function handleToggle(){
-    setList(list=>!list)
+    setHideList(hideList=>!hideList)
   }
 
   return (
     <Fragment>
-      <nav className="md:flex items-center px-3 md:px-10 relative gap-4 shadow-lg">
+      <nav className={`md:flex items-center px-3 md:px-10 relative gap-4 shadow-lg ${hideList?"h-20":'h-64'} md:h-auto duration-200`}>
         <img className="w-28 py-7 md:w-40 md:py-6" src="campanion/companion.png" alt=""/>
-          <ul className={`${list&&"hidden"} duration-300 md:flex md:gap-4 pr-10`}>
+          <ul className={`${hideList?"hidden opacity-0":'opacity-100'} transition-opacity duration-1000 md:flex md:gap-4 pr-10`}>
             <li className="py-1">
               <h5>Why Us</h5>
             </li>
@@ -47,7 +47,7 @@ function Navbar() {
           </div>
         </nav>
         <Routes>
-        <Route path='/login' element={<div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0"><Login formName={'Super User'} setLoggedIn={setSuperUserLoggedIn} url={'/login'} tokenName={'superUserToken'} navigateTo={'/superuser/dashboard'}/></div>}/>
+        <Route path='/login' element={<div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0"><Login formName={'Super User'} setLoggedIn={setSuperUserLoggedIn} apiCall={'/login'} tokenName={'superUserToken'} responseRoute={'/superuser/dashboard'}/></div>}/>
         <Route path='/signup' element={<div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0"><SignUp/></div>}/>
         </Routes>
         

@@ -1,34 +1,18 @@
-import React, {useState} from 'react'
-import { Route, Routes, Outlet } from 'react-router-dom'
-import Navbar from '../../components/common/Navbar'
-import SideBar from '../../components/common/SideBar'
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
 import SuperUserDashBoardBody from '../../components/superUser/SuperUserDashBoardBody'
 import SuperUserProfileBody from '../../components/superUser/SuperUserProfileBody'
-import './superUser.css'
-
-function Layout(){
-  const [showSideBar, setShowSideBar] = useState(true)
-  const [loading,setLoading]=useState(true)
-  return(
-    <div className='background h-screen flex'>
-    <SideBar state={showSideBar} loading={loading}/>
-    <div className='w-full overflow-hidden'>
-    <Navbar navigate={{profile:'/superuser/profile'}} state={showSideBar} setState={setShowSideBar} setLoading={setLoading} loading={loading}/>
-    <Outlet/>
-    </div>
-    </div>
-  )
-}
+import Layout from '../../layout/Layout'
 
 function SuperUserUI() {
 
   return (
-    <Routes>
-      <Route path='/' element={<Layout/>}>
+    <Layout links={{profile:'/superuser/profile',message:'/',attendence:'/',notification:'/',projects:'/'}}>
+      <Routes>
         <Route path='/dashboard' element={<SuperUserDashBoardBody/>}/>
         <Route path='/profile' element={<SuperUserProfileBody/>}/>
-      </Route>
-    </Routes>
+      </Routes>
+    </Layout>
   )
 }
 
