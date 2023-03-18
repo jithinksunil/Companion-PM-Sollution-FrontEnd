@@ -6,10 +6,10 @@ import './layout.css'
 
 function Layout({links,children}){
   const [showSideBar, setShowSideBar] = useState(false)
-  const {profile,message,notification,attendence,projects,userManagement}=links
+  const {profile,message,notification,attendence,projects,dashBoard,userManagement}=links
   return(
     <div className='background h-screen flex'>
-    <SideBar showSideBar={showSideBar} links={{projects,userManagement}} />
+    <SideBar showSideBar={showSideBar} links={{dashBoard,projects,userManagement}} />
     <div className='w-full overflow-hidden'>
     <Navbar links={{profile,message,notification,attendence}}  showSideBar={showSideBar} setShowSideBar={setShowSideBar}/>
     <Body>

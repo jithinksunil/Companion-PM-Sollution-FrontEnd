@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Table({data,buttons={}}) {
-  let Buttonjithin=undefined
+  let ButtonPassed=true
 
   return (
     <div className="flex flex-col">
@@ -45,7 +45,7 @@ function Table({data,buttons={}}) {
                                   Object.keys(rowObject).map((column,key)=>{
                                       return(
                                           <td key={key} className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                          {rowObject[column]}
+                                          {JSON.stringify(rowObject[column])}
                                           </td>
                                       )
                                   })
@@ -54,8 +54,8 @@ function Table({data,buttons={}}) {
                                   Object.keys(buttons).map((button,index)=>{
                                     return(
                                       <td  key={index}  className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        {Buttonjithin=buttons[button]}
-                                        <Buttonjithin user={rowObject}/>
+                                        {ButtonPassed=buttons[button]}
+                                        <ButtonPassed rowObject={rowObject}/>
                                       </td>
                                     )
                                   })

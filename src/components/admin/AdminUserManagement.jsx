@@ -8,6 +8,7 @@ function AdminUserManagement() {
     const navigate=useNavigate()
     useEffect(()=>{
       getApi('/admin/superusermanagement',(response)=>{
+
         const {adminTokenVerified, message, superUsersData}=response.data
         if(adminTokenVerified){
             if(!message){
@@ -15,14 +16,14 @@ function AdminUserManagement() {
             }else{
                 alert(message)
             }
-        }else{navigate('/admin/login')}
+        }else{navigate('/admin/login');}
       })
     },[])
 
   return (
     <Fragment>
     {console.log(data)}
-    <Table data={data} buttons={{Action:BlockButton,delete:BlockButton}}/>
+    <Table data={data} buttons={{Action:BlockUnBlock}}/>
     </Fragment>
   )
 }
@@ -30,11 +31,23 @@ function AdminUserManagement() {
 export default AdminUserManagement
 
 
+function BlockUnBlock({rowObject}){
+    const user=rowObject
+    const [status,setStatus]=useState(null)
 
-function BlockButton({user}){
+    useEffect(()=>{
+        setStatus(user.status)
+    },[])
 
+    const handleClick=()=>{
+        getApi(`/admin/blockorunblock?id=${user._id}&status=${!user.status}`,(response)=>{
+            const {action,message}=response.data
+            if(action){
+                setStatus(!status)
+            }
+        alert(message)
+        })}
     return(
-        <button className={`${user.status?'bg-red-500 hover:bg-red-600':'bg-green-500 hover:bg-green-600'} text-white font-bold py-2 px-4 rounded`} onClick={()=>{alert(id)}}>{user.status?"Block":"UnBlock"}</button>
-
+        <button className={`${status?'bg-red-500 hover:bg-red-600':'bg-green-500 hover:bg-green-600'} text-white font-bold py-2 px-4 rounded`} onClick={handleClick}>{status?"Block":"UnBlock"}</button>
     )
 }

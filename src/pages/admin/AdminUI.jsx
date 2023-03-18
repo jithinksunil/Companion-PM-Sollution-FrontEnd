@@ -8,7 +8,7 @@ import AdminUserManagement from '../../components/admin/AdminUserManagement'
 function AdminUI() {
   
   return (
-    <Layout links={{profile:'/admin/profile',message:'/',notification:'/',userManagement:'/admin/usermanagement'}}>
+    <Layout links={{profile:'/admin/profile',message:'/',notification:'/',dashBoard:'/admin/dashboard',userManagement:'/admin/usermanagement'}}>
     <Routes>
     <Route path='/dashboard' element={<AdminDashBoardBody/>}/>
     <Route path='/usermanagement' element={<AdminUserManagement/>}/>

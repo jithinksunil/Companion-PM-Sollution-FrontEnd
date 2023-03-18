@@ -7,7 +7,7 @@ import Layout from '../../layout/Layout'
 function SuperUserUI() {
 
   return (
-    <Layout links={{profile:'/superuser/profile',message:'/',attendence:'/',notification:'/',projects:'/'}}>
+    <Layout links={{profile:'/superuser/profile',message:'/',attendence:'/',notification:'/',dashBoard:'/superuser/dashboard',projects:'/'}}>
       <Routes>
         <Route path='/dashboard' element={<SuperUserDashBoardBody/>}/>
         <Route path='/profile' element={<SuperUserProfileBody/>}/>
