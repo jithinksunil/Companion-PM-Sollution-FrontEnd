@@ -14,10 +14,15 @@ function SignUp() {
     const handleSignUp=()=>{
 
     const emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const companyFormat=/^[a-zA-Z0-9]{3,}$/
     const passwordFormat=/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/
 
     if (!emailFormat.test(email)) {
       alert("Please enter a valid email");
+    }
+
+    if (!companyFormat.test(companyName)) {
+      alert("Please enter a valid company name");
     }
 
     if (!passwordFormat.test(password)) {
@@ -28,7 +33,7 @@ function SignUp() {
       alert('password does not matching')
     }
 
-    if(emailFormat.test(email)&&passwordFormat.test(password)&&confirmPassword===password){
+    if(emailFormat.test(email)&&companyFormat.test(companyName)&&passwordFormat.test(password)&&confirmPassword===password){
       postApi("/signup",superUserData,
         (response)=>{
           alert("SignIn Successful")

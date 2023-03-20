@@ -4,7 +4,7 @@ import { getApi } from '../../api/axiosCalls'
 
 function AdminDashBoardBody() {
     const [admin, setAdmin] = useState({})
-    const navigate=useNavigate()
+    const navigate = useNavigate()
     console.log(admin);
     useEffect(()=>{
       getApi('/admin/dashboard',(response)=>{
