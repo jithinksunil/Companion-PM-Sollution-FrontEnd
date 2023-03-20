@@ -1,18 +1,39 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import DataTable from 'react-data-table-component'
 import { useNavigate } from 'react-router-dom'
 import { getApi } from '../../api/axiosCalls'
-import Table from '../common/Table'
 
 function AdminUserManagement() {
-    const  [data,setData]=useState([{}])
-    const [sort, setSort]=useState(true)
-    const [sortField,setSortField]=useState('')
+    const [data,setData]=useState([])
     const [search,setSearch]=useState('')
-    const navigate=useNavigate()
-    useEffect(()=>{
-        console.log(JSON.stringify(search));
-      getApi(`/admin/superusermanagement?search=${search}&sortField=${sortField}&order=${sort}`,(response)=>{
 
+    const columns=[
+        {
+          name:"Email",
+          selector:row=>row.email,
+          sortable:true
+        },
+        {
+          name:"Company Name",
+          selector:row=>row.companyName,
+          sortable:true
+        },
+        {
+          name:"Password",
+          selector:row=>row.password,
+          sortable:true
+        },
+        {
+            name:'Action',
+            cell:(row)=><BlockUnBlock row={row} setData={setData} />,
+            sortable:true
+        }
+      ]
+
+    const navigate=useNavigate()
+
+    useEffect(()=>{
+      getApi(`/admin/superusermanagement?search=${search}`,(response)=>{
         const {adminTokenVerified, message, superUsersData}=response.data
         if(adminTokenVerified){
             if(!message){
@@ -20,31 +41,44 @@ function AdminUserManagement() {
             }else{
                 alert(message)
             }
-        }else{navigate('/admin/login');}
+        }else{navigate('/admin/login')}
       })
     },[search])
 
+   
   return (
     <Fragment>
-    <Table fields={{email:'Email',companyName:'Company Name',password:'Password'}} data={data} setData={setData} setSearch={setSearch} sorting={{setSort,sort,setSortField}} buttons={{Action:BlockUnBlock}}/>
+    <DataTable 
+    title='Users'
+    fixedHeader
+    columns={columns}
+    data={data}
+    pagination
+    highlightOnHover
+    actions={<button>Export</button>}
+    subHeader
+    subHeaderComponent={<input className='text-black' type='text' placeholder='Search here' value={search} onChange={(e)=>{setSearch(e.target.value)}}/>}
+    subHeaderAlign='center'
+    />
     </Fragment>
   )
 }
 
 export default AdminUserManagement
 
-function BlockUnBlock({rowObject , setData}){
-    const user=rowObject
-    
-    const handleClick=()=>{
-        getApi(`/admin/blockorunblock?id=${user._id}&status=${!user.status}`,(response)=>{
-            const {action,message}=response.data
-            if(action){
-                getApi('/admin/superusermanagement',(response)=>{setData(response.data.superUsersData)})
-            }
-        alert(message)
-        })}
-    return(
-        <button className={`${user.status?'bg-red-500 hover:bg-red-600':'bg-green-500 hover:bg-green-600'} text-white font-bold py-2 px-4 rounded`} onClick={handleClick}>{user.status?"Block":"UnBlock"}</button>
-    )
-}
+
+function BlockUnBlock({row , setData}){
+        const user=row
+        
+        const handleClick=()=>{
+            getApi(`/admin/blockorunblock?id=${user._id}&status=${!user.status}`,(response)=>{
+                const {action,message}=response.data
+                if(action){
+                    getApi('/admin/superusermanagement',(response)=>{setData(response.data.superUsersData)})
+                }
+            alert(message)
+            })}
+        return(
+            <button className={`${user.status?'bg-red-500 hover:bg-red-600':'bg-green-500 hover:bg-green-600'} text-white font-bold py-2 px-4 rounded`} onClick={handleClick}>{user.status?"Block":"UnBlock"}</button>
+        )
+    }
