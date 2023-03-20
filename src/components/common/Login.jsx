@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { postApi } from "../../api/axiosCalls";
 import Cookies from "js-cookie";
 import { userShema } from "../../validations/UserValidation";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login({ formName, setLoggedIn, apiCall, tokenName, responseRoute }) {
   const [email, setEmail] = useState("");
@@ -17,10 +19,10 @@ function Login({ formName, setLoggedIn, apiCall, tokenName, responseRoute }) {
     const passwordFormat = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
 
     if (!emailFormat.test(email)) {
-      alert("Please enter a valid email");
+      toast("Please enter a valid email")
     }
     if (!passwordFormat.test(password)) {
-      alert("Please enter a alpha numeric password of lenght 6");
+      toast("Please enter a alpha numeric password of lenght 6");
     }
     const isValid = await userShema.isValid(formData);
     if (isValid && emailFormat.test(email) && passwordFormat.test(password)) {
@@ -31,7 +33,7 @@ function Login({ formName, setLoggedIn, apiCall, tokenName, responseRoute }) {
           setLoggedIn(true);
 
         }
-        alert(response.data.message);
+        toast(response.data.message)
       });
     }
   };
@@ -73,6 +75,7 @@ function Login({ formName, setLoggedIn, apiCall, tokenName, responseRoute }) {
           />
         </div>
       </form>
+      
     </div>
   );
 }

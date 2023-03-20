@@ -2,6 +2,8 @@ import React, { Fragment, useEffect, useState } from 'react'
 import DataTable from 'react-data-table-component'
 import { useNavigate } from 'react-router-dom'
 import { getApi } from '../../api/axiosCalls'
+import {toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AdminUserManagement() {
     const [data,setData]=useState([])
@@ -39,7 +41,7 @@ function AdminUserManagement() {
             if(!message){
                 setData(superUsersData)
             }else{
-                alert(message)
+                toast(message)
             }
         }else{navigate('/admin/login')}
       })
@@ -76,9 +78,10 @@ function BlockUnBlock({row , setData}){
                 if(action){
                     getApi('/admin/superusermanagement',(response)=>{setData(response.data.superUsersData)})
                 }
-            alert(message)
+                toast(message)
             })}
         return(
             <button className={`${user.status?'bg-red-500 hover:bg-red-600':'bg-green-500 hover:bg-green-600'} text-white font-bold py-2 px-4 rounded`} onClick={handleClick}>{user.status?"Block":"UnBlock"}</button>
+
         )
     }

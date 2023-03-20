@@ -4,6 +4,7 @@ import { BrowserRouter,Routes,Route } from "react-router-dom"
 import AdminLoginPage from "./pages/admin/AdminLoginPage";
 import AdminUI from "./pages/admin/AdminUI";
 import NewTAbles from "./NewTAbles";
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   
@@ -18,6 +19,7 @@ function App() {
         <Route path='/trial' element={<NewTAbles/>}/>
       </Routes>
     </BrowserRouter>
+    <ToastContainer />
     </div>
   )
 }

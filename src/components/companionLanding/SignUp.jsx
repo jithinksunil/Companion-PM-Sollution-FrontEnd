@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { postApi } from "../../api/axiosCalls"
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function SignUp() {
 
@@ -18,25 +20,25 @@ function SignUp() {
     const passwordFormat=/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/
 
     if (!emailFormat.test(email)) {
-      alert("Please enter a valid email");
+      toast("Please enter a valid email");
     }
 
     if (!companyFormat.test(companyName)) {
-      alert("Please enter a valid company name");
+      toast("Please enter a valid company name");
     }
 
     if (!passwordFormat.test(password)) {
-      alert("Please enter a alpha numeric password of lenght 6");
+      toast("Please enter a alpha numeric password of lenght 6");
     }
 
     if(confirmPassword!=password){
-      alert('password does not matching')
+      toast('password does not matching')
     }
 
     if(emailFormat.test(email)&&companyFormat.test(companyName)&&passwordFormat.test(password)&&confirmPassword===password){
       postApi("/signup",superUserData,
         (response)=>{
-          alert("SignIn Successful")
+          toast("SignIn Successful")
           console.log(response.data.status)
           navigate('/login')
         }
@@ -59,7 +61,6 @@ function SignUp() {
             Sign Up
         </button>
       </div>
-
 
     </div>
   )
