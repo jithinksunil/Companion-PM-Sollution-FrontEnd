@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { getApi } from '../../api/axiosCalls'
 
 function SuperUserProfileBody() {
@@ -11,8 +12,8 @@ function SuperUserProfileBody() {
       const {superUserTokenVerified,superUserData}=response.data
       if(superUserTokenVerified){
         setSuperUser(superUserData)
-      }else{navigate('/')}
-    })
+      }else{navigate('/');toast.error('user verification failed')}
+    },()=>{navigate('/');toast.error('user verification failed')})
   },[])
   return (
     <Fragment>

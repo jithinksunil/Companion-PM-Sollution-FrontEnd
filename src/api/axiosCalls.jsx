@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import axios from "../constants/axiosBaseUrl"
 
-export const getApi=(url,resolveCallback,rejectCallback=(err)=>{console.log(err);toast('cannot get now: axios error')})=>{
+export const getApi=(url,resolveCallback,rejectCallback=(err)=>{console.log(err);toast.error('cannot get now: axios error')})=>{
     axios.get(url,{withCredentials: true}).then(resolveCallback).catch(rejectCallback)
 }
 

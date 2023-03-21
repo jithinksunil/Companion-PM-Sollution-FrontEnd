@@ -43,8 +43,8 @@ function AdminUserManagement() {
             }else{
                 toast(message)
             }
-        }else{navigate('/admin/login')}
-      })
+        }else{navigate('/admin/login');toast.error('Admin verification failed')}
+      },()=>{navigate('/admin/login');toast.error('Admin verification failed')})
     },[search])
 
    

@@ -33,7 +33,7 @@ function Login({ formName, setLoggedIn, apiCall, tokenName, responseRoute }) {
           setLoggedIn(true);
 
         }
-        toast(response.data.message)
+        toast.success(response.data.message)
       });
     }
   };
