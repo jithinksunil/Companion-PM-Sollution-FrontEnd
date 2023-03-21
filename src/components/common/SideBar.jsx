@@ -51,7 +51,7 @@ function SideBar({ showSideBar, links }) {
           <div
             className={`flex py-3 text-white text-md font-semibold ${
               !showSideBar && " justify-center"
-            } items-center`}
+            } cursor-pointer items-center`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

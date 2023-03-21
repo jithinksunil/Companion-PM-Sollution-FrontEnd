@@ -10,7 +10,7 @@ function Navbar({links,setShowSideBar,showSideBar}) {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className={`w-8 h-8 mr-5 ${showSideBar&&"hidden"}`} onClick={
+                    className={`w-8 h-8 mr-5 ${showSideBar&&"hidden"} cursor-pointer`} onClick={
                         () => {
                             setShowSideBar(showSideBar => !showSideBar)
 
@@ -21,7 +21,7 @@ function Navbar({links,setShowSideBar,showSideBar}) {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className={`w-8 h-8 mr-5 ${!showSideBar&&"hidden"}`} onClick={
+                    className={`w-8 h-8 mr-5 ${!showSideBar&&"hidden"} cursor-pointer`} onClick={
                         () => {
                             setShowSideBar(showSideBar => !showSideBar)
                         }

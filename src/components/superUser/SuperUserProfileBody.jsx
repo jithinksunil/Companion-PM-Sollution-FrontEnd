@@ -1,19 +1,27 @@
 import { Fragment, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
 import { getApi } from '../../api/axiosCalls'
+import UpdateImage from '../../components/superUser/UpdateImage'
 
 function SuperUserProfileBody() {
+  const [openUpdateImage,setOpenUpdateImage]=useState(false)
+  const [openUpdateProfile,setOpenUpdateProfile]=useState(false)
   const [superUser, setSuperUser] = useState({})
   const navigate=useNavigate()
-  console.log(superUser);
+  const onOpenUpdateImage = () => setOpenUpdateImage(true)
+  const onCloseUpdateImage = () => setOpenUpdateImage(false)
+  const onOpenUpdateProfile = () => setOpenUpdateProfile(true)
+  const onCloseUpdateProfile = () => setOpenUpdateProfile(false)
   useEffect(()=>{
     getApi('/profile',(response)=>{
       const {superUserTokenVerified,superUserData}=response.data
       if(superUserTokenVerified){
         setSuperUser(superUserData)
       }else{navigate('/');toast.error('user verification failed')}
-    },()=>{navigate('/');toast.error('user verification failed')})
+    },()=>{navigate('/');toast.error('user verification failed axios error')})
   },[])
   return (
     <Fragment>
@@ -30,13 +38,13 @@ function SuperUserProfileBody() {
               <div className="flex flex-wrap justify-center">
                 <div className=" lg:w-3/12 px-4 lg:order-2 flex justify-center">
                   <div className='-mt-20'>
-                    <img src="https://demos.creative-tim.com/notus-js/assets/img/team-2-800x800.jpg" alt="sdfsd" className=' mb-3 shadow-xl rounded-full h-40  border-none'/>
-                    <p className='text-black text-center border border-black rounded-lg py-3/4'>Update Image</p>
+                    <img src={`${superUser.image}`} alt="sdfsd" className=' mb-3 shadow-xl rounded-full h-40  border-none'/>
+                    <p className='cursor-pointer text-black text-center border border-black rounded-lg py-3/4' onClick={onOpenUpdateImage}>Update Image</p>
                   </div>
                 </div>
                 <div className="w-full lg:w-4/12 px-4 text-center md:text-right">
                   <div className="py-6 px-3 ">
-                    <button className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+                    <button className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button" onClick={onOpenUpdateProfile}>
                       Update Profile
                     </button>
                   </div>
@@ -85,6 +93,13 @@ function SuperUserProfileBody() {
         
       </section>
     </main>
+    <Modal open={openUpdateImage} onClose={onCloseUpdateImage} center>
+    <UpdateImage superUser={superUser} setSuperUser={setSuperUser} />
+    
+    </Modal>
+    <Modal open={openUpdateProfile} onClose={onCloseUpdateProfile} center>
+    <p>modal 1</p>
+    </Modal>
     </Fragment>
   )
 }
