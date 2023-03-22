@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export const superUserSice = createSlice(
+export const superUserSlice = createSlice(
     {
         name: 'superUser',
         initialState:{ value:{} },
@@ -12,6 +12,8 @@ export const superUserSice = createSlice(
     }
 )
 
-export const { setSuperUser } = superUserSice.actions
+export const { setSuperUser } = superUserSlice.actions
 
-export default superUserSice.reducer
+const superUserReducer= superUserSlice.reducer
+
+export default superUserReducer
