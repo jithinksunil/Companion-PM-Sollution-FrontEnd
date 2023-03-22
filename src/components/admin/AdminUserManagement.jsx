@@ -27,7 +27,7 @@ function AdminUserManagement() {
         },
         {
             name:'Action',
-            cell:(row)=><BlockUnBlock row={row} setData={setData} />,
+            cell:(row)=><BlockUnBlock row={row} setData={setData}/>,
             sortable:true
         }
       ]

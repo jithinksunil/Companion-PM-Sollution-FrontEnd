@@ -2,12 +2,18 @@ import axios from '../../constants/axiosBaseUrl'
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 import { getApi } from '../../api/axiosCalls'
+import { useDispatch, useSelector } from 'react-redux'
+import { setSuperUser } from '../../store/slices/SuperUserSice'
 
-function UpdateImage({superUser,setSuperUser}) {
+
+function UpdateImage() {
 
     const [image,setImage]=useState(null)
     const [selectedImage,setSelectedImage]=useState(null)
     const formData=new FormData()
+    const dispatch = useDispatch()
+    const superUser =useSelector((state=>state.superUser.value))
+    console.log(superUser)
 
     console.log(JSON.stringify(selectedImage));
     const handleSubmit=(e)=>{
@@ -19,7 +25,7 @@ function UpdateImage({superUser,setSuperUser}) {
       getApi('/profile',(response)=>{
           const {superUserData} =response.data
           console.log(superUserData);
-          setSuperUser(superUserData)},()=>{
+          dispatch(setSuperUser(superUserData))},()=>{
             toast.error('cannot fetch user data now')}
           )
     }).catch((err)=>{console.log(err); toast.error('failed to update the image axios error')})

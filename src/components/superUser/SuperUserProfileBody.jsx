@@ -5,11 +5,13 @@ import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import { getApi } from '../../api/axiosCalls'
 import UpdateImage from '../../components/superUser/UpdateImage'
+import { useSelector } from 'react-redux'
+import { setSuperUser } from '../../store/slices/SuperUserSice'
 
 function SuperUserProfileBody() {
   const [openUpdateImage,setOpenUpdateImage]=useState(false)
   const [openUpdateProfile,setOpenUpdateProfile]=useState(false)
-  const [superUser, setSuperUser] = useState({})
+  const superUser=useSelector(state=>state.superUser.value)
   const navigate=useNavigate()
   const onOpenUpdateImage = () => setOpenUpdateImage(true)
   const onCloseUpdateImage = () => setOpenUpdateImage(false)
@@ -94,7 +96,7 @@ function SuperUserProfileBody() {
       </section>
     </main>
     <Modal open={openUpdateImage} onClose={onCloseUpdateImage} center>
-    <UpdateImage superUser={superUser} setSuperUser={setSuperUser} />
+    <UpdateImage />
     
     </Modal>
     <Modal open={openUpdateProfile} onClose={onCloseUpdateProfile} center>

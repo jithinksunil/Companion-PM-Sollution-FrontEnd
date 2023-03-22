@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 
-function Navbar({links,setShowSideBar,showSideBar}) {
+function Navbar({individual,links,setShowSideBar,showSideBar}) {
     const { profile,message,notification,attendence }=links
 
     return (
@@ -61,7 +61,9 @@ function Navbar({links,setShowSideBar,showSideBar}) {
                 </svg>}
             </div>
             {profile&&<Link to={profile}>
-                <div className='w-14 h-14 rounded-full bg-gray-300'></div>
+                <div className='w-14 h-14 rounded-full bg-gray-300 overflow-hidden' >
+                <img src={`${individual.image}`} alt=""  />
+                </div>
             </Link>}
         </div>
     )

@@ -5,12 +5,15 @@ import Cookies from "js-cookie";
 import { userShema } from "../../validations/UserValidation";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux'
+import { setSuperUser } from '../../store/slices/SuperUserSice'
 
 function Login({ formName, setLoggedIn, apiCall, tokenName, responseRoute }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const formData = { email, password };
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -29,9 +32,11 @@ function Login({ formName, setLoggedIn, apiCall, tokenName, responseRoute }) {
       postApi(apiCall, formData, (response) => {
         if (response.data.verified) {
           Cookies.set(tokenName, response.data.token, { expires: 7000 });
-          navigate(responseRoute);
-          setLoggedIn(true);
+          navigate(responseRoute)
+          
+          dispatch(setSuperUser(response.data.superUser))
 
+          setLoggedIn(true)
         }
         toast.success(response.data.message)
       });
