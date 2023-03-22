@@ -62,7 +62,7 @@ function Navbar({individual,links,setShowSideBar,showSideBar}) {
             </div>
             {profile&&<Link to={profile}>
                 <div className='w-14 h-14 rounded-full bg-gray-300 overflow-hidden' >
-                <img src={`${individual.image}`} alt=""  />
+                <img src={`${individual?.image}`} alt=""  />
                 </div>
             </Link>}
         </div>

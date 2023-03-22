@@ -5,7 +5,6 @@ import { getApi } from '../../api/axiosCalls'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSuperUser } from '../../store/slices/SuperUserSice'
 
-
 function UpdateImage() {
 
     const [image,setImage]=useState(null)
@@ -15,7 +14,6 @@ function UpdateImage() {
     const superUser =useSelector((state=>state.superUser.value))
     console.log(superUser)
 
-    console.log(JSON.stringify(selectedImage));
     const handleSubmit=(e)=>{
       e.preventDefault()
       formData.append("file",image)

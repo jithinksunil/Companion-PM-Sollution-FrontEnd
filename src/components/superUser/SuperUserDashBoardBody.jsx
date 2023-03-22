@@ -1,20 +1,9 @@
-import { Fragment, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import { getApi } from '../../api/axiosCalls'
+import { Fragment } from 'react'
+import { setSuperUser } from '../../store/slices/SuperUserSice'
+import SuperUserTokenCheck from '../../customHooks/SuperUserTokenCheck'
 
 function SuperUserDashBoardBody() {
-    const [superUser, setSuperUser] = useState({})
-    const navigate=useNavigate()
-    console.log(superUser);
-    useEffect(()=>{
-      getApi('/dashboard',(response)=>{
-        const {superUserTokenVerified,superUserData}=response.data
-        if(superUserTokenVerified){
-          setSuperUser(superUserData)
-          }else{navigate('/');toast.error('user verification failed')}
-      },()=>{navigate('/');toast.error('user verification failed')})
-    },[])
+    SuperUserTokenCheck('/dashboard',setSuperUser)
     return (
       <Fragment>
         <p className='text-white'>Dashboard</p>

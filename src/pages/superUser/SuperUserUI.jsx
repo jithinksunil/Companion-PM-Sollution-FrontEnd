@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 import SuperUserDashBoardBody from '../../components/superUser/SuperUserDashBoardBody'
 import SuperUserProfileBody from '../../components/superUser/SuperUserProfileBody'
+import SuperUserConnectionsBody from '../../components/superUser/SuperUserConnectionsBody'
 import Layout from '../../layout/Layout'
 function SuperUserUI() {
   const superUser=useSelector(state=>state.superUser.value)
@@ -11,6 +12,7 @@ function SuperUserUI() {
       <Routes>
         <Route path='/dashboard' element={<SuperUserDashBoardBody/>}/>
         <Route path='/profile' element={<SuperUserProfileBody/>}/>
+        <Route path='/connections' element={<SuperUserConnectionsBody/>}/>
       </Routes>
     </Layout>
   )

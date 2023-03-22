@@ -1,30 +1,21 @@
-import { Fragment, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import { Fragment, useState } from 'react'
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
-import { getApi } from '../../api/axiosCalls'
 import UpdateImage from '../../components/superUser/UpdateImage'
 import { useSelector } from 'react-redux'
 import { setSuperUser } from '../../store/slices/SuperUserSice'
+import SuperUserTokenCheck from '../../customHooks/SuperUserTokenCheck';
 
 function SuperUserProfileBody() {
   const [openUpdateImage,setOpenUpdateImage]=useState(false)
   const [openUpdateProfile,setOpenUpdateProfile]=useState(false)
   const superUser=useSelector(state=>state.superUser.value)
-  const navigate=useNavigate()
   const onOpenUpdateImage = () => setOpenUpdateImage(true)
   const onCloseUpdateImage = () => setOpenUpdateImage(false)
   const onOpenUpdateProfile = () => setOpenUpdateProfile(true)
   const onCloseUpdateProfile = () => setOpenUpdateProfile(false)
-  useEffect(()=>{
-    getApi('/profile',(response)=>{
-      const {superUserTokenVerified,superUserData}=response.data
-      if(superUserTokenVerified){
-        setSuperUser(superUserData)
-      }else{navigate('/');toast.error('user verification failed')}
-    },()=>{navigate('/');toast.error('user verification failed axios error')})
-  },[])
+
+  SuperUserTokenCheck('/profile',setSuperUser)
   return (
     <Fragment>
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css"/>
@@ -40,7 +31,7 @@ function SuperUserProfileBody() {
               <div className="flex flex-wrap justify-center">
                 <div className=" lg:w-3/12 px-4 lg:order-2 flex justify-center">
                   <div className='-mt-20'>
-                    <img src={`${superUser.image}`} alt="sdfsd" className=' mb-3 shadow-xl rounded-full h-40  border-none'/>
+                    <img src={`${superUser?.image}`} alt="sdfsd" className=' mb-3 shadow-xl rounded-full h-40  border-none'/>
                     <p className='cursor-pointer text-black text-center border border-black rounded-lg py-3/4' onClick={onOpenUpdateImage}>Update Image</p>
                   </div>
                 </div>

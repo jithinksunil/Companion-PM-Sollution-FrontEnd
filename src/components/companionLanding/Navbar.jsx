@@ -1,11 +1,11 @@
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useState } from "react";
 import Login from "../common/Login";
 import SignUp from "./SignUp"
-import {MyContext} from '../../context/Context'
 import { Route,Routes, useNavigate } from "react-router-dom";
+import { setSuperUser } from "../../store/slices/SuperUserSice";
 
 function Navbar() {
-  const {setSuperUserLoggedIn}=useContext(MyContext)
+
   const [hideList, setHideList] = useState(true)
   const navigate=useNavigate()
   function handleToggle(){
@@ -47,7 +47,7 @@ function Navbar() {
           </div>
         </nav>
         <Routes>
-        <Route path='/login' element={<div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0"><Login formName={'Super User'} setLoggedIn={setSuperUserLoggedIn} apiCall={'/login'} tokenName={'superUserToken'} responseRoute={'/superuser/dashboard'}/></div>}/>
+        <Route path='/login' element={<div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0"><Login formName={'Super User'} setIndividual={setSuperUser} url={'/login'} tokenName={'superUserToken'} responseRoute={'/superuser/dashboard'}/></div>}/>
         <Route path='/signup' element={<div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0"><SignUp/></div>}/>
         </Routes>
         

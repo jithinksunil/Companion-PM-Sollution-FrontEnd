@@ -6,9 +6,8 @@ import { userShema } from "../../validations/UserValidation";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux'
-import { setSuperUser } from '../../store/slices/SuperUserSice'
 
-function Login({ formName, setLoggedIn, apiCall, tokenName, responseRoute }) {
+function Login({ formName, setIndividual, url, tokenName, responseRoute }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const formData = { email, password };
@@ -29,16 +28,22 @@ function Login({ formName, setLoggedIn, apiCall, tokenName, responseRoute }) {
     }
     const isValid = await userShema.isValid(formData);
     if (isValid && emailFormat.test(email) && passwordFormat.test(password)) {
-      postApi(apiCall, formData, (response) => {
+      
+      postApi(url, formData, (response) => {
         if (response.data.verified) {
           Cookies.set(tokenName, response.data.token, { expires: 7000 });
-          navigate(responseRoute)
           
-          dispatch(setSuperUser(response.data.superUser))
-
-          setLoggedIn(true)
+          if(response.data.superUser){
+            dispatch(setIndividual(response.data.superUser))//here setIndividual coming from the redux
+          }else if(response.data.admin){
+            setIndividual(response.data.admin)//here setIndivifual coming from the context
+          }else if(response.data.projectManager){
+            console.log('everything fiime here');
+            dispatch(setIndividual(response.data.projectManager))//here setIndividual coming from the redux
+          }
+          navigate(responseRoute)
         }
-        toast.success(response.data.message)
+        toast(response.data.message)
       });
     }
   };
