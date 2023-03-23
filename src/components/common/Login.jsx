@@ -2,15 +2,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postApi } from "../../api/axiosCalls";
 import Cookies from "js-cookie";
-import { userShema } from "../../validations/UserValidation";
+// import { userShema } from "../../validations/UserValidation";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux'
 
-function Login({ formName, setIndividual, url, tokenName, responseRoute }) {
-  const [email, setEmail] = useState("");
+function Login({ formName,userName, setIndividual, url, tokenName, responseRoute }) {
+  const [firstField, setFirstField] = useState("");
   const [password, setPassword] = useState("");
-  const formData = { email, password };
+  const formData = { firstField, password };
   const navigate = useNavigate();
   const dispatch = useDispatch()
 
@@ -18,16 +18,25 @@ function Login({ formName, setIndividual, url, tokenName, responseRoute }) {
     e.preventDefault();
 
     const emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const userNameFormat = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{12,}$/;
     const passwordFormat = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
 
-    if (!emailFormat.test(email)) {
-      toast("Please enter a valid email")
+    if(userName){
+      if (!userNameFormat.test(firstField)) {
+        toast("Please enter a valid user name")
+      }
     }
+    else{
+      if (!emailFormat.test(firstField)) {
+        toast("Please enter a valid email")
+      }
+    }
+
     if (!passwordFormat.test(password)) {
       toast("Please enter a alpha numeric password of lenght 6");
     }
-    const isValid = await userShema.isValid(formData);
-    if (isValid && emailFormat.test(email) && passwordFormat.test(password)) {
+    // const isValid = await userShema.isValid(formData);
+    if ((emailFormat.test(firstField)||userNameFormat.test(firstField)) && passwordFormat.test(password)) {
       
       postApi(url, formData, (response) => {
         if (response.data.verified) {
@@ -62,10 +71,10 @@ function Login({ formName, setIndividual, url, tokenName, responseRoute }) {
         <input
           className="block my-2 rounded-xl h-9 border-gray-500"
           required
-          type="email"
-          placeholder="Email"
+          type={userName?'text':"email"}
+          placeholder={userName?'Company User Name':"Email"}
           onChange={(e) => {
-            setEmail(e.target.value);
+            setFirstField(e.target.value);
           }}
         />
         <input

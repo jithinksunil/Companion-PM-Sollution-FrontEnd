@@ -8,9 +8,15 @@ function SuperUserConnectionsBody() {
   const [connection,setConnection]=useState(null)
   SuperUserTokenCheck('/connections',setSuperUser)
   const handleAddUser=()=>{
-    postApi('/addConnection',{connection},(respose)=>{
-        toast.success(respose.data.message)
-    })
+    const emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!emailFormat.test(connection)){
+      toast("Please enter a valid email")
+    }
+    else{
+      postApi('/addConnection',{connection},(respose)=>{
+          toast.success(respose.data.message)
+      })
+    }
   }
   return (
     <div>

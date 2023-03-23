@@ -6,7 +6,7 @@ import Layout from '../../layout/Layout'
 function ProjectManagerUI() {
   const projectManager=useSelector(state=>state.projectManager.value)
   return (
-    <Layout individual={projectManager} links={{profile:'/projectmanager/profile',message:'/',attendence:'/',notification:'/',dashBoard:'/projectmanager/dashboard',projects:'/'}}>
+    <Layout individual={projectManager} links={{profile:'/projectmanager/profile',message:'/',attendence:'/',notification:'/',dashBoard:'/projectmanager/dashboard'}}>
       <Routes>
         <Route path='/dashboard' element={<ProjectManagerDashBoardBody/>}/>
       </Routes>

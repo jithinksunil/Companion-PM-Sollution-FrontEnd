@@ -12,7 +12,7 @@ function ProjectManagerTokenCheck(url,setProjectManager){
         const {projectManagerTokenVerified,message,projectManagerData}=response.data
         if(projectManagerTokenVerified){
           dispatch(setProjectManager(projectManagerData))
-          }else{navigate('/');toast.error(message)}
+          }else{navigate('/projectmanager/login');toast.error(message)}
       })
     },[])
 }

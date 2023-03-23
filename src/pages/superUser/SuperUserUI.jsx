@@ -8,7 +8,7 @@ import Layout from '../../layout/Layout'
 function SuperUserUI() {
   const superUser=useSelector(state=>state.superUser.value)
   return (
-    <Layout individual={superUser} links={{profile:'/superuser/profile',message:'/',attendence:'/',notification:'/',dashBoard:'/superuser/dashboard',projects:'/'}}>
+    <Layout individual={superUser} links={{profile:'/superuser/profile',message:'/',attendence:'/',notification:'/',connections: '/superuser/connections',dashBoard:'/superuser/dashboard'}}>
       <Routes>
         <Route path='/dashboard' element={<SuperUserDashBoardBody/>}/>
         <Route path='/profile' element={<SuperUserProfileBody/>}/>

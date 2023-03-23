@@ -12,7 +12,7 @@ function SuperUserTokenCheck(url,setSuperUser){
         const {superUserTokenVerified,message,superUserData}=response.data
         if(superUserTokenVerified){
           dispatch(setSuperUser(superUserData))
-          }else{navigate('/');toast.error(message)}
+          }else{navigate('/login');toast.error(message)}
       })
     },[])
 }
