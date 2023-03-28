@@ -1,10 +1,31 @@
 import { toast } from "react-toastify";
-import axios from "../constants/axiosBaseUrl"
+import axios from "../constants/axiosBaseUrl";
 
-export const getApi=(url,resolveCallback,rejectCallback=(err)=>{console.log(err);toast.error('cannot get now: axios error')})=>{
-    axios.get(url,{withCredentials: true}).then(resolveCallback).catch(rejectCallback)
-}
+export const getApi = (
+  url,
+  resolveCallback,
+  rejectCallback = (err) => {
+    console.log(err);
+    toast.error("cannot get now: axios error");
+  }
+) => {
+  axios
+    .get(url, { withCredentials: true })
+    .then(resolveCallback)
+    .catch(rejectCallback);
+};
 
-export const postApi=(url,body,resolveCallback,rejectCallback=(err)=>{console.log(err);toast('cannot get now: axios error')})=>{
-    axios.post(url,body,{withCredentials: true}).then(resolveCallback).catch(rejectCallback)
-}
+export const postApi = (
+  url,
+  body,
+  resolveCallback,
+  rejectCallback = (err) => {
+    console.log(err);
+    toast("cannot get now: axios error");
+  }
+) => {
+  axios
+    .post(url, body, { withCredentials: true })
+    .then(resolveCallback)
+    .catch(rejectCallback);
+};

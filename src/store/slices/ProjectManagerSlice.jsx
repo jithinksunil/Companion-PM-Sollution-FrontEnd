@@ -1,19 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
-export const projectManagerSlice = createSlice(
-    {
-        name: 'projectManager',
-        initialState:{ value:{} },
-        reducers: {
-            setProjectManager: (state,action) => {
-                state.value=action.payload
-            }
-        }
-    }
-)
+export const projectManagerSlice = createSlice({
+  name: "projectManager",
+  initialState: { value: {} },
+  reducers: {
+    setProjectManager: (state, action) => {
+      state.value = action.payload;
+    },
+  },
+});
 
-export const { setProjectManager } = projectManagerSlice.actions
+export const { setProjectManager } = projectManagerSlice.actions;
 
-const projectManagerReducer= projectManagerSlice.reducer
+const projectManagerReducer = projectManagerSlice.reducer;
 
-export default projectManagerReducer
+export default projectManagerReducer;

@@ -3,16 +3,23 @@ import { useNavigate } from "react-router-dom";
 import { postApi } from "../../api/axiosCalls";
 import Cookies from "js-cookie";
 // import { userShema } from "../../validations/UserValidation";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useDispatch } from 'react-redux'
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
 
-function Login({ formName,userName, setIndividual, url, tokenName, responseRoute }) {
+function Login({
+  formName,
+  userName,
+  setIndividual,
+  url,
+  tokenName,
+  responseRoute,
+}) {
   const [firstField, setFirstField] = useState("");
   const [password, setPassword] = useState("");
   const formData = { firstField, password };
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -21,14 +28,13 @@ function Login({ formName,userName, setIndividual, url, tokenName, responseRoute
     const userNameFormat = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{12,}$/;
     const passwordFormat = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
 
-    if(userName){
+    if (userName) {
       if (!userNameFormat.test(firstField)) {
-        toast("Please enter a valid user name")
+        toast("Please enter a valid user name");
       }
-    }
-    else{
+    } else {
       if (!emailFormat.test(firstField)) {
-        toast("Please enter a valid email")
+        toast("Please enter a valid email");
       }
     }
 
@@ -36,23 +42,24 @@ function Login({ formName,userName, setIndividual, url, tokenName, responseRoute
       toast("Please enter a alpha numeric password of lenght 6");
     }
     // const isValid = await userShema.isValid(formData);
-    if ((emailFormat.test(firstField)||userNameFormat.test(firstField)) && passwordFormat.test(password)) {
-      
+    if (
+      (emailFormat.test(firstField) || userNameFormat.test(firstField)) &&
+      passwordFormat.test(password)
+    ) {
       postApi(url, formData, (response) => {
         if (response.data.verified) {
           Cookies.set(tokenName, response.data.token, { expires: 7000 });
-          
-          if(response.data.superUser){
-            dispatch(setIndividual(response.data.superUser))//here setIndividual coming from the redux
-          }else if(response.data.admin){
-            setIndividual(response.data.admin)//here setIndivifual coming from the context
-          }else if(response.data.projectManager){
-            console.log('everything fiime here');
-            dispatch(setIndividual(response.data.projectManager))//here setIndividual coming from the redux
+
+          if (response.data.superUser) {
+            dispatch(setIndividual(response.data.superUser)); //here setIndividual coming from the redux
+          } else if (response.data.admin) {
+            setIndividual(response.data.admin); //here setIndivifual coming from the context
+          } else if (response.data.projectManager) {
+            dispatch(setIndividual(response.data.projectManager)); //here setIndividual coming from the redux
           }
-          navigate(responseRoute)
+          navigate(responseRoute);
         }
-        toast(response.data.message)
+        toast(response.data.message);
       });
     }
   };
@@ -71,8 +78,8 @@ function Login({ formName,userName, setIndividual, url, tokenName, responseRoute
         <input
           className="block my-2 rounded-xl h-9 border-gray-500"
           required
-          type={userName?'text':"email"}
-          placeholder={userName?'Company User Name':"Email"}
+          type={userName ? "text" : "email"}
+          placeholder={userName ? "Company User Name" : "Email"}
           onChange={(e) => {
             setFirstField(e.target.value);
           }}
@@ -94,7 +101,6 @@ function Login({ formName,userName, setIndividual, url, tokenName, responseRoute
           />
         </div>
       </form>
-      
     </div>
   );
 }

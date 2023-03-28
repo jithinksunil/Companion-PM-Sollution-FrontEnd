@@ -2,12 +2,11 @@ import { Link } from "react-router-dom";
 
 function SideBar({ showSideBar, links }) {
   const { dashBoard, projects, connections, userManagement } = links;
-
-  console.log('-------------',connections,dashBoard,userManagement,'-----------------')
   return (
     <div className={`bg-slate-800 bg-opacity-50 h-screen`}>
-      <div className={`${showSideBar ? "w-72 md:w-80 px-5" : "w-20"} duration-300`}>
-
+      <div
+        className={`${showSideBar ? "w-72 md:w-80 px-5" : "w-20"} duration-300`}
+      >
         <div className="h-24 w-full flex justify-center items-center  py-10 px-2">
           <img
             className={"h-7"}
@@ -20,9 +19,8 @@ function SideBar({ showSideBar, links }) {
           />
         </div>
 
-        
-          {dashBoard && (
-            <Link to={dashBoard}>
+        {dashBoard && (
+          <Link to={dashBoard}>
             <div
               className={`flex py-3 text-white text-md font-semibold ${
                 !showSideBar && " justify-center"
@@ -46,11 +44,11 @@ function SideBar({ showSideBar, links }) {
                 Dash Board
               </p>
             </div>
-            </Link>
-          )}
-        
-          {projects && (
-            <Link to={projects}>
+          </Link>
+        )}
+
+        {projects && (
+          <Link to={projects}>
             <div
               className={`flex py-3 text-white text-md font-semibold ${
                 !showSideBar && " justify-center"
@@ -74,20 +72,17 @@ function SideBar({ showSideBar, links }) {
                 Projects
               </p>
             </div>
-            </Link>
-          )}
-        
-        
-        
-          {connections && (
-            <Link to={connections}>
-            
+          </Link>
+        )}
+
+        {connections && (
+          <Link to={connections}>
             <div
               className={`flex py-3 text-white text-md font-semibold ${
                 !showSideBar && " justify-center"
               } cursor-pointer items-center`}
             >
-            <svg
+              <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -105,11 +100,11 @@ function SideBar({ showSideBar, links }) {
                 Connections
               </p>
             </div>
-            </Link>
-          )}
-        
-          {userManagement && (
-            <Link to={userManagement}>
+          </Link>
+        )}
+
+        {userManagement && (
+          <Link to={userManagement}>
             <div
               className={`flex py-3 text-white text-md font-semibold ${
                 !showSideBar && " justify-center"
@@ -133,9 +128,8 @@ function SideBar({ showSideBar, links }) {
                 User Management
               </p>
             </div>
-            </Link>
-          )}
-        
+          </Link>
+        )}
       </div>
     </div>
   );
