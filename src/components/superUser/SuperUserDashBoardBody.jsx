@@ -1,9 +1,14 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { setSuperUser } from "../../store/slices/SuperUserSice";
 import SuperUserTokenCheck from "../../customHooks/SuperUserTokenCheck";
 
 
 function SuperUserDashBoardBody() {
+  useEffect(()=>{
+    navigator.geolocation.getCurrentPosition((position)=>{
+      console.log(position)
+    })
+  })
   
   SuperUserTokenCheck("/dashboard", setSuperUser);
   return (
