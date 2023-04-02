@@ -39,7 +39,7 @@ function Login({
     }
 
     if (!passwordFormat.test(password)) {
-      toast("Please enter a alpha numeric password of lenght 6");
+      toast("Please enter a alpha numeric password of length 6");
     }
     // const isValid = await userShema.isValid(formData);
     if (
