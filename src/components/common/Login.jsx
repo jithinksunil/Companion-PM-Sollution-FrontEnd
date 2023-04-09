@@ -76,7 +76,7 @@ function Login({
       <p>{formName}</p>
       <form onSubmit={handleLogin}>
         <input
-          className="block my-2 rounded-xl h-9 border-gray-500"
+          className="block my-2 rounded-xl h-9 border-gray-500 border px-3"
           required
           type={userName ? "text" : "email"}
           placeholder={userName ? "Company User Name" : "Email"}
@@ -85,7 +85,7 @@ function Login({
           }}
         />
         <input
-          className="block my-2 rounded-xl h-9 border-gray-500"
+          className="block my-2 rounded-xl h-9 border-gray-500 border px-3"
           required
           type="password"
           placeholder="Password"

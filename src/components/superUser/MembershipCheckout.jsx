@@ -4,17 +4,22 @@ import { postApi } from "../../api/axiosCalls";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-
 function MembershipCheckout() {
+
     const [plan, setPlan] = useState('Silver')
     const [amount,setAmount]=useState(5)
     const navigate=useNavigate()
     const handlePaymentSuccess=()=>{
         postApi('/paymentcomplete',{plan},(response)=>{
-            const {status,message}=response.data
-            if(status){
-                navigate('/superuser/profile')
-                toast.success(message)
+            const {superUserToken,status,message}=response.data
+            if(superUserToken){
+                if(status){
+                    navigate('/superuser/profile')
+                    toast.success(message)
+                }
+                else{
+                    toast.error(message)
+                }
             }
             else{
                 toast.error(message)

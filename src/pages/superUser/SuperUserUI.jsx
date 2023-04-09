@@ -8,6 +8,7 @@ import SuperUserConnectionsBody from "../../components/superUser/SuperUserConnec
 import { ErrorBoundary } from "react-error-boundary";
 import Fallback from "../../errorBoundaries/ErrorBoundary";
 import MembershipCheckout from "../../components/superUser/MembershipCheckout";
+import SuperUserProjectsBody from "../../components/superUser/SuperUserProjectsBody";
 
 function SuperUserUI() {
   const superUser = useSelector((state) => state.superUser.value);
@@ -23,11 +24,13 @@ function SuperUserUI() {
         attendence: "/",
         notification: "/",
         connections: "/superuser/connections",
+        projects: "/superuser/projects",
         dashBoard: "/superuser/dashboard",
       }}
     >
       <Routes>
         <Route path="/dashboard" element={<SuperUserDashBoardBody />} />
+        <Route path="/projects" element={<SuperUserProjectsBody />} />
         <Route path="/profile" element={<SuperUserProfileBody />} />
         <Route path="/connections" element={<SuperUserConnectionsBody />} />
         <Route path="/membershipupgrade" element={<MembershipCheckout/>} />

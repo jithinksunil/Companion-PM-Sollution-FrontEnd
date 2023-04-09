@@ -1,9 +1,9 @@
-import { setProjectManager } from "../../store/slices/ProjectManagerSlice";
 import ProjectManagerTokenCheck from "../../customHooks/ProjectManagerTokenCheck";
 
 function ProjectManagerDashBoardBody() {
   
-  ProjectManagerTokenCheck("/projectmanager/dashboard", setProjectManager);
+  ProjectManagerTokenCheck("/projectmanager/dashboard");
+  
   return (
     <div>
 

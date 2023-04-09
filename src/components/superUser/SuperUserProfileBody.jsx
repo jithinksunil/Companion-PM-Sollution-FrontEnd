@@ -3,18 +3,20 @@ import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 import UpdateImage from "../../components/superUser/UpdateImage";
 import { useSelector } from "react-redux";
-import { setSuperUser } from "../../store/slices/SuperUserSice";
-import SuperUserTokenCheck from "../../customHooks/SuperUserTokenCheck";
 import './customizedModal.css'
 import ProfileUpdate from "./ProfileUpdate";
 import Membership from "./Membership";
+import SuperUserTokenCheck from "../../customHooks/SuperUserTokenCheck";
 
 
 function SuperUserProfileBody() {
+  
+  SuperUserTokenCheck('/profile')
+  const superUser = useSelector((state) => state.superUser.value);
+
   const [openUpdateImage, setOpenUpdateImage] = useState(false);
   const [openUpdateProfile, setOpenUpdateProfile] = useState(false);
   const [openMembership, setOpenMembership] = useState(false);
-  const superUser = useSelector((state) => state.superUser.value);
   const onOpenUpdateImage = () => setOpenUpdateImage(true);
   const onCloseUpdateImage = () => setOpenUpdateImage(false);
   const onOpenUpdateProfile = () => setOpenUpdateProfile(true);
@@ -22,7 +24,7 @@ function SuperUserProfileBody() {
   const onOpenMembership = () => setOpenMembership(true);
   const onCloseMembership = () => setOpenMembership(false);
 
-  SuperUserTokenCheck("/profile", setSuperUser);
+  
   return (
     <Fragment>
       <link

@@ -1,21 +1,22 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getApi } from "../api/axiosCalls";
 
-function ProjectManagerTokenCheck(url, setProjectManager) {
+function ProjectManagerTokenCheck(url,setData) {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   useEffect(() => {
     getApi(url, (response) => {
-      const { projectManagerTokenVerified, message, projectManagerData } =
+      const { projectManagerTokenVerified, message, data } =
         response.data;
-      if (projectManagerTokenVerified) {
-        dispatch(setProjectManager(projectManagerData));
-      } else {
+      if (!projectManagerTokenVerified) {
         navigate("/projectmanager/login");
         toast.error(message);
+      }
+      else{
+        if(setData){
+          setData(data)
+        }
       }
     });
   }, []);
