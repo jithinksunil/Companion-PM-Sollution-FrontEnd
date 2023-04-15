@@ -9,6 +9,8 @@ import { ErrorBoundary } from "react-error-boundary";
 import Fallback from "../../errorBoundaries/ErrorBoundary";
 import MembershipCheckout from "../../components/superUser/MembershipCheckout";
 import SuperUserProjectsBody from "../../components/superUser/SuperUserProjectsBody";
+import Messenger from "../../components/common/Messenger";
+
 
 function SuperUserUI() {
   const superUser = useSelector((state) => state.superUser.value);
@@ -24,6 +26,8 @@ function SuperUserUI() {
         attendence: "/",
         notification: "/",
         connections: "/superuser/connections",
+        videoCall:`/superuser/videocall/${superUser._id}`,
+        chat:'/superuser/chat',
         projects: "/superuser/projects",
         dashBoard: "/superuser/dashboard",
       }}
@@ -34,6 +38,7 @@ function SuperUserUI() {
         <Route path="/profile" element={<SuperUserProfileBody />} />
         <Route path="/connections" element={<SuperUserConnectionsBody />} />
         <Route path="/membershipupgrade" element={<MembershipCheckout/>} />
+        <Route path="/chat" element={<Messenger/>} />
       </Routes>
     </Layout>
     </Suspense>

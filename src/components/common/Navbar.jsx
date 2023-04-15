@@ -1,36 +1,35 @@
 import Cookies from "js-cookie";
-import { useState } from "react";
+import {useState} from "react";
 import Modal from "react-responsive-modal";
 import {Link, useNavigate} from "react-router-dom";
-import { toast } from "react-toastify";
-import { getApi } from "../../api/axiosCalls";
+import {toast} from "react-toastify";
+import {getApi} from "../../api/axiosCalls";
 import Attendence from "./Attendence";
-import './customizedModal.css'
+import "./customizedModal.css";
 
 function Navbar({individual, links, setShowSideBar, showSideBar}) {
     const [openAttendenceModal, setOpenAttendenceModal] = useState(false);
     const onOpenAttendenceModal = () => setOpenAttendenceModal(true);
-  const onCloseAttendenceModal = () => setOpenAttendenceModal(false);
+    const onCloseAttendenceModal = () => setOpenAttendenceModal(false);
     const {
         message,
         notification,
         attendence,
         logout,
-        profile
+        profile,
+        videoCall,
+        chat
     } = links;
-    const navigate=useNavigate()
-    const handleLogout=()=>{
-
-      getApi('/logout',(response)=>{
-        if(response.status){
-          
-          Cookies.remove(logout.token)
-          toast.success(response.data.message)
-          navigate(logout.link)
-
-        }
-      })
-    }
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        getApi("/logout", (response) => {
+            if (response.status) {
+                Cookies.remove(logout.token);
+                toast.success(response.data.message);
+                navigate(logout.link);
+            }
+        });
+    };
 
     return (
         <div className="w-full flex justify-between items-center pr-5 md:pr-10 pl-5 py-5 backdrop-blur-xl">
@@ -103,24 +102,58 @@ function Navbar({individual, links, setShowSideBar, showSideBar}) {
                             `w-8 h-8 mr-5 md:flex ${
                                 showSideBar && "hidden"
                             } cursor-pointer`
-                    }
-                    onClick={onOpenAttendenceModal}>
+                        }
+                        onClick={onOpenAttendenceModal}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M10.05 4.575a1.575 1.575 0 10-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 013.15 0v1.5m-3.15 0l.075 5.925m3.075.75V4.575m0 0a1.575 1.575 0 013.15 0V15M6.9 7.575a1.575 1.575 0 10-3.15 0v8.175a6.75 6.75 0 006.75 6.75h2.018a5.25 5.25 0 003.712-1.538l1.732-1.732a5.25 5.25 0 001.538-3.712l.003-2.024a.668.668 0 01.198-.471 1.575 1.575 0 10-2.228-2.228 3.818 3.818 0 00-1.12 2.687M6.9 7.575V12m6.27 4.318A4.49 4.49 0 0116.35 15m.002 0h-.002"/>
                     </svg>
                 )
-            } </div>
-            <div className='flex items-center'>
-                {
-                logout && (
+            }
+                <Link to={videoCall}>
+                    {
+                    videoCall && (
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className={`w-8 h-8 mr-5 md:flex ${showSideBar && "hidden"} text-white cursor-pointer`}
-                            onClick={handleLogout}
-                        >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"/>
+                            className={
+                                `w-8 h-8 mr-5 md:flex ${
+                                    showSideBar && "hidden"
+                                } cursor-pointer`
+                        }>
+                            <path strokeLinecap="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/>
                         </svg>
-                        )
+                    )
+                } </Link>
+                <Link to={chat}>
+                    {
+                    chat && (
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className={
+                              `w-8 h-8 mr-5 md:flex ${
+                                  showSideBar && "hidden"
+                              } cursor-pointer`}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.068.157 2.148.279 3.238.364.466.037.893.281 1.153.671L12 21l2.652-3.978c.26-.39.687-.634 1.153-.67 1.09-.086 2.17-.208 3.238-.365 1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/>
+                        </svg>
+                        
+                    )
+                } </Link>
+            </div>
+            <div className="flex items-center">
+                {
+                logout && (
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className={
+                            `w-8 h-8 mr-5 md:flex ${
+                                showSideBar && "hidden"
+                            } text-white cursor-pointer`
+                        }
+                        onClick={handleLogout}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"/>
+                    </svg>
+                )
             }
                 {
                 profile && (
@@ -135,18 +168,20 @@ function Navbar({individual, links, setShowSideBar, showSideBar}) {
                         </div>
                     </Link>
                 )
-            } </div>
-            <Modal
-       open={openAttendenceModal}
-        onClose={onCloseAttendenceModal}
-         center
-         showCloseIcon={false}
-          classNames={{
-            overlay: 'customOverlay',
-            modal: 'customModal',
-          }}>
-          <Attendence url={ attendence }/>
-      </Modal>
+            }
+                {" "} </div>
+            <Modal open={openAttendenceModal}
+                onClose={onCloseAttendenceModal}
+                center
+                showCloseIcon={false}
+                classNames={
+                    {
+                        overlay: "customOverlay",
+                        modal: "customModal"
+                    }
+            }>
+                <Attendence url={attendence}/>
+            </Modal>
         </div>
     );
 }

@@ -48,8 +48,8 @@ function Login({
     ) {
       postApi(url, formData, (response) => {
         if (response.data.verified) {
+          
           Cookies.set(tokenName, response.data.token, { expires: 7000 });
-
           if (response.data.superUser) {
             dispatch(setIndividual(response.data.superUser)); //here setIndividual coming from the redux
           } else if (response.data.admin) {

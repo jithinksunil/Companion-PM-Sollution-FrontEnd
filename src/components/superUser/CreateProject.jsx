@@ -92,5 +92,3 @@ function CreateProject({setData,projectManagersList}) {
 }
 
 export default CreateProject
-
-

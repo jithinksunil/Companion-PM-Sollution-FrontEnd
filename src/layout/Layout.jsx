@@ -17,6 +17,8 @@ function Layout({ individual, links, children }) {
     dashBoard,
     userManagement,
     connections,
+    videoCall,
+    chat 
   } = links;
   return (
     <div className={`background h-screen flex`} style={{backgroundImage:`url(${image})`}}>
@@ -27,7 +29,7 @@ function Layout({ individual, links, children }) {
       <div className="w-full overflow-hidden">
         <Navbar
           individual={individual}
-          links={{ profile, logout,  message, notification, attendence }}
+          links={{ profile, logout,  message, notification, attendence, videoCall, chat }}
           showSideBar={showSideBar}
           setShowSideBar={setShowSideBar}
         />

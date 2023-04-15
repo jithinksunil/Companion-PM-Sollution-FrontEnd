@@ -96,7 +96,8 @@ function Attendence({url}) {
             <div className="sidebar">
                 Longitude: {lng}
                 | Latitude: {lat}
-                | Zoom: {zoom} </div>
+                | Zoom: {zoom} 
+            </div>
             <div ref={mapContainer}
                 className="map-container my-2"/>
             <div className='flex justify-center'>
