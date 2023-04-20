@@ -47,7 +47,7 @@ function SuperUserProjectsBody() {
     },
     {
       name: "Project Manager",
-      selector: (row) => row.projectManagerId,
+      selector: (row) => row.projectManagerName,
     },
     {
       name: "Status",
