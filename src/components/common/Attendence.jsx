@@ -33,7 +33,7 @@ function Attendence({url}) {
             const lati = parseFloat(position.coords.latitude)
             const distance = distanceFromCoordinates(projectLatitude, projectLongitude, lati, long) // in km
             if (distance <= 200) {
-                getApi(`${url}/attendence`, (resolve) => {
+                getApi(url, (resolve) => {
                     const {status,message}=resolve.data
                     if(status){
                         toast.success(message)

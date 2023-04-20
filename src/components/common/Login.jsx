@@ -43,23 +43,23 @@ function Login({
     }
     // const isValid = await userShema.isValid(formData);
     if (
-      (emailFormat.test(firstField) || userNameFormat.test(firstField)) &&
+      // (emailFormat.test(firstField) || userNameFormat.test(firstField)) &&
       passwordFormat.test(password)
     ) {
       postApi(url, formData, (response) => {
-        if (response.data.verified) {
+        const {admin,data,verified,message}=response.data
+        if (verified) {
           
           Cookies.set(tokenName, response.data.token, { expires: 7000 });
-          if (response.data.superUser) {
-            dispatch(setIndividual(response.data.superUser)); //here setIndividual coming from the redux
-          } else if (response.data.admin) {
-            setIndividual(response.data.admin); //here setIndivifual coming from the context
-          } else if (response.data.projectManager) {
-            dispatch(setIndividual(response.data.projectManager)); //here setIndividual coming from the redux
+          if (admin) {
+            setIndividual(response.data.admin)
+            ; //here setIndividual coming from the redux
+          } else if (data) {
+            dispatch(setIndividual(data)); //here setIndivifual coming from the context
           }
           navigate(responseRoute);
         }
-        toast(response.data.message);
+        toast(message);
       });
     }
   };

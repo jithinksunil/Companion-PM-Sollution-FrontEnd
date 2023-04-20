@@ -2,30 +2,43 @@ import axios from "../../constants/axiosBaseUrl";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { getApi } from "../../api/axiosCalls";
-import { useDispatch, useSelector } from "react-redux";
-import { setSuperUser } from "../../store/slices/SuperUserSice";
+import { useDispatch } from "react-redux";
 
-function UpdateImage() {
+function UpdateImage({individual,setIndividual}) {
   const [image, setImage] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const formData = new FormData();
   const dispatch = useDispatch();
-  const superUser = useSelector((state) => state.superUser.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     formData.append("file", image);
+    console.log(individual);
+    let detailsLink
+    let updateLink;
+    if(individual.position=="superUser"){
+      updateLink="/updateimage"
+      detailsLink="/profile"
+    }else if(individual.position=="siteEngineer"){
+      updateLink="/siteengineer/updateimage"
+      detailsLink="/siteengineer/profile"
+    }else if(individual.position=="projectManager"){
+      updateLink="/projectmanager/updateimage"
+      detailsLink="/projectmanager/profile"
+    }
     axios
-      .post('/updateimage', formData,{ withCredentials: true }, {
+      .post(updateLink, formData,{ withCredentials: true }, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((response) => {
         toast.success(response.data.message);
+        
         getApi(
-          "/profile",
+          detailsLink,
           (response) => {
-            const { superUserData } = response.data;
-            dispatch(setSuperUser(superUserData));
+            const { data } = response.data;
+            console.log(data);
+            dispatch(setIndividual(data));
           },
           () => {
             toast.error("cannot fetch user data now");
@@ -38,7 +51,7 @@ function UpdateImage() {
       });
   };
 
-  const url = `${superUser.image}`;
+  const url = `${individual?.image}`;
 
   return (
     <div className="bg-white rounded-lg px-10 py-10 shadow-2xl text-center">

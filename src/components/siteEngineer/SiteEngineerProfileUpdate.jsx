@@ -3,22 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { postApi } from "../../api/axiosCalls";
 
-function ProfileUpdate({setIndividual}) {
-  const superUser = useSelector((state) => state.superUser.value);
-  const [name,setName]=useState(superUser?.name)
-  const [email, setEmail] = useState(superUser?.email)
-  const [companyName, setCompanyName] = useState(superUser?.companyName)
+
+function SiteEngineerProfileUpdate({setIndividual}) {
+  const siteEngineer = useSelector((state) => state.siteEngineer.value);
+  const [name,setName]=useState(siteEngineer?.name)
+  const [email, setEmail] = useState(siteEngineer?.email)
+  const [companyName, setCompanyName] = useState(siteEngineer?.companyName)
   const [password, setPassword] = useState('')
   const formData={name,email,companyName,password}
   const dispatch=useDispatch()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    postApi('/updateprofile',formData,(response)=>{
+    postApi('/siteengineer/updateprofile',formData,(response)=>{
       const {status,message,data}=response.data
       if(status){
-        dispatch(setIndividual(data))
         toast.success(message)
+        dispatch(setIndividual(data))
       }
       else{
         toast.error(message)
@@ -74,4 +75,4 @@ function ProfileUpdate({setIndividual}) {
   );
 }
 
-export default  ProfileUpdate
+export default  SiteEngineerProfileUpdate

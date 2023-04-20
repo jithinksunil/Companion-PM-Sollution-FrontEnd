@@ -4,7 +4,7 @@ import { getApi, postApi } from '../../api/axiosCalls'
 
 function CreateProject({setData,projectManagersList}) {
     const [formData,setformData]=useState({})
-    const fieldNameArray= ['name','lati','longi']
+    const fieldNameArray= ['name','place','budget','lati','longi']
 
     const handleSubmit=(e)=>{
         e.preventDefault()
@@ -63,7 +63,7 @@ function CreateProject({setData,projectManagersList}) {
             <select className="text-gray-900 mt-1 block w-full rounded border-gray-300 bg-gray-50 py-3 px-4 text-sm placeholder-gray-300 shadow-sm outline-none transition focus:ring-2 focus:ring-teal-500"
             onChange={
                 (e) => {
-                    formData.projectManager=e.target.value
+                    formData.projectManagerId=e.target.value
                 }
             }>
             <option value='unAssingned'>unAssigned</option>

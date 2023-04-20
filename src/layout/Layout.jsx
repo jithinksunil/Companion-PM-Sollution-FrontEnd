@@ -10,26 +10,27 @@ function Layout({ individual, links, children }) {
   const {
     profile,
     logout,
-    message,
-    notification,
+    notifications,
     attendence,
     projects,
+    tasks,
+    reports,
+    materialRequest,
     dashBoard,
     userManagement,
     connections,
-    videoCall,
     chat 
   } = links;
   return (
     <div className={`background h-screen flex`} style={{backgroundImage:`url(${image})`}}>
       <SideBar
         showSideBar={showSideBar}
-        links={{ dashBoard, projects, userManagement, connections }}
+        links={{ dashBoard, projects, tasks, reports, materialRequest, userManagement, connections }}
       />
       <div className="w-full overflow-hidden">
         <Navbar
           individual={individual}
-          links={{ profile, logout,  message, notification, attendence, videoCall, chat }}
+          links={{ profile, logout, notifications, attendence, chat }}
           showSideBar={showSideBar}
           setShowSideBar={setShowSideBar}
         />

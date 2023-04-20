@@ -1,19 +1,15 @@
 import { Fragment, useState } from "react";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
-import UpdateImage from "../../components/superUser/UpdateImage";
-import { useSelector } from "react-redux";
-import './customizedModal.css'
-import ProfileUpdate from "./ProfileUpdate";
-import Membership from "./Membership";
-import SuperUserTokenCheck from "../../customHooks/SuperUserTokenCheck";
+import UpdateImage from "../../components/common/UpdateImage";
+import './customizedModal.css' 
+import SuperUserProfileUpdate from "../superUser/ProfileUpdate";
+import ProjectManagerProfileUpdate from "../projectManager/ProjectManagerProfileUpdate";
+import SiteEngineerProfileUpdate from "../siteEngineer/SiteEngineerProfileUpdate";
+import Membership from "../superUser/Membership";
 
 
-function SuperUserProfileBody() {
-  
-  SuperUserTokenCheck('/profile')
-  const superUser = useSelector((state) => state.superUser.value);
-
+function ProfileBody({individual, setIndividual}) {
   const [openUpdateImage, setOpenUpdateImage] = useState(false);
   const [openUpdateProfile, setOpenUpdateProfile] = useState(false);
   const [openMembership, setOpenMembership] = useState(false);
@@ -23,7 +19,18 @@ function SuperUserProfileBody() {
   const onCloseUpdateProfile = () => setOpenUpdateProfile(false);
   const onOpenMembership = () => setOpenMembership(true);
   const onCloseMembership = () => setOpenMembership(false);
-
+  let ProfileUpdate;
+  console.log(individual);
+  if(individual.position=="superUser"){
+    ProfileUpdate=SuperUserProfileUpdate
+  }
+  else if(individual.position=="projectManager"){
+    ProfileUpdate=ProjectManagerProfileUpdate
+  }
+  else if(individual.position=="siteEngineer"){
+    ProfileUpdate=SiteEngineerProfileUpdate
+  }
+    
   
   return (
     <Fragment>
@@ -46,7 +53,7 @@ function SuperUserProfileBody() {
                   <div className=" lg:w-3/12 px-4 lg:order-2 flex justify-center">
                     <div className="-mt-20">
                       <img
-                        src={`${superUser?.image}`}
+                        src={`${individual?.image}`}
                         alt="sdfsd"
                         className=" mb-3 shadow-xl rounded-full h-40  border-none"
                       />
@@ -92,21 +99,25 @@ function SuperUserProfileBody() {
                 </div>
                 <div className="text-center mt-12">
                   <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 ">
-                    {superUser?.name}
+                    {individual?.name}
                   </h3>
-                  <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
+                  {
+                    (individual.position=="superUser") && (
+                      <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
                   <button
                         className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                         type="button"
                         onClick={onOpenMembership}
                       >
-                        Membership-{superUser?.membership}
+                        Membership-{individual?.membership}
                       </button>
-                    {superUser?.place}
+                    {individual?.place}
                   </div>
+                    )
+                  }
                   <div className="mb-2 text-blueGray-600 mt-10">
                     <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
-                    {superUser?.email}
+                    {individual?.email}
                   </div>
                 </div>
                 <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
@@ -138,7 +149,7 @@ function SuperUserProfileBody() {
         overlay: 'customOverlay',
         modal: 'customModal',
       }}>
-        <UpdateImage />
+        <UpdateImage individual={individual} setIndividual={setIndividual} />
       </Modal>
       <Modal
        open={openUpdateProfile}
@@ -149,7 +160,7 @@ function SuperUserProfileBody() {
             overlay: 'customOverlay',
             modal: 'customModal',
           }}>
-        <ProfileUpdate/>
+        <ProfileUpdate setIndividual={setIndividual} />
       </Modal>
       <Modal
        open={openMembership}
@@ -160,10 +171,10 @@ function SuperUserProfileBody() {
             overlay: 'customOverlay',
             modal: 'customModal',
           }}>
-          <Membership superUser={superUser}/>
+          <Membership individual={individual}/>
       </Modal>
     </Fragment>
   );
 }
 
-export default SuperUserProfileBody;
+export default ProfileBody;
