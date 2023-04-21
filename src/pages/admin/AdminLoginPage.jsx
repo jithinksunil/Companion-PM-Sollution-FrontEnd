@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getApi } from "../../api/axiosCalls";
 import Login from "../../components/common/Login";
 import { MyContext } from "../../context/Context";
+import './admin.css'
 
 function AdminLoginPage() {
   const { setAdminLoggedIn } = useContext(MyContext);
