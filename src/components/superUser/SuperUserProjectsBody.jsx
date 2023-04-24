@@ -47,7 +47,7 @@ function SuperUserProjectsBody() {
     },
     {
       name: "Project Manager",
-      selector: (row) => row.projectManagerName,
+      selector: (row) => row.projectManagerName?row.projectManagerName:row.projectManagerId,
     },
     {
       name: "Status",
@@ -56,11 +56,12 @@ function SuperUserProjectsBody() {
   ];
   return (
     <div>
-    <div className='py-2'>
+    <div className='pb-2'>
     <button
     onClick={onOpenCreateProject}
     className='bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-3xl'
-    >Add Project</button></div>
+    >Add Project</button>
+    </div>
       <DataTable
         title="Projects"
         fixedHeader

@@ -1,39 +1,24 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { getApi, postApi } from "../../api/axiosCalls";
+import { postApi } from "../../api/axiosCalls";
 import SuperUserTokenCheck from "../../customHooks/SuperUserTokenCheck";
 import Kankan from "../common/Kankan";
-
+import Modal from "react-responsive-modal";
+import CommonForm from "../common/CommonForm";
+import { addConnection } from "../../api/superUser/connectionBodyApiCalls";
 function SuperUserConnectionsBody() {
-  const [connection, setConnection] = useState(null);
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState({});
+  const [openAddConnection, setOpenAddConnection] = useState(false)
+  const onOpenAddConnection=()=>{setOpenAddConnection(true)}
+  const onCloseAddConnection=()=>{setOpenAddConnection(false)}
+
   SuperUserTokenCheck("/connections",setProjects)
-console.log(projects);
 
   function Div({element}){
     return(
-      <div className=" m-3 p-3 rounded bg-gray-300"><p className="text-black">{element}</p></div>
+      <div className="px-3 my-1 py-2 rounded bg-gray-800"><p className="text-white font-semibold">{element}</p></div>
     )
   }
-
-
-  
-  const handleAddUser = () => {
-    const emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailFormat.test(connection)) {
-      toast("Please enter a valid email");
-    } else {
-      postApi("/addConnection", { connection }, (respose) => {
-        toast.success(respose.data.message)
-        getApi('/connections',(resolve)=>{
-          console.log(resolve.data.data);
-          console.log('ksalfsfsdfhjsdhfhsjdk');
-          setProjects(resolve.data.data)
-        })
-
-      });
-    }
-  };
 
   function dataBaseFunction(startColumn,dragStartIndex,movingItem,endColumn,dragEnterIndex){
     const data={startColumn,dragStartIndex,movingItem,endColumn,dragEnterIndex}
@@ -44,22 +29,35 @@ console.log(projects);
 }
 
   return (
-    <div>
-      <div>
-      <input
-        type="text"
-        className="text-black"
-        onChange={(e) => {
-          setConnection(e.target.value);
-        }}
-      />
-      <button className="border-red-100" onClick={handleAddUser}>
-        Add User
-      </button>
+    <div className='h-full flex flex-col'>
+      <div >
+        <div className='pb-2'>
+        <button
+        onClick={onOpenAddConnection}
+        className='bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-3xl'
+        >Add Connection</button>
+        </div>
       </div>
-      <div className=" grid md:grid-cols-2 lg:grid-cols-3">
       <Kankan  objectOfArrays={projects} setObjectOfArrays={setProjects} Div={Div} dataBaseFunction={dataBaseFunction} />
-      </div>
+      
+      
+      <Modal open={openAddConnection}
+       onClose={onCloseAddConnection} 
+       center
+       showCloseIcon={false}
+       >
+       <CommonForm 
+        formName="Add Connection"
+        fieldArray={[{
+          field:'connection',
+          type:'text',
+          placeHolder:"Enter an email",
+          required:true,
+          validation: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        }]}
+        submitFunction={(formData)=>{addConnection(formData,setProjects)}}
+       />
+      </Modal>
     </div>
   );
 }

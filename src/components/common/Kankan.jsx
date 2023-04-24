@@ -1,6 +1,6 @@
+import './body.css'
 
-
-function Kankan({objectOfArrays,Div,setObjectOfArrays,dataBaseFunction}) {
+function Kankan({objectOfArrays,Div,setObjectOfArrays,dataBaseFunction,addButton}) {
     
 console.log(objectOfArrays);
 
@@ -63,31 +63,32 @@ console.log(objectOfArrays);
     
 
     return (
-        <>
+        <div className=" flex overflow-x-scroll scrollbar-hidden h-full">
           {
             Object.keys(objectOfArrays).map((key)=>{
               return(
-                <div key={key} className="md:col-span-1 lg:col-span-1 m-3 p-3 rounded-md text-center border border-gray-300 pb-16"
+                <div key={key} className="flex-shrink-0 w-72 pb-20 mr-3 overflow-y-scroll scrollbar-hidden"
                 onDragOver={onDragOver}
                 onDrop={
                     (e) => {
                         onDrop(e, key)
                     }}>
-                <span className=" text-gray-300">{key}</span>
+                <span className=" text-gray-300 px-3 font-bold">{key}</span>
+                {addButton&&<Div element={<div className="text-center"><p className="font-extrabold text-xl">+</p></div>}/>}
                 {
                 objectOfArrays[key].map((element, index) => {
                     return ( 
-                      <div key={{index}}
+                        <div
+                        key={{index}}
                         draggable
                         onDragStart={
                             (e) => {
                                 onDragStart(e, index, key)
                             }
                         }
-                        onDragEnter={(e)=>{onDragEnter(e,index)}}
-                      >
-                      <Div element={element.name?element.name:element._id} />
-                      </div>
+                        onDragEnter={(e)=>{onDragEnter(e,index)}}>
+                        <Div element={element.name?element.name:element._id}/>
+                        </div>
                     )
                 })
             }
@@ -96,7 +97,7 @@ console.log(objectOfArrays);
               
             })
           }
-        </>
+        </div>
     )
 }
 

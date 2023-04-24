@@ -30,7 +30,7 @@ function Navbar({individual, links, setShowSideBar, showSideBar}) {
     };
 
     return (
-        <div className="w-full flex justify-between items-center pr-5 md:pr-10 pl-5 py-5 backdrop-blur-xl">
+        <div className="w-full flex justify-between items-center pr-5 md:pr-10 pl-5 py-2 backdrop-blur-xl">
             <div className="flex text-white ">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     strokeWidth={1.5}

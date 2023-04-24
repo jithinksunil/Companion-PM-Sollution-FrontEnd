@@ -7,6 +7,7 @@ import Messenger from "../../components/common/Messenger";
 import Notifications from "../../components/common/Notifications";
 import { setProjectManager } from "../../store/slices/ProjectManagerSlice";
 import ProfileBody from "../../components/common/Profile";
+import ProjectManagerTaskBody from "../../components/projectManager/ProjectManagerTaskBody";
 function ProjectManagerUI() {
   const projectManager = useSelector((state) => state.projectManager.value);
   return (
@@ -20,7 +21,7 @@ function ProjectManagerUI() {
         dashBoard: "/projectmanager/dashboard",
         projects: "/projectmanager/projects",
         reports:"/projectmanager/reports",
-        tasks:"/projectmanager/tasks",
+        tasks:"/projectmanager/task",
         connections:"/projectmanager/connections",
         materialRequest:"/projectmanager/materialrequest",
         chat:"/projectmanager/chat",
@@ -31,6 +32,7 @@ function ProjectManagerUI() {
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/chat" element={<Messenger individual={projectManager} />} />
         <Route path="/profile" element={<ProfileBody individual={projectManager} setIndividual={setProjectManager} />} />
+        <Route path="/task" element={<ProjectManagerTaskBody/>} />
       </Routes>
     </Layout>
   );

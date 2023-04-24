@@ -14,7 +14,7 @@ function SideBar({showSideBar, links}) {
         <div className={`bg-slate-800 bg-opacity-50 h-screen`}>
             <div className={
                 `${
-                    showSideBar ? "w-72 md:w-80 px-5" : "w-20"
+                    showSideBar ? "w-72 md:w-80 px-5" : "w-0 md:w-20 "
                 } duration-300`
             }>
                 <div className="h-24 w-full flex justify-center items-center  py-10 px-2">
