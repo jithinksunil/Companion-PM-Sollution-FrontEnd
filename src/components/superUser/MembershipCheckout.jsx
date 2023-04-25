@@ -67,7 +67,6 @@ function MembershipCheckout() {
                               console.log(amount);
                             }}
                             onCancel={()=>{toast.error('Payment cancelled')}}
-                            on
                             onError={()=>{toast.error('Payment failed') }}/>
                             {console.log(plan)}
                             {console.log(amount)}
