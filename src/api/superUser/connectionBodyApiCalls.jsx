@@ -12,3 +12,18 @@ export const addConnection=(formData,setProjects)=>{
     })
 
   }
+
+  export function projectDragAndDrop(startColumn, dragStartIndex, movingItem, endColumn, dragEnterIndex,setProjects) {
+    const data = {
+        startColumn,
+        dragStartIndex,
+        movingItem,
+        endColumn,
+        dragEnterIndex
+    }
+    postApi('/updateprojectassignment', data, (res) => {
+        setProjects(res.data.data)
+        toast.success(res.data.message)
+    })
+
+}

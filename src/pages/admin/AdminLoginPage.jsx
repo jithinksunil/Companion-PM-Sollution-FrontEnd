@@ -1,34 +1,23 @@
-import Cookies from "js-cookie";
-import React, { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { getApi } from "../../api/axiosCalls";
-import Login from "../../components/common/Login";
-import { MyContext } from "../../context/Context";
+import React from "react";
 import './admin.css'
+import CommonForm from "../../components/common/CommonForm";
+import { handleLogin } from "../../api/admin/handleLogin";
+import AdminTokenCheck from '../../customHooks/AdminTokenCheck'
 
 function AdminLoginPage() {
-  const { setAdminLoggedIn } = useContext(MyContext);
-  const navigate = useNavigate();
-  useEffect(() => {
-    const adminToken = Cookies.get("adminToken");
-    if (adminToken) {
-      getApi("/admin/verifyToken", (response) => {
-        if (response.data.adminTokenVerified) {
-          navigate("/admin/dashboard");
-        }
-      });
-    }
-  }, []);
+  AdminTokenCheck("/admin/verifyToken")
   return (
     <div className="background h-screen">
       <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2">
-        <Login
-          formName="Admin"
-          setIndividual={setAdminLoggedIn}
-          url={"/admin/login"}
-          tokenName={"adminToken"}
-          responseRoute={"/admin/dashboard"}
-        />
+      <CommonForm
+      formName="Admin"
+      submitButton="Login"
+      fieldArray={[
+        {field:"email",required:true,type:"email",validation:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,placeHolder:'Enter an email'},
+        {field:"password",required:true,type:"password",validation:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,placeHolder:'Enter password'},
+    ]}
+      submitFunction={handleLogin}
+      />
       </div>
     </div>
   );

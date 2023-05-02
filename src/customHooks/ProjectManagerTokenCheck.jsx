@@ -9,16 +9,22 @@ function ProjectManagerTokenCheck(url,setData) {
     getApi(url, (response) => {
       const { projectManagerTokenVerified, message, data } =
         response.data;
-      if (!projectManagerTokenVerified) {
-        navigate("/projectmanager/login");
-        toast.error(message);
-      }
-      else{
+        const location=window.location.pathname
+      if (projectManagerTokenVerified) {
         if(setData){
           setData(data)
         }
+        if(location=="/projectmanager/login"){
+          navigate("/projectmanager/dashboard");
+        }
       }
-    });
+      else{
+        navigate("/projectmanager/login");
+        if(location!="/projectmanager/login"){
+          toast.error(message);
+        }
+      }
+    })
   }, []);
 }
 

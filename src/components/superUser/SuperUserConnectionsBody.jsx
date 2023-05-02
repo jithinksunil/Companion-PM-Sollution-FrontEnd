@@ -1,11 +1,10 @@
 import React, {useState} from "react";
-import {toast} from "react-toastify";
-import {postApi} from "../../api/axiosCalls";
 import SuperUserTokenCheck from "../../customHooks/SuperUserTokenCheck";
 import Kankan from "../common/Kankan";
 import Modal from "react-responsive-modal";
 import CommonForm from "../common/CommonForm";
-import {addConnection} from "../../api/superUser/connectionBodyApiCalls";
+import {addConnection, projectDragAndDrop} from "../../api/superUser/connectionBodyApiCalls";
+import ProjectDragAndDropTile from "./ProjectDragAndDropTile";
 function SuperUserConnectionsBody() {
     const [projects, setProjects] = useState({});
     const [openAddConnection, setOpenAddConnection] = useState(false)
@@ -18,30 +17,6 @@ function SuperUserConnectionsBody() {
 
     SuperUserTokenCheck("/connections", setProjects)
 
-    function Div({element}) {
-        return (
-            <div className="px-3 my-1 py-2 rounded bg-gray-800">
-                <p className="text-white font-semibold">
-                    {element}</p>
-            </div>
-        )
-    }
-
-    function dataBaseFunction(startColumn, dragStartIndex, movingItem, endColumn, dragEnterIndex) {
-        const data = {
-            startColumn,
-            dragStartIndex,
-            movingItem,
-            endColumn,
-            dragEnterIndex
-        }
-        postApi('/updateprojectassignment', data, (res) => {
-            setProjects(res.data.data)
-            toast.success(res.data.message)
-        })
-
-    }
-
     return (
         <div className='h-full flex flex-col'>
             <div>
@@ -51,10 +26,11 @@ function SuperUserConnectionsBody() {
                 </div>
             </div>
             <Kankan objectOfArrays={projects}
-                Div={Div}
-                dataBaseFunction={dataBaseFunction}/>
-
-
+                Div={ProjectDragAndDropTile}
+                dataBaseFunction={projectDragAndDrop}
+                setData={setProjects}
+                />
+                
             <Modal open={openAddConnection}
                 onClose={onCloseAddConnection}
                 center

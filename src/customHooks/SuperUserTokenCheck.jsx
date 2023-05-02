@@ -8,18 +8,20 @@ function SuperUserTokenCheck(url,setData) {
   useEffect(() => {
     getApi(url, (response) => {
       const { superUserTokenVerified, message,data} = response.data;
+      const location=window.location.pathname
       if (superUserTokenVerified) {
         if(setData){
-          if(data){
-            setData(data)
-          }else{
-            toast.error(message);
-          }
-        } 
+          setData(data)
+        }
+        if(location=="/login"){
+          navigate("/superuser/dashboard");
+        }
       }
       else{
         navigate("/login");
-        toast.error(message);
+        if(location!="/login"){
+          toast.error(message);
+        }
       }
     });
   }, []);

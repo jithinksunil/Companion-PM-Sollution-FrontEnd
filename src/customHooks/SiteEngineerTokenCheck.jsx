@@ -9,13 +9,19 @@ function SiteEngineerTokenCheck(url,setData) {
     getApi(url, (response) => {
       const { siteEngineerTokenVerified, message, data } =
         response.data;
-      if (!siteEngineerTokenVerified) {
-        navigate("/siteengineer/login");
-        toast.error(message);
-      }
-      else{
+        const location=window.location.pathname
+      if (siteEngineerTokenVerified) {
         if(setData){
           setData(data)
+        }
+        if(location=="/siteengineer/login"){
+          navigate("/siteengineer/dashboard");
+        }
+      }
+      else{
+        navigate("/siteengineer/login");
+        if(location!="/siteengineer/login"){
+          toast.error(message);
         }
       }
     });

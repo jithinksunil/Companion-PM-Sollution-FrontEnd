@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './body.css'
 import Modal from 'react-responsive-modal';
 
-function Kankan({objectOfArrays,Div,dataBaseFunction,addButton,addButtonModalComponent,setAddButtonColumn}) {
+function Kankan({objectOfArrays,Div,dataBaseFunction,setData,addButton,addButtonModalComponent,setAddButtonColumn}) {
     const [movingItem,setMovingItem]=useState({})
     const [openModal,setOpenModal]=useState(false)
     const onOpenModal=(column)=>{setOpenModal(true);setAddButtonColumn(column)}
@@ -57,7 +57,7 @@ function Kankan({objectOfArrays,Div,dataBaseFunction,addButton,addButtonModalCom
             
             objectOfArrays[endColumn].splice(dragEnterIndex,0,movingItem)
             objectOfArrays[startColumn].splice(dragStartIndex,1)
-            dataBaseFunction(startColumn,dragStartIndex,movingItem,endColumn,dragEnterIndex)
+            dataBaseFunction(startColumn,dragStartIndex,movingItem,endColumn,dragEnterIndex,setData)
         }
         
     }

@@ -1,19 +1,17 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { postApi } from "../../api/axiosCalls";
+import CommonForm from "../common/CommonForm";
 
 function ProfileUpdate({setIndividual}) {
   const superUser = useSelector((state) => state.superUser.value);
-  const [name,setName]=useState(superUser?.name)
-  const [email, setEmail] = useState(superUser?.email)
-  const [companyName, setCompanyName] = useState(superUser?.companyName)
-  const [password, setPassword] = useState('')
-  const formData={name,email,companyName,password}
+  const [name]=useState(superUser?.name)
+  const [email] = useState(superUser?.email)
+  const [companyName] = useState(superUser?.companyName)
   const dispatch=useDispatch()
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = (formData) => {
     postApi('/updateprofile',formData,(response)=>{
       const {status,message,data}=response.data
       if(status){
@@ -28,50 +26,19 @@ function ProfileUpdate({setIndividual}) {
 
 
   return (
-    <div className="bg-white rounded-lg px-10 py-10 shadow-2xl text-center">
-      <p>Update Profile</p>
-      <form onSubmit={handleSubmit}>
-        <input
-        className="block my-2 rounded-xl h-9 border-gray-500"
-          required
-          type="text"
-          value={name}
-          onChange={(e)=>setName(e.target.value)}
-          placeholder="Name"
-        />
-        <input
-          className="block my-2 rounded-xl h-9 border-gray-500"
-          required
-          type="text"
-          value={email}
-          onChange={(e)=>setEmail(e.target.value)}
-          placeholder="Email"
-        />
-        <input
-          className="block my-2 rounded-xl h-9 border-gray-500"
-          required
-          type="text"
-          value={companyName}
-          onChange={(e)=>setCompanyName(e.target.value)}
-          placeholder="Company name"
-        />
-        <input
-          className="block my-2 rounded-xl h-9 border-gray-500"
-          required
-          type="text"
-          onChange={(e)=>setPassword(e.target.value)}
-          placeholder="Current password"
-        />
-        <div className="flex justify-center py-2">
-          <input
-            type="submit"
-            value="Submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl"
-          />
-        </div>
-      </form>
-    </div>
-  );
+    
+    <CommonForm
+    formName="Update Profile"
+    submitButton="Submi"
+    fieldArray={[
+      {field:"name",required:true,type:"text",placeHolder:'Name',value:name},
+      {field:"companyName",required:true,type:"text",placeHolder:'Company Name',value:companyName},
+      {field:"email",required:true,type:"email",validation:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,placeHolder:'Email',value:email},
+      {field:"password",required:true,type:"password",validation:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,placeHolder:'Current password'},
+  ]}
+    submitFunction={handleSubmit}
+    />
+  )
 }
 
 export default  ProfileUpdate

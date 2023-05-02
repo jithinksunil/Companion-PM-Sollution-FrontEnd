@@ -8,13 +8,20 @@ function AdminTokenCheck(url, setState) {
   useEffect(() => {
     getApi(url, (response) => {
       const { adminTokenVerified, message, adminData } = response.data;
+      const location=window.location.pathname
       if (adminTokenVerified) {
         if (setState) {
           setState(adminData);
         }
+        if(location=="/admin/login"){
+          navigate("/admin/dashboard");
+        }
+
       } else {
         navigate("/admin/login");
-        toast.error(message);
+        if(location!="/admin/login"){
+          toast.error(message);
+        }
       }
     });
   }, []);

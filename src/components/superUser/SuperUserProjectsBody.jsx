@@ -1,9 +1,9 @@
-import React, {  useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import CreateProject from './CreateProject'
 import SuperUserTokenCheck from '../../customHooks/SuperUserTokenCheck';
 import Modal from 'react-responsive-modal';
 import DataTable from 'react-data-table-component';
-import { getApi } from '../../api/axiosCalls';
+import SearchHook from '../../customHooks/superUser/SearchHook';
 
 function SuperUserProjectsBody() {
 
@@ -12,8 +12,6 @@ function SuperUserProjectsBody() {
   const [openCreateProject, setOpenCreateProject] = useState(false)
   const onOpenCreateProject=()=>{setOpenCreateProject(true)}
   const onCloseCreateProject=()=>{setOpenCreateProject(false)}
-  SuperUserTokenCheck('/project', setData)
-  console.log(data);
   let projectManagersList=[]
   let projectsList=[]
   if(data.projectManagersList){
@@ -57,15 +55,9 @@ function SuperUserProjectsBody() {
     }
   ];
 
-  useEffect(() => {
-    getApi(
-      `/project?search=${search}`,
-      (response) => {
-        const {  data } = response.data;
-        setData(data);
-      }
-    );
-  }, [search]);
+  SuperUserTokenCheck('/project', setData)
+  SearchHook({search,setData})
+
   return (
     <div>
     <div className='pb-2'>

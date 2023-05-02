@@ -2,7 +2,6 @@ import { Fragment, useState } from "react";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 import UpdateImage from "../../components/common/UpdateImage";
-import './customizedModal.css' 
 import SuperUserProfileUpdate from "../superUser/ProfileUpdate";
 import ProjectManagerProfileUpdate from "../projectManager/ProjectManagerProfileUpdate";
 import SiteEngineerProfileUpdate from "../siteEngineer/SiteEngineerProfileUpdate";
@@ -145,32 +144,23 @@ function ProfileBody({individual, setIndividual}) {
        onClose={onCloseUpdateImage} 
        center
        showCloseIcon={false}
-       classNames={{
-        overlay: 'customOverlay',
-        modal: 'customModal',
-      }}>
+        >
         <UpdateImage individual={individual} setIndividual={setIndividual} />
       </Modal>
-      <Modal
-       open={openUpdateProfile}
-        onClose={onCloseUpdateProfile}
-         center
-         showCloseIcon={false}
-          classNames={{
-            overlay: 'customOverlay',
-            modal: 'customModal',
-          }}>
-        <ProfileUpdate setIndividual={setIndividual} />
+      
+      <Modal open={openUpdateProfile}
+       onClose={onCloseUpdateProfile} 
+       center
+       showCloseIcon={false}
+       >
+       <ProfileUpdate setIndividual={setIndividual} />
       </Modal>
       <Modal
        open={openMembership}
         onClose={onCloseMembership}
          center
          showCloseIcon={false}
-          classNames={{
-            overlay: 'customOverlay',
-            modal: 'customModal',
-          }}>
+          >
           <Membership individual={individual}/>
       </Modal>
     </Fragment>

@@ -1,35 +1,22 @@
-import Cookies from "js-cookie";
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { getApi } from "../../api/axiosCalls";
-import Login from "../../components/common/Login";
-import { setSiteEngineer } from "../../store/slices/SiteEngineerSlice";
+import React from "react";
+import CommonForm from "../../components/common/CommonForm";
+import { handleLogin } from "../../api/siteEngineer/handleLogin";
+import SiteEngineerTokenCheck from '../../customHooks/SiteEngineerTokenCheck'
 
 function SiteEngineerLogginPage() {
-
-  const navigate = useNavigate()
-  
-  useEffect(() => {
-    const siteEngineerToken = Cookies.get("siteEngineerToken");
-    if (siteEngineerToken) {
-      getApi("/siteengineer/verifyToken", (response) => {
-        if (response.data.siteEngineerTokenVerified) {
-          navigate("/siteengineer/dashboard");
-        }
-      });
-    }
-  }, []);
+  SiteEngineerTokenCheck("/siteengineer/verifyToken")
   return (
     <div className="background h-screen">
       <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2">
-        <Login
-          formName="Site Engineer"
-          userName
-          setIndividual={setSiteEngineer}
-          url={"/siteengineer/login"}
-          tokenName={"siteEngineerToken"}
-          responseRoute={"/siteengineer/dashboard"}
-        />
+      <CommonForm
+      formName="Site engineer"
+      submitButton="Login"
+      fieldArray={[
+        {field:"userName",required:true,type:"text",validation:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{10,}$/,placeHolder:'Enter company user name'},
+        {field:"password",required:true,type:"password",validation:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,placeHolder:'Enter password'},
+    ]}
+      submitFunction={handleLogin}
+      />
       </div>
     </div>
   );

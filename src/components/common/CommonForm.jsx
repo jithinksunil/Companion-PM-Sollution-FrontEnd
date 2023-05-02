@@ -1,5 +1,8 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function CommonForm({
   formName,
@@ -7,6 +10,9 @@ function CommonForm({
   submitFunction,
   submitButton
 }) {
+  const navigate=useNavigate()
+  const dispatch=useDispatch()
+  const [allowRender,setAllowRender]=useState(true)
 
   const formData = { };
   const handleLogin = async (e) => {
@@ -35,11 +41,19 @@ function CommonForm({
     })
 
     if(flag){
-      submitFunction(formData)
+      submitFunction({formData,navigate,dispatch})
     }
     }
   };
-
+if(allowRender){
+  fieldArray.map((item)=>{
+    formData[item.field]=item.value
+  })
+}
+useEffect(()=>{
+  setAllowRender(false)
+},[])
+  
   return (
     <div className="bg-white rounded-lg px-10 py-10 shadow-2xl text-center">
       <div className="flex justify-center ">
@@ -78,6 +92,7 @@ function CommonForm({
             required={item.required}
             type={item.type}
             placeholder={item.placeHolder}
+            value={formData[item.field]}
             onChange={(e) => {
               formData[item.field]=(e.target.value);
             }}

@@ -1,33 +1,22 @@
-import Cookies from "js-cookie";
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { getApi } from "../../api/axiosCalls";
-import Login from "../../components/common/Login";
-import { setProjectManager } from "../../store/slices/ProjectManagerSlice";
+import React from "react";
+import CommonForm from "../../components/common/CommonForm";
+import { handleLogin } from "../../api/projectManager/handleLogin";
+import ProjectManagerTokenCheck from "../../customHooks/ProjectManagerTokenCheck";
 
 function ProjectManagerLogginPage() {
-  const navigate = useNavigate();
-  useEffect(() => {
-    const projectManagerToken = Cookies.get("projectManagerToken");
-    if (projectManagerToken) {
-      getApi("/projectmanager/verifyToken", (response) => {
-        if (response.data.projectManagerTokenVerified) {
-          navigate("/projectmanager/dashboard");
-        }
-      });
-    }
-  }, []);
+  ProjectManagerTokenCheck("/projectmanager/verifyToken")
   return (
     <div className="background h-screen">
       <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2">
-        <Login
-          formName="Project Manager"
-          userName
-          setIndividual={setProjectManager}
-          url={"/projectmanager/login"}
-          tokenName={"projectManagerToken"}
-          responseRoute={"/projectmanager/dashboard"}
-        />
+      <CommonForm
+      formName="Project manager"
+      submitButton="Login"
+      fieldArray={[
+        {field:"userName",required:true,type:"text",validation:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{10,}$/,placeHolder:'Enter company user name'},
+        {field:"password",required:true,type:"password",validation:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,placeHolder:'Enter password'},
+    ]}
+      submitFunction={handleLogin}
+      />
       </div>
     </div>
   );
