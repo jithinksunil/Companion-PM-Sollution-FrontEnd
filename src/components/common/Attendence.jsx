@@ -7,7 +7,8 @@ import {getApi} from '../../api/axiosCalls';
 
 
 function Attendence({url}) {
-    mapboxgl.accessToken = 'pk.eyJ1Ijoiaml0aGlua3N1bmlsOTYiLCJhIjoiY2xmdDdxcDhyMGRsbzNuc2N5OTFyNjFtNSJ9.c4MShdDh40H8LWsJI_6gTA';
+    // eslint-disable-next-line no-undef
+    mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
     const mapContainer = useRef(null);
     const map = useRef(null);
     const [lng, setLng] = useState(0);
@@ -43,7 +44,7 @@ function Attendence({url}) {
                     }
                 })
             } else {
-                toast.error('Outside the range of 6 km, Report your Commander')
+                toast.error('Outside the range of 6 km, Report your Senior')
             }
         })
     }

@@ -57,7 +57,8 @@ function MembershipCheckout() {
                                 </div>
                             </div>
                         </form>
-                        <PayPalScriptProvider options={{"client-id":"AUph16OQlgs0Af8jR_YZyxgY88VLPyPVk_qU_MJUZ1O0b9y4VZ0Zxb7wFcxDd3n5YufGHhRTbSuFytNW"}}>
+                                {/* eslint-disable-next-line no-undef*/}
+                        <PayPalScriptProvider options={{"client-id":process.env.REACT_APP_PAYPAL_CLIENT_ID}}>
                             <PayPalButtons
                             createOrder={(data,actions)=>{return actions.order.create({purchase_units:[{amount:{value:amount.toString()}}]})}}
                             onApprove={async (data,actions)=>{

@@ -60,7 +60,7 @@ function SuperUserConnectionsBody() {
                         ]
                     }
                     submitFunction={
-                        (formData) => {
+                        ({formData}) => {
                             addConnection(formData, setProjects)
                         }
                     }

@@ -19,7 +19,8 @@ function Messenger({individual}) {
     const socket=useRef()
     const [recievedMessage, setRecievedMessage] = useState({})
     useEffect(()=>{
-        socket.current=(io('ws://localhost:8001'))
+        // eslint-disable-next-line no-undef
+        socket.current=(io(process.env.REACT_APP_WEB_SOCKET_SEVER_BASE_URL))
         socket.current.on("message",(data)=>{
             console.log('broadcast recieved');
             setRecievedMessage(data)

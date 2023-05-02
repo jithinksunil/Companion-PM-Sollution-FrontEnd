@@ -5,7 +5,7 @@ import {addProject} from '../../api/superUser/projectBodyApiCalls'
 function CreateProject({setData, projectManagersList}) {
 
     const projectManagers = []
-    projectManagersList.map((item) => {
+    projectManagersList?.map((item) => {
         const element = {}
         element.name = item.name
         element.value = item._id

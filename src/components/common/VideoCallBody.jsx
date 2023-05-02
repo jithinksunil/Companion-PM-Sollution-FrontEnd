@@ -5,8 +5,10 @@ import { useParams } from 'react-router-dom'
 function VideoCallBody() {
     const {roomId}=useParams()
     const myMeeting=(element)=>{
-        const appId = 1541507471;
-        const serverSecret = "f4c4d93e705f78d247e281f03131155e";
+        // eslint-disable-next-line no-undef
+        const appId = process.env.REACT_APP_ZEGO_CLOUD_APP_ID;
+        // eslint-disable-next-line no-undef
+        const serverSecret = process.env.REACT_APP_ZEGO_CLOUD_SERVER_SECRET;
         const kitToken =  ZegoUIKitPrebuilt.generateKitTokenForTest(appId, serverSecret, roomId, Date.now().toString(),  'User');
         const zc=ZegoUIKitPrebuilt.create(kitToken)
         zc.joinRoom({
@@ -14,7 +16,8 @@ function VideoCallBody() {
         sharedLinks: [
           {
             name: 'Send this link to connnect',
-            url:`http://localhost:3000/room/${roomId}`
+            // eslint-disable-next-line no-undef
+            url:`http://localhost:${process.env.REACT_APP_PORT}/room/${roomId}`
           }
         ],
         scenario: {
