@@ -11,3 +11,11 @@ export const addTask=(engName,formData,setData)=>{
     })
 
   }
+
+export const taskAssignment=(startColumn,dragStartIndex,movingItem,endColumn,dragEnterIndex,setData)=>{
+  const data={startColumn,dragStartIndex,movingItem,endColumn,dragEnterIndex}
+  postApi('/task/updatetaskassignment',data,(res)=>{
+    setData(res.data.data)
+      toast.success(res.data.message)
+  })
+}

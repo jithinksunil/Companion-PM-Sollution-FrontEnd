@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 import CommonForm from "../common/CommonForm";
-import { updateProfile } from "../../api/projectManager/profileBodyApiCalls";
+import { handleSubmit } from "../../api/superUser/profileBodyApiCalls";
 
-
-function ProjectManagerProfileUpdate() {
-  const projectManager = useSelector((state) => state.projectManager.value);
-  const {name, email, companyName}=projectManager
+function SuperUserProfileUpdate() {
+  const superUser = useSelector((state) => state.superUser.value)
+  const {name, email, companyName}=superUser
+  
   return (
     
     <CommonForm
@@ -17,9 +17,9 @@ function ProjectManagerProfileUpdate() {
       {field:"email",required:true,type:"email",validation:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,placeHolder:'Email',value:email},
       {field:"password",required:true,type:"password",validation:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,placeHolder:'Current password'},
   ]}
-    submitFunction={updateProfile}
+    submitFunction={handleSubmit}
     />
   )
 }
 
-export default  ProjectManagerProfileUpdate
+export default  SuperUserProfileUpdate

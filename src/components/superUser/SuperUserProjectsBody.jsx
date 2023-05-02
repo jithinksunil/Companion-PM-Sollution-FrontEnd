@@ -6,9 +6,7 @@ import DataTable from 'react-data-table-component';
 import SearchHook from '../../customHooks/superUser/SearchHook';
 
 function SuperUserProjectsBody() {
-
   const [data,setData]=useState({})
-  const [search, setSearch] = useState('')
   const [openCreateProject, setOpenCreateProject] = useState(false)
   const onOpenCreateProject=()=>{setOpenCreateProject(true)}
   const onCloseCreateProject=()=>{setOpenCreateProject(false)}
@@ -56,7 +54,7 @@ function SuperUserProjectsBody() {
   ];
 
   SuperUserTokenCheck('/project', setData)
-  SearchHook({search,setData})
+  const {search, setSearch} = SearchHook(setData)
 
   return (
     <div>

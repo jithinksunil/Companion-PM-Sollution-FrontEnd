@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { getApi } from '../../api/axiosCalls';
 
+
 function SearchHook(setData) {
-  const [search, setSearch] = useState("");
+    const [search, setSearch] = useState("");
     useEffect(() => {
         getApi(
-          `/project?search=${search}`,
+            `/admin/superusermanagement?search=${search}`,
           (response) => {
-            const {  data } = response.data;
-            setData(data);
+            const {  superUsersData } = response.data;
+            setData(superUsersData);
           }
         );
       }, [search]);
       return {search,setSearch}
-      
 }
 
 export default SearchHook

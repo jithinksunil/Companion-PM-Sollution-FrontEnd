@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 import UpdateImage from "../../components/common/UpdateImage";
-import SuperUserProfileUpdate from "../superUser/ProfileUpdate";
+import SuperUserProfileUpdate from "../superUser/SuperUserProfileUpdate";
 import ProjectManagerProfileUpdate from "../projectManager/ProjectManagerProfileUpdate";
 import SiteEngineerProfileUpdate from "../siteEngineer/SiteEngineerProfileUpdate";
 import Membership from "../superUser/Membership";

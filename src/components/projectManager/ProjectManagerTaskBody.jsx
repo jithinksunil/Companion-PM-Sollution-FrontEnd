@@ -1,26 +1,18 @@
 import {useEffect, useState} from "react";
 import ProjectManagerTokenCheck from "../../customHooks/ProjectManagerTokenCheck";
 import Kankan from "../common/Kankan";
-import { postApi } from "../../api/axiosCalls";
-import { toast } from "react-toastify";
 import AddTask from "./AddTask";
+import { taskAssignment } from "../../api/projectManager/taskBodyApiCalls";
+import TaskAssignmentTile from "./TaskAssignmentTile";
+import { UseFirstProjectHighlighter } from "../../customHooks/projectManager/TaskBodyHooks";
 
 function ProjectManagerTaskBody() {
     const [data, setData] = useState([])
     const [showSideBar, setShowSideBar] = useState(true)
-    const [projectId, setProjectId] = useState('willAssign')
     const [kankanData, setKankanData] = useState({})
     const [addButtonColumn,setAddButtonColumn]=useState('')
     ProjectManagerTokenCheck("/task", setData);
-
-    useEffect(()=>{
-      if(projectId=='willAssign'){
-        setProjectId('notAssingned')
-      }else if(projectId=='notAssingned'){
-        setProjectId(data[0]?.projectId)
-      }
-      
-    },[data])
+    const {projectId,setProjectId}=UseFirstProjectHighlighter(data)
     
     useEffect(()=>{
       let finalData={};
@@ -33,24 +25,6 @@ function ProjectManagerTaskBody() {
 
     },[projectId,data])
 
-    
-    
-    function Div({element}){
-      return(
-        <div className="px-3 my-1 py-2 rounded bg-gray-800"><p className="text-white font-semibold">{element}</p></div>
-      )
-    }
-
-    function dataBaseFunction(startColumn,dragStartIndex,movingItem,endColumn,dragEnterIndex){
-      const data={startColumn,dragStartIndex,movingItem,endColumn,dragEnterIndex}
-      postApi('/task/updatetaskassignment',data,(res)=>{
-        setData(res.data.data)
-          toast.success(res.data.message)
-      })
-    }
-
-    
-    
 
     return (
         <div className="flex h-full w-full">
@@ -85,7 +59,7 @@ function ProjectManagerTaskBody() {
                 }
                 
             </div>
-            <Kankan  objectOfArrays={kankanData} Div={Div} dataBaseFunction={dataBaseFunction} addButton addButtonModalComponent={ <AddTask setData={setData} addButtonColumn={addButtonColumn}/> }  setAddButtonColumn={setAddButtonColumn}/>
+            <Kankan  objectOfArrays={kankanData} setData={setData} Div={TaskAssignmentTile} dataBaseFunction={taskAssignment} addButton addButtonModalComponent={ <AddTask setData={setData} addButtonColumn={addButtonColumn}/> }  setAddButtonColumn={setAddButtonColumn}/>
         </div>
     )
 }

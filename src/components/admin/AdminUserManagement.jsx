@@ -1,13 +1,11 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import DataTable from "react-data-table-component";
-import { useNavigate } from "react-router-dom";
-import { getApi } from "../../api/axiosCalls";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SearchHook from "../../customHooks/admin/SearchHook";
+import UserBlockUnBlockButton from "./UserBlockUnBlockButton";
 
 function AdminUserManagement() {
   const [data, setData] = useState([]);
-  const [search, setSearch] = useState("");
 
   const columns = [
     {
@@ -22,36 +20,12 @@ function AdminUserManagement() {
     },
     {
       name: "Action",
-      cell: (row) => <BlockUnBlock row={row} setData={setData} />,
+      cell: (row) => <UserBlockUnBlockButton row={row} setData={setData} />,
       sortable: true,
     },
   ];
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    getApi(
-      `/admin/superusermanagement?search=${search}`,
-      (response) => {
-        const { adminTokenVerified, message, superUsersData } = response.data;
-        if (adminTokenVerified) {
-          if (!message) {
-            setData(superUsersData);
-          } else {
-            toast(message);
-          }
-        } else {
-          navigate("/admin/login");
-          toast.error("Admin verification failed");
-        }
-      },
-      () => {
-        navigate("/admin/login");
-        toast.error("Admin verification failed");
-      }
-    );
-  }, [search]);
-
+  const {search,setSearch}=SearchHook(setData)
   return (
     <Fragment>
       <DataTable
@@ -82,33 +56,3 @@ function AdminUserManagement() {
 
 export default AdminUserManagement;
 
-function BlockUnBlock({ row, setData }) {
-  const user = row;
-
-  const handleClick = () => {
-    getApi(
-      `/admin/blockorunblock?id=${user._id}&status=${!user.status}`,
-      (response) => {
-        const { action, message } = response.data;
-        if (action) {
-          getApi("/admin/superusermanagement", (response) => {
-            setData(response.data.superUsersData);
-          });
-        }
-        toast(message);
-      }
-    );
-  };
-  return (
-    <button
-      className={`${
-        user.status
-          ? "bg-red-500 hover:bg-red-600"
-          : "bg-green-500 hover:bg-green-600"
-      } text-white font-bold py-2 px-4 rounded`}
-      onClick={handleClick}
-    >
-      {user.status ? "Block" : "UnBlock"}
-    </button>
-  );
-}

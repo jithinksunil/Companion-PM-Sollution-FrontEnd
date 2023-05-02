@@ -8,7 +8,7 @@ function AddTask({addButtonColumn,setData}) {
       <CommonForm 
       formName="Add task"
       fieldArray={[{field:'task',required:true,placeHolder:"enter a task",type:'text'}]}
-      submitFunction={(formData)=>{addTask(addButtonColumn,formData,setData)}}
+      submitFunction={({formData})=>{addTask(addButtonColumn,formData,setData)}}
       submitButton="Submit"
       />
     </div>
