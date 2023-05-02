@@ -26,11 +26,11 @@ function Notifications() {
         navigate(url)
     }
   return (
-    <div className='border-t border-white'>
+    <div>
     {
         notifications.map((item,index)=>{
             return(
-                <div key={index} className={`border-b border-white ${item.url?"cursor-pointer":""}`} onClick={item.url?()=>{activateClick(item.url)}:""}>
+                <div key={index} className={` bg-gray-800 bg-opacity-50 rounded my-1 ${item.url?"cursor-pointer":""}`} onClick={item.url?()=>{activateClick(item.url)}:""}>
                 <p className="py-3 px-5" >
                 {item.notification}
                 </p>

@@ -11,7 +11,7 @@ function SideBar({showSideBar, links}) {
         userManagement
     } = links;
     return (
-        <div className={`bg-slate-800 bg-opacity-50 h-screen`}>
+        <div className={`bg-slate-800 bg-opacity-50 h-full`}>
             <div className={
                 `${
                     showSideBar ? "w-72 md:w-80 px-5" : "w-0 md:w-20 "

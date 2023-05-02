@@ -51,11 +51,11 @@ function ProfileBody({individual, setIndividual}) {
               <div className="px-6">
                 <div className="flex flex-wrap justify-center">
                   <div className=" lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                    <div className="-mt-20">
+                    <div className="-mt-16">
                       <img
                         src={`${individual?.image}`}
                         alt="sdfsd"
-                        className=" mb-3 shadow-xl rounded-full h-40  border-none"
+                        className=" mb-3 shadow-xl rounded-full h-32  border-none"
                       />
                       <p
                         className="cursor-pointer text-black text-center border border-black rounded-lg py-3/4"

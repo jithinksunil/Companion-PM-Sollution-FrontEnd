@@ -1,12 +1,14 @@
-import React, {  useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import CreateProject from './CreateProject'
 import SuperUserTokenCheck from '../../customHooks/SuperUserTokenCheck';
 import Modal from 'react-responsive-modal';
 import DataTable from 'react-data-table-component';
+import { getApi } from '../../api/axiosCalls';
 
 function SuperUserProjectsBody() {
 
   const [data,setData]=useState({})
+  const [search, setSearch] = useState('')
   const [openCreateProject, setOpenCreateProject] = useState(false)
   const onOpenCreateProject=()=>{setOpenCreateProject(true)}
   const onCloseCreateProject=()=>{setOpenCreateProject(false)}
@@ -47,13 +49,23 @@ function SuperUserProjectsBody() {
     },
     {
       name: "Project Manager",
-      selector: (row) => row.projectManagerName?row.projectManagerName:row.projectManagerId,
+      selector: (row) => row.projectManagerName,
     },
     {
       name: "Status",
       selector: (row) => row.status,
     }
   ];
+
+  useEffect(() => {
+    getApi(
+      `/project?search=${search}`,
+      (response) => {
+        const {  data } = response.data;
+        setData(data);
+      }
+    );
+  }, [search]);
   return (
     <div>
     <div className='pb-2'>
@@ -69,6 +81,18 @@ function SuperUserProjectsBody() {
         data={projectsList}
         pagination
         highlightOnHover
+        subHeader
+        subHeaderComponent={
+          <input
+            className="text-black rounded-lg px-2 border border-gray-300 "
+            type="text"
+            placeholder="Search here"
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
+          />
+        }
         subHeaderAlign="center"
       />
       <Modal open={openCreateProject}

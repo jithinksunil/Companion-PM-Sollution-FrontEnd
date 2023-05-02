@@ -66,12 +66,13 @@ function CreateProject({setData,projectManagersList}) {
                     formData.projectManagerId=e.target.value
                 }
             }>
-            <option value='unAssingned'>unAssigned</option>
+            <option className='text-black' value="unAssigned">unAssigned</option> 
             {projectManagersList.map((item,index)=>{
-              if(item.name!=='unAssingned'){
+              if(item.name!=='unAssigned'){
+                console.log(item);
                 return(
-                    <option className='text-black' key={index} value={item._id}>{item.name}</option> 
-                )
+                  <option className='text-black' key={index} value={item._id}>{item.name}</option> 
+              )
               }
             })}
 

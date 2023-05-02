@@ -5,7 +5,6 @@ import {io} from 'socket.io-client'
 import "./body.css";
 import { useNavigate } from 'react-router-dom';
 
-
 function Messenger({individual}) {
     const [msg, setMsg] = useState('')
     const [messages, setMessages] = useState([])
@@ -21,11 +20,11 @@ function Messenger({individual}) {
     const [recievedMessage, setRecievedMessage] = useState({})
     useEffect(()=>{
         socket.current=(io('ws://localhost:8001'))
-
         socket.current.on("message",(data)=>{
             console.log('broadcast recieved');
             setRecievedMessage(data)
         })
+        
     },[])
 
     useEffect(()=>{//to avoid displaying a message from a different user while chating with a user
@@ -43,9 +42,11 @@ function Messenger({individual}) {
     
 
     useEffect(()=>{
-        let superUserId=individual._id
+        let superUserId;
         if(individual.superUserId){
             superUserId=individual.superUserId
+        }else{
+            superUserId=individual._id
         }
         postApi('/chat/connectionlist',{superUserId},(res)=>{
             setConnections(res.data.connections)
@@ -106,7 +107,7 @@ function Messenger({individual}) {
     <div className="flex w-full h-full">
         <div className='w-1/4 px-3 border-r border-white'>
         {connections.map((item,index)=>{
-            if(item._id!==userId&&item.name!=='unAssingned'){
+            if(item._id!==userId&&item.name!=='unAssigned'){
                 return(
                     <div  key={index} className={`flex justify-between items-center ${item._id==recieverId?'bg-blue-600':'bg-gray-100 text-black '} my-2 rounded py-1 px-3`}>
                     <p className='w-full cursor-pointer' onClick={()=>{startChat(item?._id)}}>{item?.name?item?.name:item?._id}</p>

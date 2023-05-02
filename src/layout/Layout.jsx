@@ -27,7 +27,7 @@ function Layout({ individual, links, children }) {
         showSideBar={showSideBar}
         links={{ dashBoard, projects, tasks, reports, materialRequest, userManagement, connections }}
       />
-      <div className="w-full overflow-hidden">
+      <div className="w-full h-full overflow-x-hidden flex flex-col">
         <Navbar
           individual={individual}
           links={{ profile, logout, notifications, attendence, chat }}

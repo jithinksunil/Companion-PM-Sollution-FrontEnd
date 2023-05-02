@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import './body.css'
+import Modal from 'react-responsive-modal';
 
-function Kankan({objectOfArrays,Div,setObjectOfArrays,dataBaseFunction,addButton}) {
+function Kankan({objectOfArrays,Div,dataBaseFunction,addButton,addButtonModalComponent,setAddButtonColumn}) {
+    const [movingItem,setMovingItem]=useState({})
+    const [openModal,setOpenModal]=useState(false)
+    const onOpenModal=(column)=>{setOpenModal(true);setAddButtonColumn(column)}
+    const onCloseModal=()=>{setOpenModal(false)}
     
-console.log(objectOfArrays);
-
     let dragStartIndex=undefined
     let dragEnterIndex=undefined
 
@@ -11,7 +15,8 @@ console.log(objectOfArrays);
         e.preventDefault()
     }
 
-    const onDragStart = (e,index, startColumn) => {
+    const onDragStart = (e,index, startColumn,item) => {
+        setMovingItem(item)
         e.dataTransfer.setData("startColumn", startColumn)
         dragStartIndex=index
         console.log(index,startColumn);
@@ -27,24 +32,21 @@ console.log(objectOfArrays);
         e.preventDefault()
         const startColumn=e.dataTransfer.getData("startColumn")
         console.log(dragEnterIndex,startColumn);
-        const item=objectOfArrays[startColumn][dragStartIndex]
-        const itemId=objectOfArrays[startColumn][dragStartIndex]._id
         
         if(startColumn===endColumn){
             if(dragEnterIndex===undefined){
                 dragEnterIndex=objectOfArrays[endColumn].length-1
-                
             }
             
             if(dragEnterIndex>=dragStartIndex){
-                objectOfArrays[endColumn].splice(dragEnterIndex+1,0,item)
+                objectOfArrays[endColumn].splice(dragEnterIndex+1,0,movingItem)
                 objectOfArrays[startColumn].splice(dragStartIndex,1)
-                dataBaseFunction(startColumn,dragStartIndex,objectOfArrays[startColumn][dragStartIndex]._id,endColumn,dragEnterIndex)
+                dataBaseFunction(startColumn,dragStartIndex,movingItem,endColumn,dragEnterIndex)
             }
             else{
-                objectOfArrays[endColumn].splice(dragEnterIndex,0,item)
+                objectOfArrays[endColumn].splice(dragEnterIndex,0,movingItem)
                 objectOfArrays[startColumn].splice(dragStartIndex+1,1)
-                dataBaseFunction(startColumn,dragStartIndex,itemId,endColumn,dragEnterIndex)
+                dataBaseFunction(startColumn,dragStartIndex,movingItem,endColumn,dragEnterIndex)
             }
         }
         else{
@@ -53,11 +55,10 @@ console.log(objectOfArrays);
             }
             // item.category=endColumn
             
-            objectOfArrays[endColumn].splice(dragEnterIndex,0,item)
+            objectOfArrays[endColumn].splice(dragEnterIndex,0,movingItem)
             objectOfArrays[startColumn].splice(dragStartIndex,1)
-            dataBaseFunction(startColumn,dragStartIndex,itemId,endColumn,dragEnterIndex)
+            dataBaseFunction(startColumn,dragStartIndex,movingItem,endColumn,dragEnterIndex)
         }
-        setObjectOfArrays({...objectOfArrays})
         
     }
     
@@ -74,7 +75,7 @@ console.log(objectOfArrays);
                         onDrop(e, key)
                     }}>
                 <span className=" text-gray-300 px-3 font-bold">{key}</span>
-                {addButton&&<Div element={<div className="text-center"><p className="font-extrabold text-xl">+</p></div>}/>}
+                {addButton&&<Div element={<div onClick={()=>{onOpenModal(key)}} className="text-center cursor-pointer"><p className="font-extrabold text-xl">+</p></div>}/>}
                 {
                 objectOfArrays[key].map((element, index) => {
                     return ( 
@@ -83,7 +84,8 @@ console.log(objectOfArrays);
                         draggable
                         onDragStart={
                             (e) => {
-                                onDragStart(e, index, key)
+                                onDragStart(e, index, key,element)
+                                console.log(element);
                             }
                         }
                         onDragEnter={(e)=>{onDragEnter(e,index)}}>
@@ -97,6 +99,13 @@ console.log(objectOfArrays);
               
             })
           }
+          <Modal
+          open={openModal}
+          onClose={onCloseModal}
+          center
+          >
+          {addButtonModalComponent}
+          </Modal>
         </div>
     )
 }

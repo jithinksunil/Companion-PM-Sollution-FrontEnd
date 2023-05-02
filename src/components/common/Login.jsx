@@ -25,7 +25,7 @@ function Login({
     e.preventDefault();
 
     const emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const userNameFormat = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{12,}$/;
+    const userNameFormat = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{10,}$/;
     const passwordFormat = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
 
     if (userName) {
@@ -43,7 +43,7 @@ function Login({
     }
     // const isValid = await userShema.isValid(formData);
     if (
-      // (emailFormat.test(firstField) || userNameFormat.test(firstField)) &&
+      (emailFormat.test(firstField) || userNameFormat.test(firstField)) &&
       passwordFormat.test(password)
     ) {
       postApi(url, formData, (response) => {

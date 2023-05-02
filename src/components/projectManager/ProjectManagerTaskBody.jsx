@@ -3,17 +3,22 @@ import ProjectManagerTokenCheck from "../../customHooks/ProjectManagerTokenCheck
 import Kankan from "../common/Kankan";
 import { postApi } from "../../api/axiosCalls";
 import { toast } from "react-toastify";
+import AddTask from "./AddTask";
 
 function ProjectManagerTaskBody() {
     const [data, setData] = useState([])
     const [showSideBar, setShowSideBar] = useState(true)
-    const [projectId, setProjectId] = useState('')
+    const [projectId, setProjectId] = useState('willAssign')
     const [kankanData, setKankanData] = useState({})
-
+    const [addButtonColumn,setAddButtonColumn]=useState('')
     ProjectManagerTokenCheck("/task", setData);
 
     useEffect(()=>{
-      setProjectId(data[0]?.projectId)
+      if(projectId=='willAssign'){
+        setProjectId('notAssingned')
+      }else if(projectId=='notAssingned'){
+        setProjectId(data[0]?.projectId)
+      }
       
     },[data])
     
@@ -24,11 +29,9 @@ function ProjectManagerTaskBody() {
           finalData=item.onDutySiteEngineers
         }
       })
-
-      console.log(projectId);
       setKankanData(finalData)
-      console.log(finalData);
-    },[projectId])
+
+    },[projectId,data])
 
     
     
@@ -41,9 +44,12 @@ function ProjectManagerTaskBody() {
     function dataBaseFunction(startColumn,dragStartIndex,movingItem,endColumn,dragEnterIndex){
       const data={startColumn,dragStartIndex,movingItem,endColumn,dragEnterIndex}
       postApi('/task/updatetaskassignment',data,(res)=>{
+        setData(res.data.data)
           toast.success(res.data.message)
       })
     }
+
+    
     
 
     return (
@@ -68,7 +74,8 @@ function ProjectManagerTaskBody() {
                 {
                   data.map((item,index)=>{
                     return (
-                      <div key={index} className={`p-3 ${projectId==item.projectId?"bg-gray-800 bg-opacity-50 rounded-lg":''} overflow-hidden`} onClick={()=>{
+                      <div key={index} className={`p-3 ${projectId==item.projectId?"bg-gray-800 bg-opacity-50 rounded-lg":''} overflow-hidden`} 
+                      onClick={()=>{
                         setProjectId(item.projectId)
                       }}>
                         <p>{item.name}</p>
@@ -78,7 +85,7 @@ function ProjectManagerTaskBody() {
                 }
                 
             </div>
-            <Kankan  objectOfArrays={kankanData} setObjectOfArrays={setKankanData} Div={Div} dataBaseFunction={dataBaseFunction} addButton />
+            <Kankan  objectOfArrays={kankanData} Div={Div} dataBaseFunction={dataBaseFunction} addButton addButtonModalComponent={ <AddTask setData={setData} addButtonColumn={addButtonColumn}/> }  setAddButtonColumn={setAddButtonColumn}/>
         </div>
     )
 }
