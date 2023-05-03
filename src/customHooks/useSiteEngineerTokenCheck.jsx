@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getApi } from "../api/axiosCalls";
 
-function SiteEngineerTokenCheck(url,setData) {
+function useSiteEngineerTokenCheck(url,setData) {
   const navigate = useNavigate();
   useEffect(() => {
     getApi(url, (response) => {
@@ -28,4 +28,4 @@ function SiteEngineerTokenCheck(url,setData) {
   }, []);
 }
 
-export default SiteEngineerTokenCheck;
+export default useSiteEngineerTokenCheck;

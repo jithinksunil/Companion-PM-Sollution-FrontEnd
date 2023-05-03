@@ -1,9 +1,9 @@
 import { toast } from "react-toastify"
 import { postApi } from "../axiosCalls"
 
-export const addTask=(engName,formData,setData)=>{
+export const addTask=(engName,formData,setData,projectId)=>{
 
-    postApi(`task/add?siteEngineerName=${engName}`, formData, (response) => {
+    postApi(`task/add?siteEngineerName=${engName}&projectId=${projectId}`, formData, (response) => {
       toast.success(response.data.message)
       if(response.data.data){
         setData(response.data.data)

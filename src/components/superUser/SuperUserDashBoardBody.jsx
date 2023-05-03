@@ -1,9 +1,9 @@
 import { Fragment } from "react";
-import SuperUserTokenCheck from "../../customHooks/SuperUserTokenCheck";
+import useSuperUserTokenCheck from "../../customHooks/useSuperUserTokenCheck";
 
 
 function SuperUserDashBoardBody() {
-  SuperUserTokenCheck("/dashboard")
+  useSuperUserTokenCheck("/dashboard")
   
   return (
     <Fragment>

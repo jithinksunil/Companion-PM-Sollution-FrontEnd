@@ -1,9 +1,9 @@
 import React from 'react'
-import SuperUserTokenCheck from '../../customHooks/SuperUserTokenCheck'
+import useSuperUserTokenCheck from '../../customHooks/useSuperUserTokenCheck'
 import CommonForm from '../common/CommonForm'
 import { handleLogin } from '../../api/superUser/handleLogin'
 function SuperUserLoginPage() {
-    SuperUserTokenCheck('/verifyToken')
+    useSuperUserTokenCheck('/verifyToken')
   return (
     <div>
     <CommonForm

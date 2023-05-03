@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getApi } from '../../api/axiosCalls';
 
-function SearchHook(setData) {
+function useSearchHook(setData) {
   const [search, setSearch] = useState("");
     useEffect(() => {
         getApi(
@@ -16,4 +16,4 @@ function SearchHook(setData) {
       
 }
 
-export default SearchHook
+export default useSearchHook

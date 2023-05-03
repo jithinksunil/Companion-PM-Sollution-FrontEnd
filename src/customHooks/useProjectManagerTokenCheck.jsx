@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getApi } from "../api/axiosCalls";
 
-function ProjectManagerTokenCheck(url,setData) {
+function useProjectManagerTokenCheck(url,setData) {
   const navigate = useNavigate();
   useEffect(() => {
     getApi(url, (response) => {
@@ -28,4 +28,4 @@ function ProjectManagerTokenCheck(url,setData) {
   }, []);
 }
 
-export default ProjectManagerTokenCheck;
+export default useProjectManagerTokenCheck;

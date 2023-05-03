@@ -1,10 +1,10 @@
 import React from "react";
 import CommonForm from "../../components/common/CommonForm";
 import { handleLogin } from "../../api/projectManager/handleLogin";
-import ProjectManagerTokenCheck from "../../customHooks/ProjectManagerTokenCheck";
+import useProjectManagerTokenCheck from "../../customHooks/useProjectManagerTokenCheck";
 
 function ProjectManagerLogginPage() {
-  ProjectManagerTokenCheck("/projectmanager/verifyToken")
+  useProjectManagerTokenCheck("/projectmanager/verifyToken")
   return (
     <div className="background h-screen">
       <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2">

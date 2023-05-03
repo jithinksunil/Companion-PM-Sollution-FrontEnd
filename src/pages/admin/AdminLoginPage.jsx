@@ -2,10 +2,10 @@ import React from "react";
 import './admin.css'
 import CommonForm from "../../components/common/CommonForm";
 import { handleLogin } from "../../api/admin/handleLogin";
-import AdminTokenCheck from '../../customHooks/AdminTokenCheck'
+import useAdminTokenCheck from '../../customHooks/useAdminTokenCheck'
 
 function AdminLoginPage() {
-  AdminTokenCheck("/admin/verifyToken")
+  useAdminTokenCheck("/admin/verifyToken")
   return (
     <div className="background h-screen">
       <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2">

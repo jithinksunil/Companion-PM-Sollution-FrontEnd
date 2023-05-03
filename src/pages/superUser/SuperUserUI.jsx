@@ -12,6 +12,7 @@ import Messenger from "../../components/common/Messenger";
 import Notifications from "../../components/common/Notifications";
 import ProfileBody from "../../components/common/Profile";
 import { setSuperUser } from "../../store/slices/SuperUserSice";
+import SuperUserSiteEngineersAssignmentBody from "../../components/superUser/SuperUserSiteEngineersAssignmentBody";
 
 
 function SuperUserUI() {
@@ -26,6 +27,7 @@ function SuperUserUI() {
         logout: {link:"/login",token:'superUserToken'},
         notifications: "/superuser/notifications",
         connections: "/superuser/connections",
+        siteEngineers: "/superuser/siteengineers",
         chat:'/superuser/chat',
         projects: "/superuser/projects",
         reports: "/superuser/reports",
@@ -39,6 +41,7 @@ function SuperUserUI() {
         <Route path="/profile" element={<ProfileBody individual={superUser} setIndividual={setSuperUser} />} />
         <Route path="/notifications" element={<Notifications/>} />
         <Route path="/connections" element={<SuperUserConnectionsBody />} />
+        <Route path="/siteengineers" element={<SuperUserSiteEngineersAssignmentBody />} />
         <Route path="/membershipupgrade" element={<MembershipCheckout/>} />
         <Route path="/chat" element={<Messenger individual={superUser}/>} />
       </Routes>

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import SuperUserTokenCheck from "../../customHooks/SuperUserTokenCheck";
+import useSuperUserTokenCheck from "../../customHooks/useSuperUserTokenCheck";
 import Kankan from "../common/Kankan";
 import Modal from "react-responsive-modal";
 import CommonForm from "../common/CommonForm";
@@ -15,7 +15,7 @@ function SuperUserConnectionsBody() {
         setOpenAddConnection(false)
     }
 
-    SuperUserTokenCheck("/connections", setProjects)
+    useSuperUserTokenCheck("/connections", setProjects)
 
     return (
         <div className='h-full flex flex-col'>

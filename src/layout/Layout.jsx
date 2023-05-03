@@ -19,13 +19,14 @@ function Layout({ individual, links, children }) {
     dashBoard,
     userManagement,
     connections,
+    siteEngineers,
     chat 
   } = links;
   return (
     <div className={`background h-screen flex`} style={{backgroundImage:`url(${image})`}}>
       <SideBar
         showSideBar={showSideBar}
-        links={{ dashBoard, projects, tasks, reports, materialRequest, userManagement, connections }}
+        links={{ dashBoard, projects, tasks, reports, materialRequest, userManagement, connections, siteEngineers }}
       />
       <div className="w-full h-full overflow-x-hidden flex flex-col">
         <Navbar

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getApi } from "../api/axiosCalls";
 
-function SuperUserTokenCheck(url,setData) {
+function useSuperUserTokenCheck(url,setData) {
   const navigate = useNavigate();
   useEffect(() => {
     getApi(url, (response) => {
@@ -27,4 +27,4 @@ function SuperUserTokenCheck(url,setData) {
   }, []);
 }
 
-export default SuperUserTokenCheck;
+export default useSuperUserTokenCheck;

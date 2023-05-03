@@ -5,7 +5,10 @@ import Modal from 'react-responsive-modal';
 function Kankan({objectOfArrays,Div,dataBaseFunction,setData,addButton,addButtonModalComponent,setAddButtonColumn}) {
     const [movingItem,setMovingItem]=useState({})
     const [openModal,setOpenModal]=useState(false)
-    const onOpenModal=(column)=>{setOpenModal(true);setAddButtonColumn(column)}
+    const onOpenModal=(column)=>{
+        setOpenModal(true)
+        setAddButtonColumn(column)
+    }
     const onCloseModal=()=>{setOpenModal(false)}
     
     let dragStartIndex=undefined

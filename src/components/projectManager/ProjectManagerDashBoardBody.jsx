@@ -1,8 +1,8 @@
-import ProjectManagerTokenCheck from "../../customHooks/ProjectManagerTokenCheck";
+import useProjectManagerTokenCheck from "../../customHooks/useProjectManagerTokenCheck";
 
 function ProjectManagerDashBoardBody() {
   
-  ProjectManagerTokenCheck("/projectmanager/dashboard");
+  useProjectManagerTokenCheck("/projectmanager/dashboard");
   
   return (
     <div>

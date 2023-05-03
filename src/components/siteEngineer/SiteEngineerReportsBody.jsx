@@ -1,8 +1,8 @@
 
-import SiteEngineerTokenCheck from "../../customHooks/SiteEngineerTokenCheck"
+import useSiteEngineerTokenCheck from "../../customHooks/useSiteEngineerTokenCheck"
 function SiteEngineerReportsBody() {
   
-  SiteEngineerTokenCheck("/siteengineer/dashboard");
+  useSiteEngineerTokenCheck("/siteengineer/dashboard");
   
   return (
     <div>

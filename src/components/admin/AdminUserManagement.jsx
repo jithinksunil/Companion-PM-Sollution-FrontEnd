@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import DataTable from "react-data-table-component";
 import "react-toastify/dist/ReactToastify.css";
-import SearchHook from "../../customHooks/admin/SearchHook";
+import useSearchHook from "../../customHooks/admin/useSearchHook";
 import UserBlockUnBlockButton from "./UserBlockUnBlockButton";
 
 function AdminUserManagement() {
@@ -25,7 +25,7 @@ function AdminUserManagement() {
     },
   ];
 
-  const {search,setSearch}=SearchHook(setData)
+  const {search,setSearch}=useSearchHook(setData)
   return (
     <Fragment>
       <DataTable

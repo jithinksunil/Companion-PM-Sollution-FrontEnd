@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export const UseFirstProjectHighlighter=(data)=>{
+export const useFirstProjectHighlighter=(data)=>{
     const [projectId, setProjectId] = useState('willAssign')
     useEffect(()=>{
       if(projectId=='willAssign'){

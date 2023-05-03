@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import CreateProject from './CreateProject'
-import SuperUserTokenCheck from '../../customHooks/SuperUserTokenCheck';
+import useSuperUserTokenCheck from '../../customHooks/useSuperUserTokenCheck';
 import Modal from 'react-responsive-modal';
 import DataTable from 'react-data-table-component';
-import SearchHook from '../../customHooks/superUser/SearchHook';
+import useSearchHook from '../../customHooks/superUser/useSearchHook';
 
 function SuperUserProjectsBody() {
   const [data,setData]=useState({})
@@ -53,8 +53,8 @@ function SuperUserProjectsBody() {
     }
   ];
 
-  SuperUserTokenCheck('/project', setData)
-  const {search, setSearch} = SearchHook(setData)
+  useSuperUserTokenCheck('/project', setData)
+  const {search, setSearch} = useSearchHook(setData)
 
   return (
     <div>
