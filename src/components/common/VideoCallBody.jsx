@@ -17,7 +17,7 @@ function VideoCallBody() {
           {
             name: 'Send this link to connnect',
             // eslint-disable-next-line no-undef
-            url:`http://localhost:${process.env.REACT_APP_PORT}/room/${roomId}`
+            url:`${process.env.REACT_APP_VIDEO_CALL_URL}/room/${roomId}`
           }
         ],
         scenario: {
