@@ -9,6 +9,7 @@ export const getApi = (
     toast.error("cannot get now: axios error");
   }
 ) => {
+
   axios
     .get(url, { withCredentials: true })
     .then(resolveCallback)
