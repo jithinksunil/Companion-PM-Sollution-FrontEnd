@@ -15,11 +15,11 @@ function App() {
 
   return (
     <div className="App">
+      {console.log('jithin')}
       <BrowserRouter>
         <Routes>
           <Route path="/*" element={<LandingPage />} />
           <Route path="/superuser/*" element={<SuperUserUI />} />
-          
           <Route path="/projectmanager/login" element={<ProjectManagerLogginPage />}/>
           <Route path="/projectmanager/*" element={<ProjectManagerUI />} />
           <Route path="/siteengineer/login" element={<SiteEngineerLogginPage />}/>

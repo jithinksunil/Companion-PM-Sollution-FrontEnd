@@ -1,11 +1,13 @@
-import { Fragment, useState } from "react";
+import { Fragment,  useState } from "react";
 import SignUp from "./SignUp";
-import { Route, Routes, useNavigate } from "react-router-dom";
 import SuperUserLoginPage from "../superUser/SuperUserLoginPage";
+import useCreateModal from "../../customHooks/common/useCreateModal";
 
 function Navbar() {
   const [hideList, setHideList] = useState(true);
-  const navigate = useNavigate();
+  const [showLoginModal,openLoginModalFunction]=useCreateModal('login-modal')
+  const [showSignUpModal,openSignUpModalFunction]=useCreateModal('signUp-modal')
+  
   function handleToggle() {
     setHideList((hideList) => !hideList);
   }
@@ -41,9 +43,7 @@ function Navbar() {
           </li>
           <li className="pt-1 pb-5 md:hidden">
             <h5
-              onClick={() => {
-                navigate("/login");
-              }}
+              onClick={openLoginModalFunction}
             >
               Login
             </h5>
@@ -53,17 +53,13 @@ function Navbar() {
         <div className=" flex absolute right-3 top-5 md:top-auto md:right-10 gap-4">
           <h1
             className="items-center hidden md:flex cursor-pointer hover:border-blue-700  border-2 rounded-3xl px-5"
-            onClick={() => {
-              navigate("/login");
-            }}
+            onClick={openLoginModalFunction}
           >
             Login
           </h1>
           <button
             className="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-3xl"
-            onClick={() => {
-              navigate("/signup");
-            }}
+            onClick={openSignUpModalFunction}
           >
             Sign Up for free
           </button>
@@ -85,24 +81,16 @@ function Navbar() {
           </div>
         </div>
       </nav>
-      <Routes>
-        <Route
-          path="/login"
-          element={
-            <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0">
+      {showLoginModal&&(
+        <div id="login-modal" className=" absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0">
             <SuperUserLoginPage/>
-            </div>
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0">
-              <SignUp />
-            </div>
-          }
-        />
-      </Routes>
+        </div>
+      )}
+      {showSignUpModal&&(
+        <div id="signUp-modal" className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0">
+          <SignUp />
+        </div>
+      )}
     </Fragment>
   );
 }

@@ -18,8 +18,8 @@ function useSuperUserTokenCheck(url,setData) {
         }
       }
       else{
-        navigate("/login");
-        if(location!="/login"){
+        navigate("/");
+        if(location!="/"){
           toast.error(message);
         }
       }
