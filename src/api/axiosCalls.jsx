@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import axios from "../constants/axiosBaseUrl";
 
 export const getApi = (
-  url,
+  endPoint,
   resolveCallback,
   rejectCallback = (err) => {
     console.log(err);
@@ -10,13 +10,13 @@ export const getApi = (
   }
 ) => {
   axios
-    .get(url, { withCredentials: true })
+    .get(endPoint, { withCredentials: true })
     .then(resolveCallback)
     .catch(rejectCallback);
 };
 
 export const postApi = (
-  url,
+  endPoint,
   body,
   resolveCallback,
   rejectCallback = (err) => {
@@ -25,7 +25,7 @@ export const postApi = (
   }
 ) => {
   axios
-    .post(url, body, { withCredentials: true })
+    .post(endPoint, body, { withCredentials: true })
     .then(resolveCallback)
     .catch(rejectCallback);
 };
