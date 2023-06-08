@@ -6,7 +6,7 @@ import useProjectManagerTokenCheck from "../../customHooks/useProjectManagerToke
 function ProjectManagerLogginPage() {
   useProjectManagerTokenCheck("/projectmanager/verifyToken")
   return (
-    <div className="background h-screen">
+    <div className="background bg-black h-screen">
       <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2">
       <CommonForm
       formName="Project manager"
