@@ -1,13 +1,12 @@
 import { Fragment,  useState } from "react";
-import SignUp from "./SignUp";
+import SuperUserSignUp from "../superUser/SuperUserSignUp";
 import SuperUserLoginPage from "../superUser/SuperUserLoginPage";
-import useCreateModal from "../../customHooks/common/useCreateModal";
+import useCreateModal from "../../customHooks/common/useCreateModal"
 
 function Navbar() {
   const [hideList, setHideList] = useState(true);
-  const [showLoginModal,openLoginModalFunction]=useCreateModal('login-modal')
-  const [showSignUpModal,openSignUpModalFunction]=useCreateModal('signUp-modal')
-  
+  const [showSignUpModal,openSignUpModalFunction,closeSignUpModalFunction]=useCreateModal('signUp-modal')
+  const [showLoginModal,openLoginModalFunction] =useCreateModal('login-modal')
   function handleToggle() {
     setHideList((hideList) => !hideList);
   }
@@ -17,31 +16,30 @@ function Navbar() {
       <nav
         className={`md:flex items-center px-3 md:px-10 relative gap-4 shadow-lg ${
           hideList ? "h-20" : "h-64"
-        } md:h-auto duration-200`}
+        } md:h-auto duration-200 `}
       >
         <img
-          className="w-28 py-7 md:w-40 md:py-6"
-          src="campanion/companion.png"
-          alt=""
+          className="w-28 py-7 md:w-40 md:py-6 cursor-pointer"
+          src="campanion/companion.png"          
         />
         <ul
           className={`${
             hideList ? "hidden opacity-0" : "opacity-100"
           } transition-opacity duration-1000 md:flex md:gap-4 pr-10`}
         >
-          <li className="py-1">
+          <li className="py-1 cursor-pointer">
             <h5>Why Us</h5>
           </li>
-          <li className="py-1">
+          <li className="py-1 cursor-pointer">
             <h5>Features</h5>
           </li>
-          <li className="py-1">
+          <li className="py-1 cursor-pointer">
             <h5>Resources</h5>
           </li>
-          <li className="py-1 ">
+          <li className="py-1 cursor-pointer ">
             <h5>Pricing</h5>
           </li>
-          <li className="pt-1 pb-5 md:hidden">
+          <li className="pt-1 cursor-pointer pb-5 md:hidden">
             <h5
               onClick={openLoginModalFunction}
             >
@@ -70,7 +68,7 @@ function Navbar() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-6 h-6 cursor-pointer"
             >
               <path
                 strokeLinecap="round"
@@ -83,12 +81,12 @@ function Navbar() {
       </nav>
       {showLoginModal&&(
         <div id="login-modal" className=" absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0">
-            <SuperUserLoginPage/>
+            <SuperUserLoginPage />
         </div>
       )}
       {showSignUpModal&&(
         <div id="signUp-modal" className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0">
-          <SignUp />
+          <SuperUserSignUp openLoginModalFunction={openLoginModalFunction} closeSignUpModalFunction={closeSignUpModalFunction}/>
         </div>
       )}
     </Fragment>

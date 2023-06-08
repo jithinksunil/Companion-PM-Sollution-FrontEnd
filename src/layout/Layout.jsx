@@ -23,7 +23,7 @@ function Layout({ individual, links, children }) {
     chat 
   } = links;
   return (
-    <div className={`background h-screen flex`} style={{backgroundImage:`url(${image})`}}>
+    <div className={`h-screen flex`} style={{backgroundImage:`url(${image})`}}>
       <SideBar
         showSideBar={showSideBar}
         links={{ dashBoard, projects, tasks, reports, materialRequest, userManagement, connections, siteEngineers }}

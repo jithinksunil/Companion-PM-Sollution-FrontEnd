@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-
 export const MyContext = createContext(null);
 
 export default function MyProvider({ children }) {
@@ -11,7 +10,7 @@ export default function MyProvider({ children }) {
         superUserLoggedIn,
         setSuperUserLoggedIn,
         adminLoggedIn,
-        setAdminLoggedIn,
+        setAdminLoggedIn
       }}
     >
       {children}
