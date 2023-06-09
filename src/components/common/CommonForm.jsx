@@ -27,7 +27,7 @@ function CommonForm({
     })
     if (allDropDownsSelected) {
       let flag = true
-      const alreadyCompared={}
+      const alreadyCompared = {}
       fieldArray.forEach((item) => {
         if (item.validation) {//only items with validation is checking
           const validation = item.validation
@@ -37,21 +37,21 @@ function CommonForm({
           }
         }
 
-        if(item.compareId && !alreadyCompared[item.compareId]){
-          const elements=document.getElementsByClassName(`${item.compareId}`)
-          const reference=elements[0].value
-          let success=true
-          for(let i=1;i<elements.length;i++){
-            if(elements[i].value!=reference){
-              success=false
-              flag=false
+        if (item.compareId && !alreadyCompared[item.compareId]) {
+          const elements = document.getElementsByClassName(`${item.compareId}`)
+          const reference = elements[0].value
+          let success = true
+          for (let i = 1; i < elements.length; i++) {
+            if (elements[i].value != reference) {
+              success = false
+              flag = false
               break;
             }
           }
-          if(!success){
+          if (!success) {
             toast(`${item.compareId} does not match`)
           }
-          alreadyCompared[item.compareId]=true
+          alreadyCompared[item.compareId] = true
         }
       })
 
@@ -96,7 +96,7 @@ function CommonForm({
             } else {
               return (
                 <input key={index}
-                  className={`${item.compareId?item.compareId:''} block my-2 rounded-xl h-9 border-gray-500 border px-3`}
+                  className={`${item.compareId ? item.compareId : ''} block my-2 rounded-xl h-9 border-gray-500 border px-3`}
                   required={item.required}
                   type={item.type}
                   placeholder={item.placeHolder}

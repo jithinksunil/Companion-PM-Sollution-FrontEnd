@@ -5,22 +5,22 @@ import { updateProfile } from "../../api/siteEngineer/profileBodyApiCalls";
 function SiteEngineerProfileUpdate() {
 
   const siteEngineer = useSelector((state) => state.siteEngineer.value);
-  const {name, email, companyName}=siteEngineer
-  
+  const { name, email, companyName } = siteEngineer
+
   return (
-    
+
     <CommonForm
-    formName="Update Profile"
-    submitButton="Submit"
-    fieldArray={[
-      {field:"name",required:true,type:"text",placeHolder:'Name',value:name},
-      {field:"companyName",required:true,type:"text",placeHolder:'Company Name',value:companyName},
-      {field:"email",required:true,type:"email",validation:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,placeHolder:'Email',value:email},
-      {field:"password",required:true,type:"password",validation:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,placeHolder:'Current password'},
-  ]}
-    submitFunction={updateProfile}
+      formName="Update Profile"
+      submitButton="Submit"
+      fieldArray={[
+        { field: "name", required: true, type: "text", placeHolder: 'Name', value: name },
+        { field: "companyName", required: true, type: "text", placeHolder: 'Company Name', value: companyName },
+        { field: "email", required: true, type: "email", validation: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, placeHolder: 'Email', value: email },
+        { field: "password", required: true, type: "password", validation: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/, placeHolder: 'Current password' },
+      ]}
+      submitFunction={updateProfile}
     />
   )
 }
 
-export default  SiteEngineerProfileUpdate
+export default SiteEngineerProfileUpdate

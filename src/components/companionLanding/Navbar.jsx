@@ -1,12 +1,12 @@
-import { Fragment,  useState } from "react";
+import { Fragment, useState } from "react";
 import SuperUserSignUp from "../superUser/SuperUserSignUp";
 import SuperUserLogin from "../superUser/SuperUserLogin";
 import useCreateModal from "../../customHooks/common/useCreateModal"
 
 function Navbar() {
   const [hideList, setHideList] = useState(true);
-  const [showSignUpModal,openSignUpModalFunction,closeSignUpModalFunction]=useCreateModal('signUp-modal')
-  const [showLoginModal,openLoginModalFunction] =useCreateModal('login-modal')
+  const [showSignUpModal, openSignUpModalFunction, closeSignUpModalFunction] = useCreateModal('signUp-modal')
+  const [showLoginModal, openLoginModalFunction] = useCreateModal('login-modal')
   function handleToggle() {
     setHideList((hideList) => !hideList);
   }
@@ -14,18 +14,16 @@ function Navbar() {
   return (
     <Fragment>
       <nav
-        className={`md:flex items-center px-3 md:px-10 relative gap-4 shadow-lg ${
-          hideList ? "h-20" : "h-64"
-        } md:h-auto duration-200 `}
+        className={`md:flex items-center px-3 md:px-10 relative gap-4 shadow-lg ${hideList ? "h-20" : "h-64"
+          } md:h-auto duration-200 `}
       >
         <img
           className="w-28 py-7 md:w-40 md:py-6 cursor-pointer"
-          src="campanion/companion.png"          
+          src="campanion/companion.png"
         />
         <ul
-          className={`${
-            hideList ? "hidden opacity-0" : "opacity-100"
-          } transition-opacity duration-1000 md:flex md:gap-4 pr-10`}
+          className={`${hideList ? "hidden opacity-0" : "opacity-100"
+            } transition-opacity duration-1000 md:flex md:gap-4 pr-10`}
         >
           <li className="py-1 cursor-pointer">
             <h5>Why Us</h5>
@@ -79,14 +77,14 @@ function Navbar() {
           </div>
         </div>
       </nav>
-      {showLoginModal&&(
+      {showLoginModal && (
         <div id="login-modal" className=" absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0">
-            <SuperUserLogin />
+          <SuperUserLogin />
         </div>
       )}
-      {showSignUpModal&&(
+      {showSignUpModal && (
         <div id="signUp-modal" className="fixed md:absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0">
-          <SuperUserSignUp openLoginModalFunction={openLoginModalFunction} closeSignUpModalFunction={closeSignUpModalFunction}/>
+          <SuperUserSignUp openLoginModalFunction={openLoginModalFunction} closeSignUpModalFunction={closeSignUpModalFunction} />
         </div>
       )}
     </Fragment>

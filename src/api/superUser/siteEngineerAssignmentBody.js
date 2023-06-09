@@ -1,7 +1,7 @@
 import { toast } from "react-toastify"
 import { postApi } from "../axiosCalls"
 
-export const siteEngineerAssignment=(startColumn,dragStartIndex,movingItem,endColumn,dragEnterIndex,setData)=>{
+export const siteEngineerAssignment = (startColumn, dragStartIndex, movingItem, endColumn, dragEnterIndex, setData) => {
     const data = {
         startColumn,
         dragStartIndex,

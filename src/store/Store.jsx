@@ -16,8 +16,8 @@ const persistConfig = {
 const reducer = combineReducers({
   superUser: superUserReducer,
   projectManager: projectManagerReducer,
-  siteEngineer:siteEngineerReducer,
-  admin:adminReducer
+  siteEngineer: siteEngineerReducer,
+  admin: adminReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

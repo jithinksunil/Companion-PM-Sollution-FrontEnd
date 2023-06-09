@@ -20,17 +20,17 @@ function App() {
           <Route path="/*" element={<LandingPage />} />
           <Route path="/superuser/*" element={<SuperUserRoutes />} />
 
-          <Route path="/projectmanager/login" element={<ProjectManagerLogginPage />}/>
+          <Route path="/projectmanager/login" element={<ProjectManagerLogginPage />} />
           <Route path="/projectmanager/*" element={<ProjectManagerRoutes />} />
 
-          <Route path="/siteengineer/login" element={<SiteEngineerLogginPage />}/>
+          <Route path="/siteengineer/login" element={<SiteEngineerLogginPage />} />
           <Route path="/siteengineer/*" element={<SiteEngineerRoutes />} />
 
           <Route path="/admin/login" element={<AdminLoginPage />} />
           <Route path="/admin/*" element={<AdminRoutes />} />
-          
+
           <Route path="/trial" element={<NewTAbles />} />
-          <Route path="/videocall/:roomId" element={<VideoCallBody/>} />
+          <Route path="/videocall/:roomId" element={<VideoCallBody />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />

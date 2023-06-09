@@ -25,7 +25,7 @@ function AdminUserManagementBody() {
     },
   ];
 
-  const {search,setSearch}=useSearchHook(setData)
+  const { search, setSearch } = useSearchHook(setData)
   return (
     <Fragment>
       <DataTable

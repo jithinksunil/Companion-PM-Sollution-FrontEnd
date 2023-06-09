@@ -1,8 +1,8 @@
 import React from 'react'
 import CommonForm from '../../components/common/CommonForm'
-import {addProject} from '../../api/superUser/projectBodyApiCalls'
+import { addProject } from '../../api/superUser/projectBodyApiCalls'
 
-function CreateProject({setData, projectManagersList}) {
+function CreateProject({ setData, projectManagersList }) {
 
     const projectManagers = []
     projectManagersList?.map((item) => {
@@ -45,16 +45,16 @@ function CreateProject({setData, projectManagersList}) {
                 }, {
                     field: 'projectManagerId',
                     type: 'dropDown',
-                    list: [... projectManagers]
+                    list: [...projectManagers]
                 }
             ]
         }
         submitFunction={
-            ({formData}) => {
-                addProject({formData, setData})
+            ({ formData }) => {
+                addProject({ formData, setData })
             }
         }
-        submitButton="Add project"/>)
+        submitButton="Add project" />)
 }
 
 export default CreateProject

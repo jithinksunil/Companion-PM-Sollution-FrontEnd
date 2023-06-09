@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateImage } from "../../api/common/commonApiCalls";
 
-function UpdateImage({individual,setIndividual}) {
+function UpdateImage({ individual, setIndividual }) {
   const [image, setImage] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    updateImage({image,dispatch,individual,setIndividual})
+    updateImage({ image, dispatch, individual, setIndividual })
   };
 
   const url = `${individual?.image}`;

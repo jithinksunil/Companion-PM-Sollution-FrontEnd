@@ -1,12 +1,12 @@
 import { toast } from "react-toastify";
 import { postApi } from "../axiosCalls";
 
-const handleSignUp = ({formData,openLoginModalFunction,closeSignUpModalFunction}) => {
+const handleSignUp = ({ formData, openLoginModalFunction, closeSignUpModalFunction }) => {
 
   postApi("/signup", formData, (res) => {
-    const {message,status}=res.data
+    const { message, status } = res.data
     toast(message)
-    if(status){
+    if (status) {
       closeSignUpModalFunction()
       openLoginModalFunction()
     }

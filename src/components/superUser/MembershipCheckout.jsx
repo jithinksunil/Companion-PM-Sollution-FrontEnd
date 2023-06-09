@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { postApi } from "../../api/axiosCalls";
 import { useNavigate } from "react-router-dom";
@@ -7,21 +7,21 @@ import { toast } from "react-toastify";
 function MembershipCheckout() {
 
     const [plan, setPlan] = useState('Silver')
-    const [amount,setAmount]=useState(5)
-    const navigate=useNavigate()
-    const handlePaymentSuccess=()=>{
-        postApi('/paymentcomplete',{plan},(response)=>{
-            const {superUserToken,status,message}=response.data
-            if(superUserToken){
-                if(status){
+    const [amount, setAmount] = useState(5)
+    const navigate = useNavigate()
+    const handlePaymentSuccess = () => {
+        postApi('/paymentcomplete', { plan }, (response) => {
+            const { superUserToken, status, message } = response.data
+            if (superUserToken) {
+                if (status) {
                     navigate('/superuser/profile')
                     toast.success(message)
                 }
-                else{
+                else {
                     toast.error(message)
                 }
             }
-            else{
+            else {
                 toast.error(message)
             }
         })
@@ -45,9 +45,9 @@ function MembershipCheckout() {
                                         onChange={
                                             (e) => {
                                                 setPlan(e.target.value)
-                                                setAmount(e.target.value==='Gold'?10:5)
+                                                setAmount(e.target.value === 'Gold' ? 10 : 5)
                                             }
-                                    }>
+                                        }>
                                         <option value={'Silver'}>Silver</option>
                                         <option value={'Gold'}>Gold</option>
 
@@ -57,19 +57,19 @@ function MembershipCheckout() {
                                 </div>
                             </div>
                         </form>
-                                {/* eslint-disable-next-line no-undef*/}
-                        <PayPalScriptProvider options={{"client-id":process.env.REACT_APP_PAYPAL_CLIENT_ID}}>
+                        {/* eslint-disable-next-line no-undef*/}
+                        <PayPalScriptProvider options={{ "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID }}>
                             <PayPalButtons
-                            createOrder={(data,actions)=>{return actions.order.create({purchase_units:[{amount:{value:amount.toString()}}]})}}
-                            onApprove={async (data,actions)=>{
-                              await actions.order.capture()
-                              handlePaymentSuccess()
-                              console.log(plan)
-                              console.log(amount);
-                            }}
-                            onCancel={()=>{toast.error('Payment cancelled')}}
-                            on
-                            onError={()=>{toast.error('Payment failed') }}/>
+                                createOrder={(data, actions) => { return actions.order.create({ purchase_units: [{ amount: { value: amount.toString() } }] }) }}
+                                onApprove={async (data, actions) => {
+                                    await actions.order.capture()
+                                    handlePaymentSuccess()
+                                    console.log(plan)
+                                    console.log(amount);
+                                }}
+                                onCancel={() => { toast.error('Payment cancelled') }}
+                                on
+                                onError={() => { toast.error('Payment failed') }} />
                             {console.log(plan)}
                             {console.log(amount)}
                         </PayPalScriptProvider>
@@ -78,7 +78,7 @@ function MembershipCheckout() {
                 <div className=" relative col-span-full flex flex-col py-6 pl-8 pr-4 sm:py-12 lg:col-span-4 lg:py-24">
                     <h2 className="sr-only">Order summary</h2>
                     <div>
-                        <img src="https://images.unsplash.com/photo-1581318694548-0fb6e47fe59b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="" className="absolute inset-0 h-full w-full object-cover"/>
+                        <img src="https://images.unsplash.com/photo-1581318694548-0fb6e47fe59b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="" className="absolute inset-0 h-full w-full object-cover" />
                         <div className="absolute inset-0 h-full w-full bg-gradient-to-t from-teal-800 to-teal-400 opacity-95"></div>
                     </div>
                     <div className="relative">

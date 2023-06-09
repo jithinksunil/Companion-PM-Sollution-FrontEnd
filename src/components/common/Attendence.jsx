@@ -1,12 +1,12 @@
 import mapboxgl from '!mapbox-gl'
-import {useEffect, useRef, useState} from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './map.css'
 import 'mapbox-gl/dist/mapbox-gl.css';
-import {toast} from 'react-toastify';
-import {getApi} from '../../api/axiosCalls';
+import { toast } from 'react-toastify';
+import { getApi } from '../../api/axiosCalls';
 
 
-function Attendence({url}) {
+function Attendence({ url }) {
     // eslint-disable-next-line no-undef
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
     const mapContainer = useRef(null);
@@ -35,11 +35,11 @@ function Attendence({url}) {
             const distance = distanceFromCoordinates(projectLatitude, projectLongitude, lati, long) // in km
             if (distance <= 200) {
                 getApi(url, (resolve) => {
-                    const {status,message}=resolve.data
-                    if(status){
+                    const { status, message } = resolve.data
+                    if (status) {
                         toast.success(message)
                     }
-                    else{
+                    else {
                         toast.error(message)
                     }
                 })
@@ -51,9 +51,9 @@ function Attendence({url}) {
 
     useEffect(() => {
         console.log('1');
-        if (map.current) 
+        if (map.current)
             return;
-        
+
 
         // initialize map only once
 
@@ -79,9 +79,9 @@ function Attendence({url}) {
 
     useEffect(() => {
         console.log('3');
-        if (! map.current) 
+        if (!map.current)
             return;
-        
+
 
         // wait for map to initialize
         console.log('4');
@@ -97,10 +97,10 @@ function Attendence({url}) {
             <div className="sidebar">
                 Longitude: {lng}
                 | Latitude: {lat}
-                | Zoom: {zoom} 
+                | Zoom: {zoom}
             </div>
             <div ref={mapContainer}
-                className="map-container my-2"/>
+                className="map-container my-2" />
             <div className='flex justify-center'>
                 <button className='text-center bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-3xl'
                     onClick={handleAttendenceMarking}>Mark Attendence</button>

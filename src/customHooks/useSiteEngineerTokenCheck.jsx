@@ -3,24 +3,24 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getApi } from "../api/axiosCalls";
 
-function useSiteEngineerTokenCheck(url,setData) {
+function useSiteEngineerTokenCheck(url, setData) {
   const navigate = useNavigate();
   useEffect(() => {
     getApi(url, (response) => {
       const { siteEngineerTokenVerified, message, data } =
         response.data;
-        const location=window.location.pathname
+      const location = window.location.pathname
       if (siteEngineerTokenVerified) {
-        if(setData){
+        if (setData) {
           setData(data)
         }
-        if(location=="/siteengineer/login"){
+        if (location == "/siteengineer/login") {
           navigate("/siteengineer/dashboard");
         }
       }
-      else{
+      else {
         navigate("/siteengineer/login");
-        if(location!="/siteengineer/login"){
+        if (location != "/siteengineer/login") {
           toast.error(message);
         }
       }

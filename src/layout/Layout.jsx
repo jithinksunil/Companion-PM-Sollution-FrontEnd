@@ -1,4 +1,4 @@
-import React, {   useState } from "react";
+import React, { useState } from "react";
 import Navbar from "../components/common/Navbar";
 import SideBar from "../components/common/SideBar";
 import Body from "../components/common/Body";
@@ -20,10 +20,10 @@ function Layout({ individual, links, children }) {
     userManagement,
     connections,
     siteEngineers,
-    chat 
+    chat
   } = links;
   return (
-    <div className={`bg-black background h-screen flex`} style={{backgroundImage:`url(${image})`}}>
+    <div className={`bg-black background h-screen flex`} style={{ backgroundImage: `url(${image})` }}>
       <SideBar
         showSideBar={showSideBar}
         links={{ dashBoard, projects, tasks, reports, materialRequest, userManagement, connections, siteEngineers }}
@@ -37,7 +37,7 @@ function Layout({ individual, links, children }) {
         />
         <Body>{children}</Body>
       </div>
-      
+
     </div>
   );
 }

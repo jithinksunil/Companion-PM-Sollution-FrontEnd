@@ -15,16 +15,16 @@ function ProjectManagerRoutes() {
       individual={projectManager}
       links={{
         profile: "/projectmanager/profile",
-        logout: {link:"/projectmanager/login",token:'projectManagerToken'},
+        logout: { link: "/projectmanager/login", token: 'projectManagerToken' },
         attendence: "/projectmanager/attendence",
         notifications: "/projectmanager/notifications",
         dashBoard: "/projectmanager/dashboard",
         projects: "/projectmanager/projects",
-        reports:"/projectmanager/reports",
-        tasks:"/projectmanager/task",
-        connections:"/projectmanager/connections",
-        materialRequest:"/projectmanager/materialrequest",
-        chat:"/projectmanager/chat",
+        reports: "/projectmanager/reports",
+        tasks: "/projectmanager/task",
+        connections: "/projectmanager/connections",
+        materialRequest: "/projectmanager/materialrequest",
+        chat: "/projectmanager/chat",
       }}
     >
       <Routes>
@@ -32,7 +32,7 @@ function ProjectManagerRoutes() {
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/chat" element={<Messenger individual={projectManager} />} />
         <Route path="/profile" element={<ProfileBody individual={projectManager} setIndividual={setProjectManager} />} />
-        <Route path="/task" element={<ProjectManagerTaskBody/>} />
+        <Route path="/task" element={<ProjectManagerTaskBody />} />
       </Routes>
     </Layout>
   );

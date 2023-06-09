@@ -233,7 +233,7 @@ function Pricing() {
         </div>
         <div className="flex justify-center sm:justify-start lg:justify-center pt-5 pb-10">
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-3xl">
-          Gold
+            Gold
           </button>
         </div>
       </div>

@@ -11,7 +11,7 @@ function AdminRoutes() {
     <Layout
       links={{
         profile: "/admin/profile",
-        logout: {link:"/admin/login",token:'adminToken'},
+        logout: { link: "/admin/login", token: 'adminToken' },
         dashBoard: "/admin/dashboard",
         userManagement: "/admin/usermanagement",
       }}
