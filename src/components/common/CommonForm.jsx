@@ -63,7 +63,7 @@ function CommonForm({
   }
 
   return (
-    <div className="bg-white rounded-lg px-10 py-10 shadow-black shadow-2xl text-center">
+    <div className="bg-white  rounded-lg px-10 py-10 shadow-black shadow-2xl text-center text-black">
       <div className="flex justify-center ">
         <img
           className="w-32 py-2"

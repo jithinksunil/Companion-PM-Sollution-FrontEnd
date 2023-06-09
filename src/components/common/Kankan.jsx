@@ -1,15 +1,9 @@
 import { useState } from 'react';
 import './body.css'
-import Modal from 'react-responsive-modal';
+import CenterModalContaier from './CenterModalContaier';
 
 function Kankan({objectOfArrays,Div,dataBaseFunction,setData,addButton,addButtonModalComponent,setAddButtonColumn}) {
     const [movingItem,setMovingItem]=useState({})
-    const [openModal,setOpenModal]=useState(false)
-    const onOpenModal=(column)=>{
-        setOpenModal(true)
-        setAddButtonColumn(column)
-    }
-    const onCloseModal=()=>{setOpenModal(false)}
     
     let dragStartIndex=undefined
     let dragEnterIndex=undefined
@@ -78,7 +72,7 @@ function Kankan({objectOfArrays,Div,dataBaseFunction,setData,addButton,addButton
                         onDrop(e, key)
                     }}>
                 <span className=" text-gray-300 px-3 font-bold">{key}</span>
-                {addButton&&<Div element={<div onClick={()=>{onOpenModal(key)}} className="text-center cursor-pointer"><p className="font-extrabold text-xl">+</p></div>}/>}
+                {addButton&&<Div element={<div id={'clickHereToOpenModal'+key} onClick={()=>{setAddButtonColumn(key)}} className="text-center cursor-pointer"><p className="font-extrabold text-xl">+</p></div>}/>}
                 {
                 objectOfArrays[key].map((element, index) => {
                     return ( 
@@ -97,18 +91,15 @@ function Kankan({objectOfArrays,Div,dataBaseFunction,setData,addButton,addButton
                     )
                 })
             }
+            <CenterModalContaier openModalButtonId={'clickHereToOpenModal'+key}>
+          {addButtonModalComponent}
+          </CenterModalContaier>
             </div>
               )
               
             })
           }
-          <Modal
-          open={openModal}
-          onClose={onCloseModal}
-          center
-          >
-          {addButtonModalComponent}
-          </Modal>
+          
         </div>
     )
 }

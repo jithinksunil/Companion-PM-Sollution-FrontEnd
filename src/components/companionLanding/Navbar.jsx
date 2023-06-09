@@ -85,7 +85,7 @@ function Navbar() {
         </div>
       )}
       {showSignUpModal&&(
-        <div id="signUp-modal" className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0">
+        <div id="signUp-modal" className="fixed md:absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0">
           <SuperUserSignUp openLoginModalFunction={openLoginModalFunction} closeSignUpModalFunction={closeSignUpModalFunction}/>
         </div>
       )}

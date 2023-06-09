@@ -1,27 +1,19 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import useSuperUserTokenCheck from "../../customHooks/useSuperUserTokenCheck";
 import Kankan from "../common/Kankan";
-import Modal from "react-responsive-modal";
 import CommonForm from "../common/CommonForm";
-import {addConnection, projectDragAndDrop} from "../../api/superUser/connectionBodyApiCalls";
+import { addConnection, projectDragAndDrop } from "../../api/superUser/connectionBodyApiCalls";
 import ProjectDragAndDropTile from "./ProjectDragAndDropTile";
+import CenterModalContaier from "../common/CenterModalContaier";
 function SuperUserConnectionsBody() {
     const [projects, setProjects] = useState({});
-    const [openAddConnection, setOpenAddConnection] = useState(false)
-    const onOpenAddConnection = () => {
-        setOpenAddConnection(true)
-    }
-    const onCloseAddConnection = () => {
-        setOpenAddConnection(false)
-    }
-
     useSuperUserTokenCheck("/connections", setProjects)
 
     return (
         <div className='h-full flex flex-col'>
             <div>
                 <div className='pb-2'>
-                    <button onClick={onOpenAddConnection}
+                    <button id='addConnectionButton'
                         className='bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-3xl'>Add Connection</button>
                 </div>
             </div>
@@ -29,13 +21,9 @@ function SuperUserConnectionsBody() {
                 Div={ProjectDragAndDropTile}
                 dataBaseFunction={projectDragAndDrop}
                 setData={setProjects}
-                />
-                
-            <Modal open={openAddConnection}
-                onClose={onCloseAddConnection}
-                center
-                showCloseIcon={false}>
-                <CommonForm formName="Add Connection"
+            />
+            <CenterModalContaier openModalButtonId='addConnectionButton'>
+            <CommonForm formName="Add Connection"
                     fieldArray={
                         [
                             {
@@ -60,13 +48,13 @@ function SuperUserConnectionsBody() {
                         ]
                     }
                     submitFunction={
-                        ({formData}) => {
+                        ({ formData }) => {
                             addConnection(formData, setProjects)
                         }
                     }
-                    submitButton="Submit"/>
-            </Modal>
-    </div>
+                    submitButton="Submit" />
+            </CenterModalContaier>
+        </div>
     );
 }
 

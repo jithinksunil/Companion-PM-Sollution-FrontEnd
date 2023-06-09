@@ -19,7 +19,6 @@
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.2",
     "react-redux": "^8.0.5",
-    "react-responsive-modal": "^6.4.1",
     "react-router-dom": "^6.9.0",
     "react-scripts": "^5.0.1",
     "react-spinners": "^0.13.8",

@@ -42,6 +42,7 @@ function SuperUserUI() {
         <Route path="/membershipupgrade" element={<MembershipCheckout/>} />
         <Route path="/chat" element={<Messenger individual={superUser}/>} />
       </Routes>
+      
     </Layout>
     
   );

@@ -1,36 +1,25 @@
-import { Fragment, useState } from "react";
-import "react-responsive-modal/styles.css";
-import { Modal } from "react-responsive-modal";
+import { Fragment } from "react";
 import UpdateImage from "../../components/common/UpdateImage";
 import SuperUserProfileUpdate from "../superUser/SuperUserProfileUpdate";
 import ProjectManagerProfileUpdate from "../projectManager/ProjectManagerProfileUpdate";
 import SiteEngineerProfileUpdate from "../siteEngineer/SiteEngineerProfileUpdate";
 import Membership from "../superUser/Membership";
+import CenterModalContaier from "./CenterModalContaier";
 
-
-function ProfileBody({individual, setIndividual}) {
-  const [openUpdateImage, setOpenUpdateImage] = useState(false);
-  const [openUpdateProfile, setOpenUpdateProfile] = useState(false);
-  const [openMembership, setOpenMembership] = useState(false);
-  const onOpenUpdateImage = () => setOpenUpdateImage(true);
-  const onCloseUpdateImage = () => setOpenUpdateImage(false);
-  const onOpenUpdateProfile = () => setOpenUpdateProfile(true);
-  const onCloseUpdateProfile = () => setOpenUpdateProfile(false);
-  const onOpenMembership = () => setOpenMembership(true);
-  const onCloseMembership = () => setOpenMembership(false);
+function ProfileBody({ individual, setIndividual }) {
   let ProfileUpdate;
   console.log(individual);
-  if(individual.position=="superUser"){
-    ProfileUpdate=SuperUserProfileUpdate
+  if (individual.position == "superUser") {
+    ProfileUpdate = SuperUserProfileUpdate
   }
-  else if(individual.position=="projectManager"){
-    ProfileUpdate=ProjectManagerProfileUpdate
+  else if (individual.position == "projectManager") {
+    ProfileUpdate = ProjectManagerProfileUpdate
   }
-  else if(individual.position=="siteEngineer"){
-    ProfileUpdate=SiteEngineerProfileUpdate
+  else if (individual.position == "siteEngineer") {
+    ProfileUpdate = SiteEngineerProfileUpdate
   }
-    
-  
+
+
   return (
     <Fragment>
       <link
@@ -57,8 +46,8 @@ function ProfileBody({individual, setIndividual}) {
                         className=" mb-3 shadow-xl rounded-full h-32  border-none"
                       />
                       <p
+                        id='updateImageButton'
                         className="cursor-pointer text-black text-center border border-black rounded-lg py-3/4"
-                        onClick={onOpenUpdateImage}
                       >
                         Update Image
                       </p>
@@ -67,9 +56,9 @@ function ProfileBody({individual, setIndividual}) {
                   <div className="w-full lg:w-4/12 px-4 text-center md:text-right">
                     <div className="py-6 px-3 ">
                       <button
+                        id='updateProfileButton'
                         className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                         type="button"
-                        onClick={onOpenUpdateProfile}
                       >
                         Update Profile
                       </button>
@@ -101,17 +90,17 @@ function ProfileBody({individual, setIndividual}) {
                     {individual?.name}
                   </h3>
                   {
-                    (individual.position=="superUser") && (
+                    (individual.position == "superUser") && (
                       <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                  <button
-                        className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-                        type="button"
-                        onClick={onOpenMembership}
-                      >
-                        Membership-{individual?.membership}
-                      </button>
-                    {individual?.place}
-                  </div>
+                        <button
+                          id='upgradeMembershipButton'
+                          className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+                          type="button"
+                        >
+                          Membership-{individual?.membership}
+                        </button>
+                        {individual?.place}
+                      </div>
                     )
                   }
                   <div className="mb-2 text-blueGray-600 mt-10">
@@ -140,29 +129,15 @@ function ProfileBody({individual, setIndividual}) {
           </div>
         </section>
       </main>
-      <Modal open={openUpdateImage}
-       onClose={onCloseUpdateImage} 
-       center
-       showCloseIcon={false}
-        >
+      <CenterModalContaier openModalButtonId='updateImageButton'>
         <UpdateImage individual={individual} setIndividual={setIndividual} />
-      </Modal>
-      
-      <Modal open={openUpdateProfile}
-       onClose={onCloseUpdateProfile} 
-       center
-       showCloseIcon={false}
-       >
-       <ProfileUpdate setIndividual={setIndividual} />
-      </Modal>
-      <Modal
-       open={openMembership}
-        onClose={onCloseMembership}
-         center
-         showCloseIcon={false}
-          >
-          <Membership individual={individual}/>
-      </Modal>
+      </CenterModalContaier>
+      <CenterModalContaier openModalButtonId='updateProfileButton'>
+        <ProfileUpdate setIndividual={setIndividual} />
+      </CenterModalContaier>
+      <CenterModalContaier openModalButtonId='upgradeMembershipButton'>
+        <Membership individual={individual} />
+      </CenterModalContaier>
     </Fragment>
   );
 }

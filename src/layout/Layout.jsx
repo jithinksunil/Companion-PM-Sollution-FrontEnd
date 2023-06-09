@@ -37,6 +37,7 @@ function Layout({ individual, links, children }) {
         />
         <Body>{children}</Body>
       </div>
+      
     </div>
   );
 }

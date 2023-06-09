@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
 import CreateProject from './CreateProject'
 // import useSuperUserTokenCheck from '../../customHooks/useSuperUserTokenCheck';
-import Modal from 'react-responsive-modal';
 import DataTable from 'react-data-table-component';
 import useSearchHook from '../../customHooks/superUser/useSearchHook';
+import CenterModalContaier from '../common/CenterModalContaier';
 
 function SuperUserProjectsBody() {
   const [data,setData]=useState({})
-  const [openCreateProject, setOpenCreateProject] = useState(false)
-  const onOpenCreateProject=()=>{setOpenCreateProject(true)}
-  const onCloseCreateProject=()=>{setOpenCreateProject(false)}
   let projectManagersList=[]
   let projectsList=[]
   if(data.projectManagersList){
@@ -59,8 +56,7 @@ function SuperUserProjectsBody() {
   return (
     <div>
     <div className='pb-2'>
-    <button
-    onClick={onOpenCreateProject}
+    <button id='addProjectButton'
     className='bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-3xl'
     >Add Project</button>
     </div>
@@ -85,13 +81,9 @@ function SuperUserProjectsBody() {
         }
         subHeaderAlign="center"
       />
-      <Modal open={openCreateProject}
-       onClose={onCloseCreateProject} 
-       center
-       showCloseIcon={false}
-       >
-      <CreateProject setData={setData} projectManagersList={projectManagersList}/>
-      </Modal>
+      <CenterModalContaier openModalButtonId='addProjectButton'>
+        <CreateProject setData={setData} projectManagersList={projectManagersList}/>
+      </CenterModalContaier>
     </div>
   )
 }

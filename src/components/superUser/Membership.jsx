@@ -5,7 +5,7 @@ function Membership({superUser}) {
 
   return (
 
-    <div>
+    <div className='bg-white text-black shadow-2xl rounded-sm'>
         <div>
         <p>Name: {superUser?.name}</p>
         </div>

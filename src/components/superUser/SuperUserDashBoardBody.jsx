@@ -8,6 +8,7 @@ function SuperUserDashBoardBody() {
   return (
     <Fragment>
       <p className="text-white">Dashboard</p>
+      
     </Fragment>
   );
 }
