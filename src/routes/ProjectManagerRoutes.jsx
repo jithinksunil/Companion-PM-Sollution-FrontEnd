@@ -5,9 +5,8 @@ import ProjectManagerDashBoardBody from "../pages/projectManger/ProjectManagerDa
 import Layout from "../layout/Layout";
 import Messenger from "../pages/common/MessengerBody";
 import Notifications from "../pages/common/NotificationsBody";
-import { setProjectManager } from "../store/slices/ProjectManagerSlice";
-import ProfileBody from "../pages/common/ProfileBody";
 import ProjectManagerTaskBody from "../pages/projectManger/ProjectManagerTaskBody";
+import ProjectManagerProfileBody from "../pages/projectManger/ProjectManagerProfileBody";
 function ProjectManagerRoutes() {
   const projectManager = useSelector((state) => state.projectManager.value);
   return (
@@ -31,7 +30,7 @@ function ProjectManagerRoutes() {
         <Route path="/dashboard" element={<ProjectManagerDashBoardBody />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/chat" element={<Messenger individual={projectManager} />} />
-        <Route path="/profile" element={<ProfileBody individual={projectManager} setIndividual={setProjectManager} />} />
+        <Route path="/profile" element={<ProjectManagerProfileBody />} />
         <Route path="/task" element={<ProjectManagerTaskBody />} />
       </Routes>
     </Layout>

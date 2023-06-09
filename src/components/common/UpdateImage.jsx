@@ -26,7 +26,7 @@ function UpdateImage({ individual, setIndividual }) {
       <p>Update Image</p>
       <form onSubmit={handleSubmit}>
         <input
-          className="block my-2 rounded-xl h-9 border-gray-500"
+          className="block my-2 rounded-xl h-9 border-gray-900 border"
           required
           type="file"
           onChange={(e) => {

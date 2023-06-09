@@ -8,10 +8,8 @@ import MembershipCheckout from "../components/superUser/MembershipCheckout";
 import SuperUserProjectsBody from "../pages/superUser/SuperUserProjectsBody";
 import Messenger from "../pages/common/MessengerBody";
 import Notifications from "../pages/common/NotificationsBody";
-import ProfileBody from "../pages/common/ProfileBody";
-import { setSuperUser } from "../store/slices/SuperUserSice";
 import SuperUserSiteEngineersAssignmentBody from "../pages/superUser/SuperUserSiteEngineersAssignmentBody";
-
+import SuperUserProfileBody from "../pages/superUser/SuperUserProfileBody";
 
 function SuperUserRoutes() {
   const superUser = useSelector((state) => state.superUser.value);
@@ -35,7 +33,7 @@ function SuperUserRoutes() {
         <Route path="/dashboard" element={<SuperUserDashBoardBody />} />
         <Route path="/projects" element={<SuperUserProjectsBody />} />
         <Route path="/reports" element={<SuperUserProjectsBody />} />
-        <Route path="/profile" element={<ProfileBody individual={superUser} setIndividual={setSuperUser} />} />
+        <Route path="/profile" element={<SuperUserProfileBody/>} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/connections" element={<SuperUserConnectionsBody />} />
         <Route path="/siteengineers" element={<SuperUserSiteEngineersAssignmentBody />} />

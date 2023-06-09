@@ -1,5 +1,4 @@
 import React, { Suspense } from "react";
-import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import SiteEngineerDashBoardBody from "../pages/siteEngineer/SiteEngineerDashBoardBody";
 const Layout = React.lazy(() => import("../layout/Layout"));
@@ -11,12 +10,11 @@ import SiteEngineerProjectBody from "../pages/siteEngineer/SiteEngineerProjectBo
 import SiteEngineerTasksBody from "../pages/siteEngineer/SiteEngineerTasksBody";
 import SiteEngineerMaterialRequestBody from "../pages/siteEngineer/SiteEngineerMaterialRequestBody";
 import SiteEngineerReportsBody from "../pages/siteEngineer/SiteEngineerReportsBody";
-import ProfileBody from "../pages/common/ProfileBody";
-import { setSiteEngineer } from "../store/slices/SiteEngineerSlice";
+import SiteEngineerProfileBody from "../pages/siteEngineer/SiteEngineerProfileBody";
+import { useSelector } from "react-redux";
 
 function SiteEngineerRoutes() {
   const siteEngineer = useSelector((state) => state.siteEngineer.value);
-  console.log(siteEngineer);
   return (
     <ErrorBoundary FallbackComponent={Fallback} onReset={() => { }}>
       <Suspense fallback={<div>Loading...</div>} >
@@ -43,7 +41,7 @@ function SiteEngineerRoutes() {
             <Route path="/material/request" element={<SiteEngineerMaterialRequestBody />} />
             <Route path="/reports" element={<SiteEngineerReportsBody />} />
             <Route path="/notifications" element={<Notifications />} />
-            <Route path="/profile" element={<ProfileBody individual={siteEngineer} setIndividual={setSiteEngineer} />} />
+            <Route path="/profile" element={<SiteEngineerProfileBody />} />
             <Route path="/chat" element={<Messenger individual={siteEngineer} />} />
           </Routes>
         </Layout>

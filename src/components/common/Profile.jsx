@@ -1,25 +1,8 @@
 import { Fragment } from "react";
-import UpdateImage from "../../components/common/UpdateImage";
-import SuperUserProfileUpdate from "../../components/superUser/SuperUserProfileUpdate";
-import ProjectManagerProfileUpdate from "../../components/projectManager/ProjectManagerProfileUpdate";
-import SiteEngineerProfileUpdate from "../../components/siteEngineer/SiteEngineerProfileUpdate";
-import Membership from "../../components/superUser/Membership";
-import CenterModalContaier from "../../components/common/CenterModalContaier";
+import UpdateImage from "./UpdateImage";
+import CenterModalContaier from "./CenterModalContaier";
 
-function ProfileBody({ individual, setIndividual }) {
-  let ProfileUpdate;
-  console.log(individual);
-  if (individual.position == "superUser") {
-    ProfileUpdate = SuperUserProfileUpdate
-  }
-  else if (individual.position == "projectManager") {
-    ProfileUpdate = ProjectManagerProfileUpdate
-  }
-  else if (individual.position == "siteEngineer") {
-    ProfileUpdate = SiteEngineerProfileUpdate
-  }
-
-
+function Profile({ individual, setIndividual, UpdateProfileElement, children }) {
   return (
     <Fragment>
       <link
@@ -31,7 +14,7 @@ function ProfileBody({ individual, setIndividual }) {
         href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
       />
 
-      <main className="profile-page">
+      <main className="profile-page text-slate-700">
         <section className="relative block h-64 "></section>
         <section className="relative pt-16 pb-6 rounded-xl bg-blueGray-200">
           <div className="container mx-auto px-4">
@@ -89,20 +72,7 @@ function ProfileBody({ individual, setIndividual }) {
                   <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 ">
                     {individual?.name}
                   </h3>
-                  {
-                    (individual.position == "superUser") && (
-                      <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                        <button
-                          id='upgradeMembershipButton'
-                          className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-                          type="button"
-                        >
-                          Membership-{individual?.membership}
-                        </button>
-                        {individual?.place}
-                      </div>
-                    )
-                  }
+                  {children}
                   <div className="mb-2 text-blueGray-600 mt-10">
                     <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
                     {individual?.email}
@@ -133,13 +103,10 @@ function ProfileBody({ individual, setIndividual }) {
         <UpdateImage individual={individual} setIndividual={setIndividual} />
       </CenterModalContaier>
       <CenterModalContaier openModalButtonId='updateProfileButton'>
-        <ProfileUpdate setIndividual={setIndividual} />
-      </CenterModalContaier>
-      <CenterModalContaier openModalButtonId='upgradeMembershipButton'>
-        <Membership individual={individual} />
+        <UpdateProfileElement/>
       </CenterModalContaier>
     </Fragment>
   );
 }
 
-export default ProfileBody;
+export default Profile;
