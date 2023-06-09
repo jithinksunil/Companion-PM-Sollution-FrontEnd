@@ -1,19 +1,19 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import SuperUserDashBoardBody from "../../components/superUser/SuperUserDashBoardBody";
-const Layout=React.lazy(()=>  import ("../../layout/Layout"));
-import SuperUserConnectionsBody from "../../components/superUser/SuperUserConnectionsBody";
-import MembershipCheckout from "../../components/superUser/MembershipCheckout";
-import SuperUserProjectsBody from "../../components/superUser/SuperUserProjectsBody";
-import Messenger from "../../components/common/Messenger";
-import Notifications from "../../components/common/Notifications";
-import ProfileBody from "../../components/common/Profile";
-import { setSuperUser } from "../../store/slices/SuperUserSice";
-import SuperUserSiteEngineersAssignmentBody from "../../components/superUser/SuperUserSiteEngineersAssignmentBody";
+import SuperUserDashBoardBody from "../pages/superUser/SuperUserDashBoardBody";
+const Layout=React.lazy(()=>  import ("../layout/Layout"));
+import SuperUserConnectionsBody from "../pages/superUser/SuperUserConnectionsBody";
+import MembershipCheckout from "../components/superUser/MembershipCheckout";
+import SuperUserProjectsBody from "../pages/superUser/SuperUserProjectsBody";
+import Messenger from "../pages/common/MessengerBody";
+import Notifications from "../pages/common/NotificationsBody";
+import ProfileBody from "../pages/common/ProfileBody";
+import { setSuperUser } from "../store/slices/SuperUserSice";
+import SuperUserSiteEngineersAssignmentBody from "../pages/superUser/SuperUserSiteEngineersAssignmentBody";
 
 
-function SuperUserUI() {
+function SuperUserRoutes() {
   const superUser = useSelector((state) => state.superUser.value);
   return (
     
@@ -48,4 +48,4 @@ function SuperUserUI() {
   );
 }
 
-export default SuperUserUI;
+export default SuperUserRoutes;

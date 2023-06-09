@@ -1,14 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import ProjectManagerDashBoardBody from "../../components/projectManager/ProjectManagerDashBoardBody";
-import Layout from "../../layout/Layout";
-import Messenger from "../../components/common/Messenger";
-import Notifications from "../../components/common/Notifications";
-import { setProjectManager } from "../../store/slices/ProjectManagerSlice";
-import ProfileBody from "../../components/common/Profile";
-import ProjectManagerTaskBody from "../../components/projectManager/ProjectManagerTaskBody";
-function ProjectManagerUI() {
+import ProjectManagerDashBoardBody from "../pages/projectManger/ProjectManagerDashBoardBody";
+import Layout from "../layout/Layout";
+import Messenger from "../pages/common/MessengerBody";
+import Notifications from "../pages/common/NotificationsBody";
+import { setProjectManager } from "../store/slices/ProjectManagerSlice";
+import ProfileBody from "../pages/common/ProfileBody";
+import ProjectManagerTaskBody from "../pages/projectManger/ProjectManagerTaskBody";
+function ProjectManagerRoutes() {
   const projectManager = useSelector((state) => state.projectManager.value);
   return (
     <Layout
@@ -38,4 +38,4 @@ function ProjectManagerUI() {
   );
 }
 
-export default ProjectManagerUI;
+export default ProjectManagerRoutes;

@@ -1,6 +1,6 @@
 import { Fragment,  useState } from "react";
 import SuperUserSignUp from "../superUser/SuperUserSignUp";
-import SuperUserLoginPage from "../superUser/SuperUserLoginPage";
+import SuperUserLogin from "../superUser/SuperUserLogin";
 import useCreateModal from "../../customHooks/common/useCreateModal"
 
 function Navbar() {
@@ -81,7 +81,7 @@ function Navbar() {
       </nav>
       {showLoginModal&&(
         <div id="login-modal" className=" absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 md:right-10 md:top-20 md:-translate-x-0 md:-translate-y-0">
-            <SuperUserLoginPage />
+            <SuperUserLogin />
         </div>
       )}
       {showSignUpModal&&(

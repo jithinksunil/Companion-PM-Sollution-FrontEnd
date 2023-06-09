@@ -2,7 +2,7 @@ import React from 'react'
 import useSuperUserTokenCheck from '../../customHooks/useSuperUserTokenCheck'
 import CommonForm from '../common/CommonForm'
 import { handleLogin } from '../../api/superUser/handleLogin'
-function SuperUserLoginPage() {
+function SuperUserLogin() {
     useSuperUserTokenCheck('/verifyToken')
   return (
     <div>
@@ -19,4 +19,4 @@ function SuperUserLoginPage() {
   )
 }
 
-export default SuperUserLoginPage
+export default SuperUserLogin

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { postApi } from '../../api/axiosCalls'
 
-function Notifications() {
+function NotificationsBody() {
     const [notifications, setNotifications] = useState([])
     const navigate=useNavigate()
     let individual=window.location.pathname.split('/')
@@ -43,4 +43,4 @@ function Notifications() {
   )
 }
 
-export default Notifications
+export default NotificationsBody

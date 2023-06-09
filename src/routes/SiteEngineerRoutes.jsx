@@ -1,20 +1,20 @@
 import React, { Suspense } from "react";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import SiteEngineerDashBoardBody from "../../components/siteEngineer/SiteEngineerDashBoardBody";
-const Layout=React.lazy(()=>  import ("../../layout/Layout"));
+import SiteEngineerDashBoardBody from "../pages/siteEngineer/SiteEngineerDashBoardBody";
+const Layout=React.lazy(()=>  import ("../layout/Layout"));
 import { ErrorBoundary } from "react-error-boundary";
-import Fallback from "../../errorBoundaries/ErrorBoundary";
-import Messenger from "../../components/common/Messenger";
-import Notifications from "../../components/common/Notifications";
-import SiteEngineerProjectBody from "../../components/siteEngineer/SiteEngineerProjectBody";
-import SiteEngineerTasksBody from "../../components/siteEngineer/SiteEngineerTasksBody";
-import SiteEngineerMaterialRequestBody from "../../components/siteEngineer/SiteEngineerMaterialRequestBody";
-import SiteEngineerReportsBody from "../../components/siteEngineer/SiteEngineerReportsBody";
-import ProfileBody from "../../components/common/Profile";
-import { setSiteEngineer } from "../../store/slices/SiteEngineerSlice";
+import Fallback from "../errorBoundaries/ErrorBoundary";
+import Messenger from "../pages/common/MessengerBody";
+import Notifications from "../pages/common/NotificationsBody";
+import SiteEngineerProjectBody from "../pages/siteEngineer/SiteEngineerProjectBody";
+import SiteEngineerTasksBody from "../pages/siteEngineer/SiteEngineerTasksBody";
+import SiteEngineerMaterialRequestBody from "../pages/siteEngineer/SiteEngineerMaterialRequestBody";
+import SiteEngineerReportsBody from "../pages/siteEngineer/SiteEngineerReportsBody";
+import ProfileBody from "../pages/common/ProfileBody";
+import { setSiteEngineer } from "../store/slices/SiteEngineerSlice";
 
-function SiteEngineerUI() {
+function SiteEngineerRoutes() {
   const siteEngineer = useSelector((state) => state.siteEngineer.value);
   console.log(siteEngineer);
   return (
@@ -52,4 +52,4 @@ function SiteEngineerUI() {
   );
 }
 
-export default SiteEngineerUI;
+export default SiteEngineerRoutes;

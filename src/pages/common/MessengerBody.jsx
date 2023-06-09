@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from 'react'
 import { postApi } from '../../api/axiosCalls'
 import { toast } from 'react-toastify'
 import {io} from 'socket.io-client'
-import "./body.css";
+import "../../components/common/body.css";
 import { useNavigate } from 'react-router-dom';
 
-function Messenger({individual}) {
+function MessengerBody({individual}) {
     const [msg, setMsg] = useState('')
     const [messages, setMessages] = useState([])
     const [connections, setConnections] = useState([])
@@ -153,7 +153,7 @@ function Messenger({individual}) {
   )
 }
 
-export default Messenger
+export default MessengerBody
 
 
 

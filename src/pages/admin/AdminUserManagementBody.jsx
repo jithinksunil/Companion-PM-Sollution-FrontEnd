@@ -2,9 +2,9 @@ import React, { Fragment, useState } from "react";
 import DataTable from "react-data-table-component";
 import "react-toastify/dist/ReactToastify.css";
 import useSearchHook from "../../customHooks/admin/useSearchHook";
-import UserBlockUnBlockButton from "./UserBlockUnBlockButton";
+import UserBlockUnBlockButton from "../../components/admin/UserBlockUnBlockButton";
 
-function AdminUserManagement() {
+function AdminUserManagementBody() {
   const [data, setData] = useState([]);
 
   const columns = [
@@ -54,5 +54,5 @@ function AdminUserManagement() {
   );
 }
 
-export default AdminUserManagement;
+export default AdminUserManagementBody;
 

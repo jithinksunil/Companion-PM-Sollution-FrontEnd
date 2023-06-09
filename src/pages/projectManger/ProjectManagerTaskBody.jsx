@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import useProjectManagerTokenCheck from "../../customHooks/useProjectManagerTokenCheck";
-import Kankan from "../common/Kankan";
-import AddTask from "./AddTask";
+import Kankan from "../../components/common/Kankan";
+import AddTask from "../../components/projectManager/AddTask";
 import { taskAssignment } from "../../api/projectManager/taskBodyApiCalls";
-import TaskAssignmentTile from "./TaskAssignmentTile";
+import TaskAssignmentTile from "../../components/projectManager/TaskAssignmentTile";
 import { useFirstProjectHighlighter } from "../../customHooks/projectManager/TaskBodyHooks";
 
 function ProjectManagerTaskBody() {

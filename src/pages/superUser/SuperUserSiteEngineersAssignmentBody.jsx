@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import useSuperUserTokenCheck from '../../customHooks/useSuperUserTokenCheck'
-import Kankan from '../common/Kankan'
+import Kankan from '../../components/common/Kankan'
 function SuperUserSiteEngineersAssignmentBody() {
     const [data, setData] = useState({})
     useSuperUserTokenCheck('/siteengineerlist',setData)
@@ -15,7 +15,7 @@ function SuperUserSiteEngineersAssignmentBody() {
     </div>
   )
 }
-import ProjectDragAndDropTile from './ProjectDragAndDropTile'
+import ProjectDragAndDropTile from '../../components/superUser/ProjectDragAndDropTile'
 import { siteEngineerAssignment } from '../../api/superUser/siteEngineerAssignmentBody'
 
 export default SuperUserSiteEngineersAssignmentBody

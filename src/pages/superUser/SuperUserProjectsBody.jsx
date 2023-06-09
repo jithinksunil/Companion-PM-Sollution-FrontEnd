@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import CreateProject from './CreateProject'
+import CreateProject from '../../components/superUser/CreateProject'
 // import useSuperUserTokenCheck from '../../customHooks/useSuperUserTokenCheck';
 import DataTable from 'react-data-table-component';
 import useSearchHook from '../../customHooks/superUser/useSearchHook';
-import CenterModalContaier from '../common/CenterModalContaier';
+import CenterModalContaier from '../../components/common/CenterModalContaier';
 
 function SuperUserProjectsBody() {
   const [data,setData]=useState({})

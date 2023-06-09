@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import useSuperUserTokenCheck from "../../customHooks/useSuperUserTokenCheck";
-import Kankan from "../common/Kankan";
-import CommonForm from "../common/CommonForm";
+import Kankan from "../../components/common/Kankan";
+import CommonForm from "../../components/common/CommonForm";
 import { addConnection, projectDragAndDrop } from "../../api/superUser/connectionBodyApiCalls";
-import ProjectDragAndDropTile from "./ProjectDragAndDropTile";
-import CenterModalContaier from "../common/CenterModalContaier";
+import ProjectDragAndDropTile from "../../components/superUser/ProjectDragAndDropTile";
+import CenterModalContaier from "../../components/common/CenterModalContaier";
 function SuperUserConnectionsBody() {
     const [projects, setProjects] = useState({});
     useSuperUserTokenCheck("/connections", setProjects)
@@ -23,7 +23,7 @@ function SuperUserConnectionsBody() {
                 setData={setProjects}
             />
             <CenterModalContaier openModalButtonId='addConnectionButton'>
-            <CommonForm formName="Add Connection"
+                <CommonForm formName="Add Connection"
                     fieldArray={
                         [
                             {

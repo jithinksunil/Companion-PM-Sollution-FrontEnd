@@ -1,10 +1,10 @@
 import { Fragment } from "react";
 import UpdateImage from "../../components/common/UpdateImage";
-import SuperUserProfileUpdate from "../superUser/SuperUserProfileUpdate";
-import ProjectManagerProfileUpdate from "../projectManager/ProjectManagerProfileUpdate";
-import SiteEngineerProfileUpdate from "../siteEngineer/SiteEngineerProfileUpdate";
-import Membership from "../superUser/Membership";
-import CenterModalContaier from "./CenterModalContaier";
+import SuperUserProfileUpdate from "../../components/superUser/SuperUserProfileUpdate";
+import ProjectManagerProfileUpdate from "../../components/projectManager/ProjectManagerProfileUpdate";
+import SiteEngineerProfileUpdate from "../../components/siteEngineer/SiteEngineerProfileUpdate";
+import Membership from "../../components/superUser/Membership";
+import CenterModalContaier from "../../components/common/CenterModalContaier";
 
 function ProfileBody({ individual, setIndividual }) {
   let ProfileUpdate;
