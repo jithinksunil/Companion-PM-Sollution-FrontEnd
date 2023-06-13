@@ -8,7 +8,7 @@ export const handleLogin = ({ formData, dispatch, navigate }) => {
   postApi("/admin/login", formData, (response) => {
     const { data, verified, message } = response.data
     if (verified) {
-      Cookies.set('adminToken', response.data.token, { expires: 7000 });
+      Cookies.set('adminToken', response.data.token, {domain:`.${process.env.DOMAIN_NAME?.split('://')[1]?.split(':')[0]}`, expires: 7000,sameSite:'Lax'});
       dispatch(setAdmin(data))
       navigate("/admin/dashboard");
     }
