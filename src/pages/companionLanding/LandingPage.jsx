@@ -1,9 +1,11 @@
 import Banner from "../../components/companionLanding/Banner";
+import Separator from "../../components/companionLanding/Separator";
 import Writing from "../../components/companionLanding/Writing";
 import Navbar from "../../components/companionLanding/Navbar";
 import Services from "../../components/companionLanding/Services";
-import Pricing from "../../components/companionLanding/Pricing";
+import Pricing2 from "../../components/companionLanding/Pricing2";
 import Footer from "../../components/companionLanding/Footer";
+import Rail from "../../components/companionLanding/Rail";
 
 function LandingPage() {
   return (
@@ -11,8 +13,10 @@ function LandingPage() {
       <Navbar />
       <Banner />
       <Writing />
+      <Separator/>
       <Services />
-      <Pricing />
+      <Rail/>
+      <Pricing2 />
       <Footer />
     </div>
   );

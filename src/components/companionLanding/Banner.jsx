@@ -1,24 +1,34 @@
 import React, { Fragment } from "react";
+import useAnimate from "../../customHooks/common/useAnimate";
+import handleLogin from "../../api/guest/handleLogin";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 function Banner() {
+  const [showBannerImage,ref]=useAnimate(false)
+  const navigate=useNavigate()
+  const dispatch=useDispatch()
   return (
     <Fragment>
-      <div className="bg-gray-200 px-4 py-5 grid md:grid-cols-2 md:flex md:items-center md:py-10 md:px-10">
+      <div ref={ref} className="bg-gray-200 px-4 grid md:grid-cols-2 md:flex md:items-center pt-24 md:pt-36 md:px-10 font-sans overflow-hidden">
         <div>
-          <p className="text-center text-slate-800 pb-5 text-3xl font-bold">
+          <p className="text-center text-gray-600 pb-5 text-4xl md:text-5xl font-bold">
             Transform your PMO vision into reality
           </p>
-          <p className="text-center text-slate-800 pb-2">
-            Align your strategy with execution for end-to-end success. Wrike
+          <p className="text-center text-xl text-gray-500 pb-2">
+            Align your strategy with execution for end-to-end success. Companion
             connects every part of your PMO — all in one place.
           </p>
           <div className="flex justify-center pb-10">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-3xl">
-              Try Companion PMO
+            <button 
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-3xl shadow-blue-700 shadow-xl "
+            onClick={()=>{handleLogin({navigate,dispatch})}}
+            >
+              Try as Guest
             </button>
           </div>
         </div>
-        <div>
+        <div className={`${showBannerImage?"md:mr-0":"md:-mr-[600px]"} duration-1000`}>
           <img
             className=""
             src="./images/banner/hero-image-left-pmo-600x382.png"
@@ -26,6 +36,9 @@ function Banner() {
           />
         </div>
       </div>
+      <svg viewBox="0 0 500 75" preserveAspectRatio="xMinYMin meet">
+        <path d="M0,50 C150,100 350,0 500,50 L500,0 L0,0 Z" style={{ fill: 'rgb(229 231 235)' }}></path>
+    </svg>
     </Fragment>
   );
 }

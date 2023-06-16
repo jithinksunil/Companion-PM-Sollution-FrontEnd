@@ -10,6 +10,7 @@ import ProjectManagerRoutes from "./routes/ProjectManagerRoutes";
 import VideoCallBody from "./pages/common/VideoCallBody";
 import SiteEngineerRoutes from "./routes/SiteEngineerRoutes";
 import SiteEngineerLogginPage from "./pages/siteEngineer/SiteEngineerLogginPage";
+import GuestRoutes from "./routes/GuestRoutes";
 
 function App() {
 
@@ -20,6 +21,8 @@ function App() {
           <Route path="/*" element={<LandingPage />} />
           <Route path="/superuser/*" element={<SuperUserRoutes />} />
 
+          <Route path="/guest/*" element={<GuestRoutes />} />
+          
           <Route path="/projectmanager/login" element={<ProjectManagerLogginPage />} />
           <Route path="/projectmanager/*" element={<ProjectManagerRoutes />} />
 

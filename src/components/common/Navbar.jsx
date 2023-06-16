@@ -14,7 +14,6 @@ function Navbar({ individual, links, setShowSideBar, showSideBar }) {
     const navigate = useNavigate();
     const handleSubmit = () => {
         handleLogout(logout, navigate)
-
     };
 
     return (

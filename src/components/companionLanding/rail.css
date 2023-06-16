@@ -1,0 +1,38 @@
+.pivotLeftToRight {
+    top: 50%;
+    transform: translateY(-50%);
+    animation: pivotLeftToRight 60s linear infinite;
+}
+.pivotLeftToRightSlow {
+    top: 50%;
+    transform: translateY(-50%);
+    animation: pivotLeftToRight 30s linear infinite;
+}
+
+.pivotRightToLeft {
+    top: 50%;
+    transform: translateY(-50%);
+    animation: pivotRightToLeft 55s linear infinite;
+}
+
+.track{
+    width: 350vw;
+    margin-left: -100vw;
+}
+
+@keyframes pivotLeftToRight {
+    0% {
+        left: -50px;
+    }
+    100% {
+        left: 100%;
+    }
+}
+@keyframes pivotRightToLeft {
+    0% {
+        right: -50px;
+    }
+    100% {
+        right: 100%;
+    }
+}

@@ -3,7 +3,7 @@ import React from "react";
 function Pricing() {
   return (
     <div className="bg-gray-200 px-5 py-10 grid lg:grid-cols-3">
-      <div className="px-5 pt-10 my-5  bg-white rounded-3xl lg:px-10 md:mx-5  hover:bg-gray-700 hover:text-slate-300">
+      <div className="px-5 pt-10 my-5  bg-white rounded-3xl lg:px-10 md:mx-5  hover:bg-gray-700 hover:text-slate-300 ">
         <p className="text-center sm:text-start lg:text-center text-2xl font-semibold pb-3 px-5">
           Free
         </p>
