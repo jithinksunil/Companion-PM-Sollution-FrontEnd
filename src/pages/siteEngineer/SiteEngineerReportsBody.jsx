@@ -1,9 +1,8 @@
-
-import useSiteEngineerTokenCheck from "../../customHooks/useSiteEngineerTokenCheck"
+import useFetchData from "../../customHooks/common/useFetchData";
+import { fetchReports } from "../../api/siteEngineer/fetchSiteEngineerData";
 function SiteEngineerReportsBody() {
-
-  useSiteEngineerTokenCheck("/siteengineer/dashboard");
-
+const [reports,setReports]=useFetchData(fetchReports)
+console.log(reports,setReports);
   return (
     <div>
       <p>jskldjfksdjfkljsdkl</p>

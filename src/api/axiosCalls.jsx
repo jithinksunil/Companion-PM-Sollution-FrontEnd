@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import axios from "../instances/axiosBaseUrl";
+import axios from "../instances/axiosInstance";
 
 export const getApi = (
   endPoint,

@@ -1,8 +1,10 @@
 import React from 'react'
 import CommonForm from '../../components/common/CommonForm'
-import { addProject } from '../../api/superUser/projectBodyApiCalls'
+import useAddProject from '../../customHooks/superUser/useAddProject'
+import addProjectApi from '../../api/superUser/projectBodyApiCalls'
 
-function CreateProject({ setData, projectManagersList }) {
+function CreateProject({ setProjects, projectManagersList }) {
+    const handleAddProject=useAddProject(addProjectApi,setProjects)
 
     const projectManagers = []
     projectManagersList?.map((item) => {
@@ -49,11 +51,7 @@ function CreateProject({ setData, projectManagersList }) {
                 }
             ]
         }
-        submitFunction={
-            ({ formData }) => {
-                addProject({ formData, setData })
-            }
-        }
+        submitFunction={handleAddProject}
         submitButton="Add project" />)
 }
 

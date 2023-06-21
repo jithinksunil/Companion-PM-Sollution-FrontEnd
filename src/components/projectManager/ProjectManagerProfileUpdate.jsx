@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
 import CommonForm from "../common/CommonForm";
-import { updateProfile } from "../../api/projectManager/profileBodyApiCalls";
-
-
+import { setProjectManager } from "../../store/slices/ProjectManagerSlice";
+import useUpdateProfile from "../../customHooks/common/useUpdateProfile";
+import { projectManagerUpdateProfileApi } from "../../api/projectManager/profileBodyApiCalls";
 function ProjectManagerProfileUpdate() {
+  const handleUpdateProfileFunction=useUpdateProfile(projectManagerUpdateProfileApi,setProjectManager)
   const projectManager = useSelector((state) => state.projectManager.value);
   const { name, email, companyName } = projectManager
   return (
@@ -17,7 +18,7 @@ function ProjectManagerProfileUpdate() {
         { field: "email", required: true, type: "email", validation: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, placeHolder: 'Email', value: email },
         { field: "password", required: true, type: "password", validation: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/, placeHolder: 'Current password' },
       ]}
-      submitFunction={updateProfile}
+      submitFunction={handleUpdateProfileFunction}
     />
   )
 }

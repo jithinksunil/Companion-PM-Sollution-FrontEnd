@@ -14,7 +14,7 @@ function MembershipCheckout() {
             const { superUserToken, status, message } = response.data
             if (superUserToken) {
                 if (status) {
-                    navigate('/superuser/profile')
+                    navigate('/superUser/profile')
                     toast.success(message)
                 }
                 else {

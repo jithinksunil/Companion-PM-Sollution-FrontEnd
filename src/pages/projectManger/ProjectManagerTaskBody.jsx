@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import useProjectManagerTokenCheck from "../../customHooks/useProjectManagerTokenCheck";
 import Kankan from "../../components/common/Kankan";
 import AddTask from "../../components/projectManager/AddTask";
 import { taskAssignment } from "../../api/projectManager/taskBodyApiCalls";
 import TaskAssignmentTile from "../../components/projectManager/TaskAssignmentTile";
 import { useFirstProjectHighlighter } from "../../customHooks/projectManager/TaskBodyHooks";
+import useFetchData from '../../customHooks/common/useFetchData'
+import { fetchTasks } from "../../api/projectManager/fetchProjectManagerData";
 
 function ProjectManagerTaskBody() {
-  const [data, setData] = useState([])
+  const [data, setData] = useFetchData(fetchTasks,'/projectManager/login', [])
   const [showSideBar, setShowSideBar] = useState(true)
   const [kankanData, setKankanData] = useState({})
   const [addButtonColumn, setAddButtonColumn] = useState('')
-  useProjectManagerTokenCheck("/task", setData);
   const { projectId, setProjectId } = useFirstProjectHighlighter(data)
 
   useEffect(() => {
@@ -59,7 +59,7 @@ function ProjectManagerTaskBody() {
         }
 
       </div>
-      <Kankan objectOfArrays={kankanData} setData={setData} Div={TaskAssignmentTile} dataBaseFunction={taskAssignment} addButton addButtonModalComponent={<AddTask setData={setData} addButtonColumn={addButtonColumn} projectId={projectId} />} setAddButtonColumn={setAddButtonColumn} />
+      <Kankan objectOfArrays={kankanData} Div={TaskAssignmentTile} dataBaseFunction={taskAssignment} addButton addButtonModalComponent={<AddTask setData={setData} addButtonColumn={addButtonColumn} projectId={projectId} />} setAddButtonColumn={setAddButtonColumn} />
     </div>
   )
 }

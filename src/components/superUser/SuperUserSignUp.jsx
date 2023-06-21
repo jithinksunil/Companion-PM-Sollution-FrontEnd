@@ -2,7 +2,7 @@ import CommonForm from "../common/CommonForm";
 import handleSignUp from "../../api/superUser/handleSignUp";
 
 function SuperUserSignUp({ openLoginModalFunction, closeSignUpModalFunction }) {
-  const involkeHandleSignUp = ({ formData }) => {
+  const involkeHandleSignUp = (formData) => {
     handleSignUp({ formData, openLoginModalFunction, closeSignUpModalFunction })
   }
   return (

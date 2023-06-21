@@ -1,11 +1,17 @@
 import React from "react";
 import './admin.css'
 import CommonForm from "../../components/common/CommonForm";
-import { handleLogin } from "../../api/admin/handleLogin";
-import useAdminTokenCheck from '../../customHooks/useAdminTokenCheck'
+import handleLogin from "../../api/admin/handleLogin";
+import { setAdmin } from "../../store/slices/AdminSlice";
+import adminTokenCheck from "../../api/admin/adminTokenCheck";
+import useTokenCheck from "../../customHooks/common/useTokenCheck";
+import useLogin from "../../customHooks/common/useLogin";
 
 function AdminLoginPage() {
-  useAdminTokenCheck("/admin/verifyToken")
+
+  useTokenCheck(adminTokenCheck, '/admin/dashboard')
+  const handleLoginFunction = useLogin(handleLogin, setAdmin, 'adminToken', "/admin/dashboard")
+
   return (
     <div className="background h-screen">
       <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2">
@@ -16,7 +22,7 @@ function AdminLoginPage() {
             { field: "email", required: true, type: "email", validation: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, placeHolder: 'Enter an email' },
             { field: "password", required: true, type: "password", validation: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/, placeHolder: 'Enter password' },
           ]}
-          submitFunction={handleLogin}
+          submitFunction={handleLoginFunction}
         />
       </div>
     </div>

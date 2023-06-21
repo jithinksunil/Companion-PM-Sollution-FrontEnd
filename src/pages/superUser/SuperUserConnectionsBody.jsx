@@ -1,13 +1,19 @@
-import React, { useState } from "react";
-import useSuperUserTokenCheck from "../../customHooks/useSuperUserTokenCheck";
+import React from "react";
 import Kankan from "../../components/common/Kankan";
 import CommonForm from "../../components/common/CommonForm";
-import { addConnection, projectDragAndDrop } from "../../api/superUser/connectionBodyApiCalls";
+import { addConnectionApi, projectDragAndDropApi } from "../../api/superUser/connectionBodyApiCalls";
 import ProjectDragAndDropTile from "../../components/superUser/ProjectDragAndDropTile";
 import CenterModalContaier from "../../components/common/CenterModalContaier";
+import useFetchData from '../../customHooks/common/useFetchData'
+import { fetchConnections } from "../../api/superUser/fetchSuperUserData";
+import useAddConnection from "../../customHooks/superUser/useAddConnection";
+import useDragAndDrop from "../../customHooks/common/useDragAndDrop";
+
 function SuperUserConnectionsBody() {
-    const [projects, setProjects] = useState({});
-    useSuperUserTokenCheck("/connections", setProjects)
+
+    const [projects, setProjects] = useFetchData(fetchConnections,'/superUser/connections','/', {})
+    const handleAddConnection = useAddConnection(addConnectionApi, setProjects)
+    const handleDragAndDrop=useDragAndDrop(projectDragAndDropApi,setProjects)
 
     return (
         <div className='h-full flex flex-col'>
@@ -19,8 +25,7 @@ function SuperUserConnectionsBody() {
             </div>
             <Kankan objectOfArrays={projects}
                 Div={ProjectDragAndDropTile}
-                dataBaseFunction={projectDragAndDrop}
-                setData={setProjects}
+                dataBaseFunction={handleDragAndDrop}
             />
             <CenterModalContaier openModalButtonId='addConnectionButton'>
                 <CommonForm formName="Add Connection"
@@ -47,11 +52,7 @@ function SuperUserConnectionsBody() {
                             }
                         ]
                     }
-                    submitFunction={
-                        ({ formData }) => {
-                            addConnection(formData, setProjects)
-                        }
-                    }
+                    submitFunction={handleAddConnection}
                     submitButton="Submit" />
             </CenterModalContaier>
         </div>

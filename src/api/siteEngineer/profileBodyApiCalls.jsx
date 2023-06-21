@@ -1,16 +1,5 @@
-import { toast } from "react-toastify"
-import { postApi } from "../axiosCalls"
-import { setSiteEngineer } from "../../store/slices/SiteEngineerSlice";
+import axiosInstance from "../../instances/axiosInstance"
 
-export const updateProfile = ({ formData, dispatch }) => {
-  postApi('/siteengineer/updateprofile', formData, (response) => {
-    const { status, message, data } = response.data
-    if (status) {
-      dispatch(setSiteEngineer(data))
-      toast.success(message)
-    }
-    else {
-      toast.error(message)
-    }
-  })
-}
+export const siteEngineerUpdateProfileApi = (formData) =>
+  axiosInstance.post('/siteEngineer/updateprofile', formData)
+  

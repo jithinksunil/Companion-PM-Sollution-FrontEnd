@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 import useAnimate from "../../customHooks/common/useAnimate";
-import handleLogin from "../../api/guest/handleLogin";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import guestLoginApi from "../../api/guest/guestLoginApi";
+import useLogin from "../../customHooks/common/useLogin";
+import { setGuest } from '../../store/slices/GuestSlice'
+
 
 function Banner() {
   const [showBannerImage,ref]=useAnimate(false)
-  const navigate=useNavigate()
-  const dispatch=useDispatch()
+  const handleLoginFunction=useLogin(guestLoginApi,setGuest,'guestToken','/guest/dashboard')
   return (
     <Fragment>
       <div ref={ref} className="bg-gray-200 px-4 grid md:grid-cols-2 md:flex md:items-center pt-24 md:pt-36 md:px-10 font-sans overflow-hidden">
@@ -22,7 +22,7 @@ function Banner() {
           <div className="flex justify-center pb-10">
             <button 
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-3xl shadow-blue-700 shadow-xl "
-            onClick={()=>{handleLogin({navigate,dispatch})}}
+            onClick={()=>{handleLoginFunction()}}
             >
               Try as Guest
             </button>

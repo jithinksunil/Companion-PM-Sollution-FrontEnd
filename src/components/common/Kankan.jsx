@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './body.css'
 import CenterModalContaier from './CenterModalContaier';
 
-function Kankan({ objectOfArrays, Div, dataBaseFunction, setData, addButton, addButtonModalComponent, setAddButtonColumn }) {
+function Kankan({ objectOfArrays, Div, dataBaseFunction, addButton, addButtonModalComponent, setAddButtonColumn }) {
     const [movingItem, setMovingItem] = useState({})
 
     let dragStartIndex = undefined
@@ -54,7 +54,7 @@ function Kankan({ objectOfArrays, Div, dataBaseFunction, setData, addButton, add
 
             objectOfArrays[endColumn].splice(dragEnterIndex, 0, movingItem)
             objectOfArrays[startColumn].splice(dragStartIndex, 1)
-            dataBaseFunction(startColumn, dragStartIndex, movingItem, endColumn, dragEnterIndex, setData)
+            dataBaseFunction(startColumn, dragStartIndex, movingItem, endColumn, dragEnterIndex)
         }
 
     }

@@ -1,10 +1,9 @@
-import { useState } from "react";
-import useSiteEngineerTokenCheck from "../../customHooks/useSiteEngineerTokenCheck"
+import useFetchData from "../../customHooks/common/useFetchData";
+import { fetchMaterialRequest } from "../../api/siteEngineer/fetchSiteEngineerData";
 function SiteEngineerMaterialRequestBody() {
-  const [materialRequests, setMaterialRequests] = useState([])
 
-  useSiteEngineerTokenCheck("/siteengineer/dashboard", setMaterialRequests);
-  console.log(materialRequests)
+  const [data,setData]=useFetchData(fetchMaterialRequest,[]);
+  console.log(data,setData)
 
   return (
     <div>

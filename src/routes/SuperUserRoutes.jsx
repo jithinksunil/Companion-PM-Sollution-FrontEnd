@@ -18,18 +18,19 @@ function SuperUserRoutes() {
     <Layout
       individual={superUser}
       links={{
-        profile: "/superuser/profile",
+        profile: "/superUser/profile",
         logout: { link: "/login", token: 'superUserToken' },
-        notifications: "/superuser/notifications",
-        connections: "/superuser/connections",
-        siteEngineers: "/superuser/siteengineers",
-        chat: '/superuser/chat',
-        projects: "/superuser/projects",
-        reports: "/superuser/reports",
-        dashBoard: "/superuser/dashboard",
+        notifications: "/superUser/notifications",
+        connections: "/superUser/connections",
+        siteEngineers: "/superUser/siteengineers",
+        chat: '/superUser/chat',
+        projects: "/superUser/projects",
+        reports: "/superUser/reports",
+        dashBoard: "/superUser/dashboard",
       }}
     >
       <Routes>
+        
         <Route path="/dashboard" element={<SuperUserDashBoardBody />} />
         <Route path="/projects" element={<SuperUserProjectsBody />} />
         <Route path="/reports" element={<SuperUserProjectsBody />} />

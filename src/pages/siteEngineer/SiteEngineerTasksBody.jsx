@@ -1,11 +1,8 @@
-import { useState } from "react";
-import useSiteEngineerTokenCheck from "../../customHooks/useSiteEngineerTokenCheck"
+import useFetchData from "../../customHooks/common/useFetchData";
+import { fetchTasks } from "../../api/siteEngineer/fetchSiteEngineerData";
 function SiteEngineerTasksBody() {
-  const [tasks, setTasks] = useState([])
-
-  useSiteEngineerTokenCheck("/siteengineer/dashboard", setTasks);
-  console.log(tasks)
-
+  const [tasks, setTasks] = useFetchData(fetchTasks,'/siteEngineer/login')
+  console.log(tasks,setTasks);
   return (
     <div>
       <p>jskldjfksdjfkljsdkl</p>

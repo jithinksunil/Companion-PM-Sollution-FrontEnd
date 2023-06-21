@@ -1,9 +1,14 @@
 import React from 'react'
-import useSuperUserTokenCheck from '../../customHooks/useSuperUserTokenCheck'
 import CommonForm from '../common/CommonForm'
-import { handleLogin } from '../../api/superUser/handleLogin'
+import useTokenCheck from '../../customHooks/common/useTokenCheck'
+import adminTokenCheck from '../../api/superUser/superUserTokenCheck'
+import handleLoginApi from '../../api/superUser/handleLoginApi'
+import useLogin from '../../customHooks/common/useLogin'
+import { setSuperUser } from "../../store/slices/SuperUserSice";
+
 function SuperUserLogin() {
-  useSuperUserTokenCheck('/verifyToken')
+  useTokenCheck(adminTokenCheck,"/superUser/dashboard")
+  const handleLogin=useLogin(handleLoginApi,setSuperUser,'superUserToken',"/superUser/dashboard")
   return (
     <div>
       <CommonForm

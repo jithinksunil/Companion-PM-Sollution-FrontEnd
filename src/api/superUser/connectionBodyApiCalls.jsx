@@ -1,19 +1,9 @@
-import { toast } from "react-toastify"
-import { getApi, postApi } from "../axiosCalls"
+import axiosInstance from "../../instances/axiosInstance"
 
-export const addConnection = (formData, setProjects) => {
+export const addConnectionApi = (formData) =>
+  axiosInstance.post("/addConnection", formData)
 
-  postApi("/addConnection", formData, (respose) => {
-    toast.success(respose.data.message)
-    getApi('/connections', (resolve) => {
-      setProjects(resolve.data.data)
-    })
-
-  })
-
-}
-
-export function projectDragAndDrop(startColumn, dragStartIndex, movingItem, endColumn, dragEnterIndex, setProjects) {
+export const projectDragAndDropApi=(startColumn, dragStartIndex, movingItem, endColumn, dragEnterIndex)=>{
   const data = {
     startColumn,
     dragStartIndex,
@@ -21,9 +11,5 @@ export function projectDragAndDrop(startColumn, dragStartIndex, movingItem, endC
     endColumn,
     dragEnterIndex
   }
-  postApi('/updateprojectassignment', data, (res) => {
-    setProjects(res.data.data)
-    toast.success(res.data.message)
-  })
-
+  return axiosInstance.post('/updateprojectassignment', data)
 }

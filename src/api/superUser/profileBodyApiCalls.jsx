@@ -1,16 +1,5 @@
-import { toast } from "react-toastify"
-import { postApi } from "../axiosCalls"
-import { setSuperUser } from "../../store/slices/SuperUserSice";
+import axiosInstance from "../../instances/axiosInstance"
 
-export const handleSubmit = ({ formData, dispatch }) => {
-  postApi('/updateprofile', formData, (response) => {
-    const { status, message, data } = response.data
-    if (status) {
-      dispatch(setSuperUser(data))
-      toast.success(message)
-    }
-    else {
-      toast.error(message)
-    }
-  })
-}
+export const superUserUpdateProfileApi = (formData) =>
+  axiosInstance.post('/updateprofile', formData,{ withCredentials: true })
+  

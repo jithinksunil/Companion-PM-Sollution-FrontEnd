@@ -13,17 +13,17 @@ function ProjectManagerRoutes() {
     <Layout
       individual={projectManager}
       links={{
-        profile: "/projectmanager/profile",
-        logout: { link: "/projectmanager/login", token: 'projectManagerToken' },
-        attendence: "/projectmanager/attendence",
-        notifications: "/projectmanager/notifications",
-        dashBoard: "/projectmanager/dashboard",
-        projects: "/projectmanager/projects",
-        reports: "/projectmanager/reports",
-        tasks: "/projectmanager/task",
-        connections: "/projectmanager/connections",
-        materialRequest: "/projectmanager/materialrequest",
-        chat: "/projectmanager/chat",
+        profile: "/projectManager/profile",
+        logout: { link: "/projectManager/login", token: 'projectManagerToken' },
+        attendence: "/projectManager/attendence",
+        notifications: "/projectManager/notifications",
+        dashBoard: "/projectManager/dashboard",
+        projects: "/projectManager/projects",
+        reports: "/projectManager/reports",
+        tasks: "/projectManager/task",
+        connections: "/projectManager/connections",
+        materialRequest: "/projectManager/materialrequest",
+        chat: "/projectManager/chat",
       }}
     >
       <Routes>

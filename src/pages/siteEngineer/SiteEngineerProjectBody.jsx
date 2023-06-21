@@ -1,11 +1,8 @@
-import { useState } from "react";
-import useSiteEngineerTokenCheck from "../../customHooks/useSiteEngineerTokenCheck"
+import useFetchData from "../../customHooks/common/useFetchData";
+import { fetchProjects } from "../../api/siteEngineer/fetchSiteEngineerData";
 function SiteEngineerProjectBody() {
-  const [project, setProject] = useState({})
-
-  useSiteEngineerTokenCheck("/siteengineer/project", setProject);
-  console.log(project)
-
+  const [projects,setProjects]=useFetchData(fetchProjects)
+  console.log(projects,setProjects)
   return (
     <div>
       <p>jskldjfksdjfkljsdkl</p>

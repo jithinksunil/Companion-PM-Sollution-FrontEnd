@@ -20,7 +20,7 @@ function AdminUserManagementBody() {
     },
     {
       name: "Action",
-      cell: (row) => <UserBlockUnBlockButton row={row} setData={setData} />,
+      cell: (row) => <UserBlockUnBlockButton row={row} fullData={data} setData={setData} />,
       sortable: true,
     },
   ];

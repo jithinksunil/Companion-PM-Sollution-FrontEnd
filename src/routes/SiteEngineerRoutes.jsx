@@ -21,17 +21,17 @@ function SiteEngineerRoutes() {
         <Layout
           individual={siteEngineer}
           links={{
-            profile: "/siteengineer/profile",
+            profile: "/siteEngineer/profile",
             logout: { link: "/login", token: 'siteEngineerToken' },
-            attendence: "/siteengineer/attendence",
-            notifications: "/siteengineer/notifications",
-            connections: "/siteengineer/connections",
-            projects: "/siteengineer/project",
-            tasks: "/siteengineer/tasks",
-            materialRequest: "/siteengineer/material/request",
-            reports: "/siteengineer/reports",
-            chat: '/siteengineer/chat',
-            dashBoard: "/siteengineer/dashboard",
+            attendence: "/siteEngineer/attendence",
+            notifications: "/siteEngineer/notifications",
+            connections: "/siteEngineer/connections",
+            projects: "/siteEngineer/project",
+            tasks: "/siteEngineer/tasks",
+            materialRequest: "/siteEngineer/material/request",
+            reports: "/siteEngineer/reports",
+            chat: '/siteEngineer/chat',
+            dashBoard: "/siteEngineer/dashboard",
           }}
         >
           <Routes>

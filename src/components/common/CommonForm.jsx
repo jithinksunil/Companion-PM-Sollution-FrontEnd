@@ -1,7 +1,5 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function CommonForm({
@@ -11,8 +9,6 @@ function CommonForm({
   submitButton,
   formValues
 }) {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
   const [formData, setFormData] = useState(() => formValues ? formValues : {})
   const handleLogin = (e) => {
     e.preventDefault();
@@ -57,7 +53,7 @@ function CommonForm({
 
 
       if (flag) {
-        submitFunction({ formData, navigate, dispatch })
+        submitFunction(formData)
       }
     }
   }

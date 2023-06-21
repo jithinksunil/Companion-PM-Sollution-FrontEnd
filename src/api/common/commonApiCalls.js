@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import axios from "../../instances/axiosBaseUrl";
+import axios from "../../instances/axiosInstance";
 import { getApi } from "../axiosCalls";
 import { toast } from "react-toastify";
 
@@ -14,11 +14,11 @@ export const updateImage = ({ image, dispatch, individual, setIndividual }) => {
     updateLink = "/updateimage"
     detailsLink = "/profile"
   } else if (individual.position == "siteEngineer") {
-    updateLink = "/siteengineer/updateimage"
-    detailsLink = "/siteengineer/profile"
+    updateLink = "/siteEngineer/updateimage"
+    detailsLink = "/siteEngineer/profile"
   } else if (individual.position == "projectManager") {
-    updateLink = "/projectmanager/updateimage"
-    detailsLink = "/projectmanager/profile"
+    updateLink = "/projectManager/updateimage"
+    detailsLink = "/projectManager/profile"
   }
   axios
     .post(updateLink, formData, { withCredentials: true }, {

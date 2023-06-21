@@ -3,15 +3,23 @@ import { getApi } from '../../api/axiosCalls';
 
 function useSearchHook(setData) {
   const [search, setSearch] = useState("");
+  const [allowWorking,setAllowWorking]=useState(false)
   useEffect(() => {
-    getApi(
-      `/project?search=${search}`,
-      (response) => {
-        const { data } = response.data;
-        setData(data);
-      }
-    );
+    if(allowWorking){
+      getApi(
+        `/project?search=${search}`,
+        (response) => {
+          const { data } = response.data;
+          setData(data);
+        }
+      );
+    }
   }, [search]);
+
+  useEffect(()=>{
+    setAllowWorking(true)
+  },[])
+  
   return { search, setSearch }
 
 }

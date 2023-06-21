@@ -1,16 +1,6 @@
-import { toast } from "react-toastify"
-import { postApi } from "../axiosCalls"
+import axiosInstance from "../../instances/axiosInstance"
 
-export const addProject = ({ formData, setData }) => {
-    postApi('/project/create', formData, (resolve) => {
-        const { superUserTokenVerified, data, message } = resolve.data
-        if (superUserTokenVerified) {
-            if (data) {
-                setData(data)
-            }
-            toast.success(message)
-        } else {
-            toast.error(message)
-        }
-    })
-}
+const addProjectApi = (formData) =>
+    axiosInstance.post('/project/create', formData)
+
+export default addProjectApi

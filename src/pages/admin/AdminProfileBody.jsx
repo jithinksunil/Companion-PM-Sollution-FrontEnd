@@ -1,11 +1,12 @@
 import { Fragment, useState } from "react";
-
-import useAdminTokenCheck from "../../customHooks/useAdminTokenCheck";
+import useTokenCheck from '../../customHooks/common/useTokenCheck'
+import adminTokenCheck from '../../api/admin/adminTokenCheck'
 
 function AdminProfileBody() {
+  useTokenCheck(adminTokenCheck,"/admin/dashboard")
+  
   const [admin, setAdmin] = useState({});
-  console.log(admin);
-  useAdminTokenCheck("/admin/profile", setAdmin);
+  console.log(admin,setAdmin);
   return (
     <Fragment>
       <p className="text-white">profile</p>

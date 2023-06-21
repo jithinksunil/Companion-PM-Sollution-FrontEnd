@@ -1,11 +1,10 @@
-import { Fragment, useState } from "react";
-import useAdminTokenCheck from "../../customHooks/useAdminTokenCheck";
+import { Fragment } from "react";
+import useFetchData from "../../customHooks/common/useFetchData";
+import { fetchDashBoard } from "../../api/admin/fetchAdminData";
 
 function AdminDashBoardBody() {
-  const [admin, setAdmin] = useState({});
-
-  console.log(admin);
-  useAdminTokenCheck("/admin/dashboard", setAdmin);
+  const [data,setData]=useFetchData(fetchDashBoard,'/admin/dashboard',[ ])
+  console.log(data,setData);
 
   return (
     <Fragment>

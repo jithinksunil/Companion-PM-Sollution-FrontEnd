@@ -19,15 +19,15 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/*" element={<LandingPage />} />
-          <Route path="/superuser/*" element={<SuperUserRoutes />} />
+          <Route path="/superUser/*" element={<SuperUserRoutes />} />
 
           <Route path="/guest/*" element={<GuestRoutes />} />
           
-          <Route path="/projectmanager/login" element={<ProjectManagerLogginPage />} />
-          <Route path="/projectmanager/*" element={<ProjectManagerRoutes />} />
+          <Route path="/projectManager/login" element={<ProjectManagerLogginPage />} />
+          <Route path="/projectManager/*" element={<ProjectManagerRoutes />} />
 
-          <Route path="/siteengineer/login" element={<SiteEngineerLogginPage />} />
-          <Route path="/siteengineer/*" element={<SiteEngineerRoutes />} />
+          <Route path="/siteEngineer/login" element={<SiteEngineerLogginPage />} />
+          <Route path="/siteEngineer/*" element={<SiteEngineerRoutes />} />
 
           <Route path="/admin/login" element={<AdminLoginPage />} />
           <Route path="/admin/*" element={<AdminRoutes />} />

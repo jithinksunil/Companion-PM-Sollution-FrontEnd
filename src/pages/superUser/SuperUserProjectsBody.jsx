@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import CreateProject from '../../components/superUser/CreateProject'
-// import useSuperUserTokenCheck from '../../customHooks/useSuperUserTokenCheck';
 import DataTable from 'react-data-table-component';
 import useSearchHook from '../../customHooks/superUser/useSearchHook';
 import CenterModalContaier from '../../components/common/CenterModalContaier';
+import useFetchData from '../../customHooks/common/useFetchData';
+import { fetchProjects } from '../../api/superUser/fetchSuperUserData';
 
 function SuperUserProjectsBody() {
-  const [data, setData] = useState({})
+  const [data, setData] = useFetchData(fetchProjects,'/superUser/projects','/',{})
+  const { search, setSearch } = useSearchHook(setData)
+
   let projectManagersList = []
   let projectsList = []
   if (data.projectManagersList) {
@@ -50,9 +53,6 @@ function SuperUserProjectsBody() {
     }
   ];
 
-  // useSuperUserTokenCheck('/project', setData)
-  const { search, setSearch } = useSearchHook(setData)
-
   return (
     <div>
       <div className='pb-2'>
@@ -82,7 +82,7 @@ function SuperUserProjectsBody() {
         subHeaderAlign="center"
       />
       <CenterModalContaier openModalButtonId='addProjectButton'>
-        <CreateProject setData={setData} projectManagersList={projectManagersList} />
+        <CreateProject setProjects={setData} projectManagersList={projectManagersList} />
       </CenterModalContaier>
     </div>
   )
