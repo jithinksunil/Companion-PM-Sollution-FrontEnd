@@ -1,10 +1,9 @@
 import CommonForm from "../common/CommonForm";
-import handleSignUp from "../../api/superUser/handleSignUp";
+import signUpApi from "../../api/superUser/signUpApi";
+import useSignUp from "../../customHooks/superUser/useSignUp";
 
 function SuperUserSignUp({ openLoginModalFunction, closeSignUpModalFunction }) {
-  const involkeHandleSignUp = (formData) => {
-    handleSignUp({ formData, openLoginModalFunction, closeSignUpModalFunction })
-  }
+  const handleSignUp = useSignUp(signUpApi,closeSignUpModalFunction,openLoginModalFunction)
   return (
     <CommonForm
       formName="Sign up"
@@ -15,7 +14,7 @@ function SuperUserSignUp({ openLoginModalFunction, closeSignUpModalFunction }) {
         { field: "password", required: true, type: "password", validation: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/, placeHolder: 'New password', compareId: 'Passwords' },
         { field: "confirmPassword", required: true, type: "text", validation: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/, placeHolder: 'Confirm password', compareId: 'Passwords' },
       ]}
-      submitFunction={involkeHandleSignUp}
+      submitFunction={handleSignUp}
     />
   )
 }

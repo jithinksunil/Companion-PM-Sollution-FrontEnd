@@ -1,21 +1,32 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateImage } from "../../api/common/commonApiCalls";
+import { toast } from 'react-toastify'
 
-function UpdateImage({ individual, setIndividual }) {
+function UpdateImage(upadateImageApi, individual, setIndividual) {
   const [image, setImage] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    updateImage({ image, dispatch, individual, setIndividual })
+    upadateImageApi({ image }).then((res) => {
+      const { status, data, message } = res.data
+      if(status){
+        dispatch(setIndividual(data))
+        toast.success(message)
+      }else{
+        toast.error(message)
+      }
+    }).catch(() => {
+      toast.error('Axios error')
+    })
   };
 
   const url = `${individual?.image}`;
 
-  return (
-    <div className="bg-white rounded-lg px-10 py-10 shadow-2xl text-center">
+  return function Update(){
+    return(
+      <div className="bg-white rounded-lg px-10 py-10 shadow-2xl text-center">
       <div className="flex justify-center ">
         <img
           className=" w-40 h-40 py-2 rounded-full"
@@ -43,7 +54,8 @@ function UpdateImage({ individual, setIndividual }) {
         </div>
       </form>
     </div>
-  );
+    )
+  }
 }
 
 export default UpdateImage;

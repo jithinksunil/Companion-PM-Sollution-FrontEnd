@@ -16,7 +16,8 @@ const useLogin = (loginApi, setIndividual, tokenName, navigateTo) => {
                 navigate(navigateTo);
             }
             toast(message);
-        })
+        }).catch(()=>
+        toast.error('axios-error'))
     }
     return handleLoginFunction
 }

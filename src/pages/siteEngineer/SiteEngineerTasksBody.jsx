@@ -1,7 +1,7 @@
 import useFetchData from "../../customHooks/common/useFetchData";
 import { fetchTasks } from "../../api/siteEngineer/fetchSiteEngineerData";
 function SiteEngineerTasksBody() {
-  const [tasks, setTasks] = useFetchData(fetchTasks,'/siteEngineer/login')
+  const [tasks, setTasks] = useFetchData(fetchTasks,'/siteEngineer/tasks','/siteEngineer/login')
   console.log(tasks,setTasks);
   return (
     <div>

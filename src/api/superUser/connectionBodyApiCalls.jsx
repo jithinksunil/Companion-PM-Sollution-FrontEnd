@@ -1,7 +1,7 @@
 import axiosInstance from "../../instances/axiosInstance"
 
 export const addConnectionApi = (formData) =>
-  axiosInstance.post("/addConnection", formData)
+  axiosInstance.post("/addConnection", formData, {withCredentials:true})
 
 export const projectDragAndDropApi=(startColumn, dragStartIndex, movingItem, endColumn, dragEnterIndex)=>{
   const data = {
@@ -11,5 +11,5 @@ export const projectDragAndDropApi=(startColumn, dragStartIndex, movingItem, end
     endColumn,
     dragEnterIndex
   }
-  return axiosInstance.post('/updateprojectassignment', data)
+  return axiosInstance.post('/updateprojectassignment', data, {withCredentials:true})
 }

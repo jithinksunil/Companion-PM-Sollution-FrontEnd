@@ -3,7 +3,6 @@ import SuperUserRoutes from "./routes/SuperUserRoutes";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminLoginPage from "./pages/admin/AdminLoginPage";
 import AdminRoutes from "./routes/AdminRoutes";
-import NewTAbles from "./NewTAbles";
 import { ToastContainer } from "react-toastify";
 import ProjectManagerLogginPage from "./pages/projectManger/ProjectManagerLogginPage";
 import ProjectManagerRoutes from "./routes/ProjectManagerRoutes";
@@ -32,7 +31,6 @@ function App() {
           <Route path="/admin/login" element={<AdminLoginPage />} />
           <Route path="/admin/*" element={<AdminRoutes />} />
 
-          <Route path="/trial" element={<NewTAbles />} />
           <Route path="/videocall/:roomId" element={<VideoCallBody />} />
         </Routes>
       </BrowserRouter>

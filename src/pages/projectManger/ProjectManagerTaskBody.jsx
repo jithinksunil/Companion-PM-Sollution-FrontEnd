@@ -8,7 +8,7 @@ import useFetchData from '../../customHooks/common/useFetchData'
 import { fetchTasks } from "../../api/projectManager/fetchProjectManagerData";
 
 function ProjectManagerTaskBody() {
-  const [data, setData] = useFetchData(fetchTasks,'/projectManager/login', [])
+  const [data, setData] = useFetchData(fetchTasks,'/projectManager/login','/admin/login', [])
   const [showSideBar, setShowSideBar] = useState(true)
   const [kankanData, setKankanData] = useState({})
   const [addButtonColumn, setAddButtonColumn] = useState('')

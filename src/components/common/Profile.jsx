@@ -1,8 +1,8 @@
 import { Fragment } from "react";
-import UpdateImage from "./UpdateImage";
 import CenterModalContaier from "./CenterModalContaier";
 
-function Profile({ individual, setIndividual, UpdateProfileElement, children }) {
+function Profile({ individual, UpdateProfileElement,UpdateImageElement, children }) {
+  console.log(UpdateImageElement);
   return (
     <Fragment>
       <link
@@ -100,7 +100,7 @@ function Profile({ individual, setIndividual, UpdateProfileElement, children }) 
         </section>
       </main>
       <CenterModalContaier openModalButtonId='updateImageButton'>
-        <UpdateImage individual={individual} setIndividual={setIndividual} />
+        <UpdateImageElement/>
       </CenterModalContaier>
       <CenterModalContaier openModalButtonId='updateProfileButton'>
         <UpdateProfileElement/>

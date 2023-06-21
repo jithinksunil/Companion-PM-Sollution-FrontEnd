@@ -6,7 +6,8 @@ const useAddConnection = (addConnectionApi, setProjects) => {
             const { data, message } = response.data
             setProjects(data)
             toast.success(message)
-        })
+        }).catch(()=>
+        toast.error('axios-error'))
     }
     return handleAddConnection
 }

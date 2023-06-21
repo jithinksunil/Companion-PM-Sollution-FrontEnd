@@ -8,6 +8,6 @@ const siteEngineerAssignmentApi = (startColumn, dragStartIndex, movingItem, endC
         endColumn,
         dragEnterIndex
     }
-    return axiosInstance.post('/updatesiteengineerassignment', data)
+    return axiosInstance.post('/updatesiteengineerassignment', data, {withCredentials:true})
 }
 export default siteEngineerAssignmentApi 
