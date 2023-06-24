@@ -5,7 +5,7 @@ import { setSuperUser } from "../../store/slices/SuperUserSice";
 import SuperUserProfileUpdate from "../../components/superUser/SuperUserProfileUpdate"
 import { useSelector } from 'react-redux';
 import updateImageApi from '../../api/superUser/updateImageApi';
-import UpdateImage from '../../customHooks/common/UpdateImage'
+import UpdateImage from '../../hoc/UpdateImage';
 
 function SuperUserProfileBody() {
     const superUser = useSelector((state) => state.superUser.value);

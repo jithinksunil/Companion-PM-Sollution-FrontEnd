@@ -4,7 +4,7 @@ import { setProjectManager } from "../../store/slices/ProjectManagerSlice";
 import { useSelector } from 'react-redux';
 import Profile from '../../components/common/Profile';
 import updateImageApi from '../../api/projectManager/updateImageApi';
-import UpdateImage from '../../customHooks/common/UpdateImage';
+import UpdateImage from '../../hoc/UpdateImage';
 
 function ProjectManagerProfileBody() {
   const projectManager = useSelector((state) => state.projectManager.value);
