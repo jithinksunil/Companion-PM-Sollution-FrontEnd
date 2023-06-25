@@ -1,7 +1,8 @@
+import { useCallback } from "react"
 import { toast } from "react-toastify"
 
 const useDragAndDrop=(dragAndDropApi, setData)=>{
-    const handleDragAndDrop=(startColumn, dragStartIndex, movingItem, endColumn, dragEnterIndex)=>{
+    const handleDragAndDrop=useCallback((startColumn, dragStartIndex, movingItem, endColumn, dragEnterIndex)=>{
         const data = {
             startColumn,
             dragStartIndex,
@@ -21,7 +22,7 @@ const useDragAndDrop=(dragAndDropApi, setData)=>{
             }
         }).catch(()=>
         toast.error('axios-error'))
-    }
+    },[])
     return handleDragAndDrop
 }
 

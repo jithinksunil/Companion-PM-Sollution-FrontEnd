@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState } from "react";
+import React, { useState } from "react";
 
 function CommonForm({
   formName,
@@ -118,4 +118,4 @@ function CommonForm({
     </div>
   );
 }
-export default CommonForm;
+export default React.memo(CommonForm)

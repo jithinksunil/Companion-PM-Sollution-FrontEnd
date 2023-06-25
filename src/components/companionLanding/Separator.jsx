@@ -8,4 +8,4 @@ function Separator() {
   )
 }
 
-export default Separator
+export default  React.memo(Separator)

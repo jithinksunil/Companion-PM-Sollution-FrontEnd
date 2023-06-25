@@ -1,7 +1,8 @@
+import { useCallback } from "react"
 import { toast } from "react-toastify"
 
 const useAddConnection = (addConnectionApi, setProjects) => {
-    const handleAddConnection = (formData) => {
+    const handleAddConnection = useCallback((formData) => {
         addConnectionApi(formData).then((response) => {
             const { data, message,status } = response.data
             if(status){
@@ -14,7 +15,7 @@ const useAddConnection = (addConnectionApi, setProjects) => {
             }
         }).catch(()=>
         toast.error('axios-error'))
-    }
+    },[])
     return handleAddConnection
 }
 export default useAddConnection

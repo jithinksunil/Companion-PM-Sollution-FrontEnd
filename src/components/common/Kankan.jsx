@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './body.css'
 import CenterModalContaier from './CenterModalContaier';
 
@@ -104,4 +104,4 @@ function Kankan({ objectOfArrays, Div, dataBaseFunction, addButton, addButtonMod
     )
 }
 
-export default Kankan
+export default React.memo(Kankan)

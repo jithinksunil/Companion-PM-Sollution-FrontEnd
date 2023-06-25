@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import SuperUserDashBoardBody from "../pages/superUser/SuperUserDashBoardBody";
@@ -13,38 +13,41 @@ import SuperUserProfileBody from "../pages/superUser/SuperUserProfileBody";
 
 function SuperUserRoutes() {
   const superUser = useSelector((state) => state.superUser.value);
+  const sideBarLinks = useCallback({
+    connections: "/superUser/connections",
+    siteEngineers: "/superUser/siteengineers",
+    projects: "/superUser/projects",
+    reports: "/superUser/reports",
+    dashBoard: "/superUser/dashboard",
+  }, [])
+  const navBarLinks = useCallback({
+    profile: "/superUser/profile",
+    logout: { link: "/login", token: 'superUserToken' },
+    notifications: "/superUser/notifications",
+    chat: '/superUser/chat',
+  }, [])
+
   return (
 
     <Layout
       individual={superUser}
-      links={{
-        profile: "/superUser/profile",
-        logout: { link: "/login", token: 'superUserToken' },
-        notifications: "/superUser/notifications",
-        connections: "/superUser/connections",
-        siteEngineers: "/superUser/siteengineers",
-        chat: '/superUser/chat',
-        projects: "/superUser/projects",
-        reports: "/superUser/reports",
-        dashBoard: "/superUser/dashboard",
-      }}
+      sideBarLinks={sideBarLinks}
+      navBarLinks={navBarLinks}
     >
       <Routes>
-        
         <Route path="/dashboard" element={<SuperUserDashBoardBody />} />
         <Route path="/projects" element={<SuperUserProjectsBody />} />
         <Route path="/reports" element={<SuperUserProjectsBody />} />
-        <Route path="/profile" element={<SuperUserProfileBody/>} />
+        <Route path="/profile" element={<SuperUserProfileBody />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/connections" element={<SuperUserConnectionsBody />} />
         <Route path="/siteengineers" element={<SuperUserSiteEngineersAssignmentBody />} />
         <Route path="/membershipupgrade" element={<MembershipCheckout />} />
         <Route path="/chat" element={<Messenger individual={superUser} />} />
       </Routes>
-
     </Layout>
 
   );
 }
 
-export default SuperUserRoutes;
+export default React.memo(SuperUserRoutes)

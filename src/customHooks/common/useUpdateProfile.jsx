@@ -1,9 +1,10 @@
+import { useCallback } from "react"
 import { useDispatch } from "react-redux"
 import { toast } from "react-toastify"
 
 const useUpdateProfile = (updateProfileApi, setIndividual) => {
     const dispatch =useDispatch()
-    const handleSubmitForm = (formData) => {
+    const handleSubmitForm = useCallback((formData) => {
         updateProfileApi(formData).then((response) => {
             const { status, message, data } = response.data
             if (status) {
@@ -16,7 +17,7 @@ const useUpdateProfile = (updateProfileApi, setIndividual) => {
         }).catch(() => {
             toast.error('Axios Error')
         })
-    }
+    },[])
     return handleSubmitForm
 }
 export default useUpdateProfile

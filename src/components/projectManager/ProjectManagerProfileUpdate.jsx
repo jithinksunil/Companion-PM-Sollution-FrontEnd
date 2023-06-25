@@ -3,6 +3,7 @@ import CommonForm from "../common/CommonForm";
 import { setProjectManager } from "../../store/slices/ProjectManagerSlice";
 import useUpdateProfile from "../../customHooks/common/useUpdateProfile";
 import { projectManagerUpdateProfileApi } from "../../api/projectManager/profileBodyApiCalls";
+import React from "react";
 function ProjectManagerProfileUpdate() {
   const handleUpdateProfileFunction=useUpdateProfile(projectManagerUpdateProfileApi,setProjectManager)
   const projectManager = useSelector((state) => state.projectManager.value);
@@ -23,4 +24,4 @@ function ProjectManagerProfileUpdate() {
   )
 }
 
-export default ProjectManagerProfileUpdate
+export default React.memo(ProjectManagerProfileUpdate)

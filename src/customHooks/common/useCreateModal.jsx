@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 function useCreateModal(modalId) {
     const [modalState, setModalState] = useState(false)
-    const openModalFunction = () => {
+    const openModalFunction = useCallback(() => {
         setModalState(true)
-    }
-    const closeModalFunction = () => {
+    }, [])
+    const closeModalFunction = useCallback(() => {
         setModalState(false)
-    }
+    }, [])
     useEffect(() => {
         const handleOutsideClick = (event) => {
             if (modalState && !event.target.closest('#' + modalId)) {

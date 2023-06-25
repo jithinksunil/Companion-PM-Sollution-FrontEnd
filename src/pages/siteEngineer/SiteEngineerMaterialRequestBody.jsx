@@ -1,5 +1,6 @@
 import useFetchData from "../../customHooks/common/useFetchData";
 import { fetchMaterialRequest } from "../../api/siteEngineer/fetchSiteEngineerData";
+import React from "react";
 function SiteEngineerMaterialRequestBody() {
 
   const [data,setData]=useFetchData(fetchMaterialRequest,'/siteEngineer/materialRequest','/siteEngineer/login',[]);
@@ -12,4 +13,4 @@ function SiteEngineerMaterialRequestBody() {
   )
 }
 
-export default SiteEngineerMaterialRequestBody;
+export default React.memo(SiteEngineerMaterialRequestBody);

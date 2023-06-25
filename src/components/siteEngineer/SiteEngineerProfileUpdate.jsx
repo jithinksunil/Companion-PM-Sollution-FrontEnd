@@ -3,6 +3,7 @@ import CommonForm from "../common/CommonForm";
 import { siteEngineerUpdateProfileApi } from "../../api/siteEngineer/profileBodyApiCalls";
 import useUpdateProfile from "../../customHooks/common/useUpdateProfile";
 import { setSiteEngineer } from "../../store/slices/SiteEngineerSlice";
+import React from "react";
 
 function SiteEngineerProfileUpdate() {
 
@@ -26,4 +27,4 @@ function SiteEngineerProfileUpdate() {
   )
 }
 
-export default SiteEngineerProfileUpdate
+export default React.memo(SiteEngineerProfileUpdate)

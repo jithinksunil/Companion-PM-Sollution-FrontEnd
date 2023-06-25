@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Kankan from "../../components/common/Kankan";
 import AddTask from "../../components/projectManager/AddTask";
 import { taskAssignment } from "../../api/projectManager/taskBodyApiCalls";
@@ -66,4 +66,4 @@ function ProjectManagerTaskBody() {
   )
 }
 
-export default ProjectManagerTaskBody;
+export default React.memo(ProjectManagerTaskBody);

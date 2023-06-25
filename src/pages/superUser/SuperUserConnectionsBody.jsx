@@ -59,4 +59,4 @@ function SuperUserConnectionsBody() {
     );
 }
 
-export default SuperUserConnectionsBody;
+export default React.memo(SuperUserConnectionsBody);

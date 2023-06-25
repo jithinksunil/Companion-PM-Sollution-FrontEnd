@@ -1,3 +1,5 @@
+import React from "react";
+
 function Fallback({ error }) {
   // Call resetErrorBoundary() to reset the error boundary and retry the render.
 
@@ -9,4 +11,4 @@ function Fallback({ error }) {
   );
 }
 
-export default Fallback
+export default React.memo(Fallback)

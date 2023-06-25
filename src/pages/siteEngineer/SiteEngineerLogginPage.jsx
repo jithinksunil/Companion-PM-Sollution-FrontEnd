@@ -26,4 +26,4 @@ function SiteEngineerLogginPage() {
   );
 }
 
-export default SiteEngineerLogginPage;
+export default React.memo(SiteEngineerLogginPage);

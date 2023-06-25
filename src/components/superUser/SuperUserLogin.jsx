@@ -24,4 +24,4 @@ function SuperUserLogin() {
   )
 }
 
-export default SuperUserLogin
+export default React.memo(SuperUserLogin)

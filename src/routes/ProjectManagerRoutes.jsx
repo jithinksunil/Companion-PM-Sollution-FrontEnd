@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import ProjectManagerDashBoardBody from "../pages/projectManger/ProjectManagerDashBoardBody";
@@ -9,22 +9,28 @@ import ProjectManagerTaskBody from "../pages/projectManger/ProjectManagerTaskBod
 import ProjectManagerProfileBody from "../pages/projectManger/ProjectManagerProfileBody";
 function ProjectManagerRoutes() {
   const projectManager = useSelector((state) => state.projectManager.value);
+  const sideBarLinks = useCallback({
+    dashBoard: "/projectManager/dashboard",
+    projects: "/projectManager/projects",
+    reports: "/projectManager/reports",
+    tasks: "/projectManager/task",
+    connections: "/projectManager/connections",
+    materialRequest: "/projectManager/materialrequest",
+  }, [])
+  const navBarLinks = useCallback({
+    profile: "/projectManager/profile",
+    logout: { link: "/projectManager/login", token: 'projectManagerToken' },
+    attendence: "/projectManager/attendence",
+    notifications: "/projectManager/notifications",
+    chat: "/projectManager/chat",
+  }, [])
+
+
   return (
     <Layout
       individual={projectManager}
-      links={{
-        profile: "/projectManager/profile",
-        logout: { link: "/projectManager/login", token: 'projectManagerToken' },
-        attendence: "/projectManager/attendence",
-        notifications: "/projectManager/notifications",
-        dashBoard: "/projectManager/dashboard",
-        projects: "/projectManager/projects",
-        reports: "/projectManager/reports",
-        tasks: "/projectManager/task",
-        connections: "/projectManager/connections",
-        materialRequest: "/projectManager/materialrequest",
-        chat: "/projectManager/chat",
-      }}
+      sideBarLinks={sideBarLinks}
+      navBarLinks={navBarLinks}
     >
       <Routes>
         <Route path="/dashboard" element={<ProjectManagerDashBoardBody />} />
@@ -37,4 +43,4 @@ function ProjectManagerRoutes() {
   );
 }
 
-export default ProjectManagerRoutes;
+export default React.memo(ProjectManagerRoutes)

@@ -55,4 +55,4 @@ function CreateProject({ setProjects, projectManagersList }) {
         submitButton="Add project" />)
 }
 
-export default CreateProject
+export default React.memo(CreateProject)

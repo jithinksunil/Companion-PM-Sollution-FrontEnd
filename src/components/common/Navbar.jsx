@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Attendence from "./Attendence";
 import { handleLogout } from "../../api/common/commonApiCalls";
 import CenterModalContaier from "./CenterModalContaier";
+import React from "react";
 
 function Navbar({ individual, links, setShowSideBar, showSideBar }) {
     const {
@@ -130,4 +131,4 @@ function Navbar({ individual, links, setShowSideBar, showSideBar }) {
     );
 }
 
-export default Navbar;
+export default React.memo(Navbar);

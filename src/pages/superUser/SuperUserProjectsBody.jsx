@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import CreateProject from '../../components/superUser/CreateProject'
 import DataTable from 'react-data-table-component';
 import useSearchHook from '../../customHooks/superUser/useSearchHook';
@@ -7,8 +7,21 @@ import useFetchData from '../../customHooks/common/useFetchData';
 import { fetchProjects } from '../../api/superUser/fetchSuperUserData';
 
 function SuperUserProjectsBody() {
-  const [data, setData] = useFetchData(fetchProjects,'/superUser/projects','/',{})
+  const [data, setData] = useFetchData(fetchProjects, '/superUser/projects', '/', {})
   const { search, setSearch } = useSearchHook(setData)
+  const searchField = useMemo(() => {
+    return (
+      <input
+        className="text-black rounded-lg px-2 border border-gray-300 "
+        type="text"
+        placeholder="Search here"
+        value={search}
+        onChange={(e) => {
+          setSearch(e.target.value);
+        }}
+      />
+    )
+  }, [search])
 
   let projectManagersList = []
   let projectsList = []
@@ -68,17 +81,7 @@ function SuperUserProjectsBody() {
         pagination
         highlightOnHover
         subHeader
-        subHeaderComponent={
-          <input
-            className="text-black rounded-lg px-2 border border-gray-300 "
-            type="text"
-            placeholder="Search here"
-            value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
-            }}
-          />
-        }
+        subHeaderComponent={searchField}
         subHeaderAlign="center"
       />
       <CenterModalContaier openModalButtonId='addProjectButton'>
@@ -88,4 +91,4 @@ function SuperUserProjectsBody() {
   )
 }
 
-export default SuperUserProjectsBody
+export default React.memo(SuperUserProjectsBody)

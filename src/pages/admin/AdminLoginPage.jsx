@@ -29,4 +29,4 @@ function AdminLoginPage() {
   );
 }
 
-export default AdminLoginPage;
+export default React.memo(AdminLoginPage);

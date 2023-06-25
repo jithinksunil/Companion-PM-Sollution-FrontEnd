@@ -1,5 +1,6 @@
 import useFetchData from "../../customHooks/common/useFetchData";
 import { fetchReports } from "../../api/siteEngineer/fetchSiteEngineerData";
+import React from "react";
 function SiteEngineerReportsBody() {
 const [reports,setReports]=useFetchData(fetchReports,'/siteEngineer/reports','/siteEngineer/login')
 console.log(reports,setReports);
@@ -10,4 +11,4 @@ console.log(reports,setReports);
   )
 }
 
-export default SiteEngineerReportsBody;
+export default React.memo(SiteEngineerReportsBody)

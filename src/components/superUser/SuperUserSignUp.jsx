@@ -1,6 +1,7 @@
 import CommonForm from "../common/CommonForm";
 import signUpApi from "../../api/superUser/signUpApi";
 import useSignUp from "../../customHooks/superUser/useSignUp";
+import React from "react";
 
 function SuperUserSignUp({ openLoginModalFunction, closeSignUpModalFunction }) {
   const handleSignUp = useSignUp(signUpApi,closeSignUpModalFunction,openLoginModalFunction)
@@ -19,4 +20,4 @@ function SuperUserSignUp({ openLoginModalFunction, closeSignUpModalFunction }) {
   )
 }
 
-export default SuperUserSignUp;
+export default React.memo(SuperUserSignUp)

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { setSiteEngineer } from "../../store/slices/SiteEngineerSlice";
 import SiteEngineerProfileUpdate from "../../components/siteEngineer/SiteEngineerProfileUpdate"
 import { useSelector } from 'react-redux';
@@ -9,7 +9,7 @@ import updateImageApi from '../../api/siteEngineer/updateImageApi';
 
 function SiteEngineerProfileBody() {
     const siteEngineer = useSelector((state) => state.siteEngineer.value);
-    const UpdateImageElement=updateImage(updateImageApi,siteEngineer,setSiteEngineer)
+    const UpdateImageElement=useMemo(()=>updateImage(updateImageApi,siteEngineer,setSiteEngineer),[siteEngineer])
     return (
         <Fragment>
             <Profile individual={siteEngineer} setIndividual={setSiteEngineer} UpdateProfileElement={SiteEngineerProfileUpdate} UpdateImageElement={UpdateImageElement}/>
@@ -17,4 +17,4 @@ function SiteEngineerProfileBody() {
     )
 }
 
-export default SiteEngineerProfileBody
+export default React.memo(SiteEngineerProfileBody)

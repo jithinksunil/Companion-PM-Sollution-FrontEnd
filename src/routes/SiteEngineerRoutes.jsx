@@ -1,9 +1,7 @@
-import React, { Suspense } from "react";
+import React, { useCallback } from "react";
 import { Route, Routes } from "react-router-dom";
 import SiteEngineerDashBoardBody from "../pages/siteEngineer/SiteEngineerDashBoardBody";
 const Layout = React.lazy(() => import("../layout/Layout"));
-import { ErrorBoundary } from "react-error-boundary";
-import Fallback from "../errorBoundaries/ErrorBoundary";
 import Messenger from "../pages/common/MessengerBody";
 import Notifications from "../pages/common/NotificationsBody";
 import SiteEngineerProjectBody from "../pages/siteEngineer/SiteEngineerProjectBody";
@@ -15,24 +13,27 @@ import { useSelector } from "react-redux";
 
 function SiteEngineerRoutes() {
   const siteEngineer = useSelector((state) => state.siteEngineer.value);
+  const sideBarLinks = useCallback({
+    connections: "/siteEngineer/connections",
+    projects: "/siteEngineer/project",
+    tasks: "/siteEngineer/tasks",
+    materialRequest: "/siteEngineer/material/request",
+    reports: "/siteEngineer/reports",
+    dashBoard: "/siteEngineer/dashboard",
+  }, [])
+  const navBarLinks = useCallback({
+    profile: "/siteEngineer/profile",
+    logout: { link: "/login", token: 'siteEngineerToken' },
+    attendence: "/siteEngineer/attendence",
+    notifications: "/siteEngineer/notifications",
+    chat: '/siteEngineer/chat',
+  }, [])
+  
   return (
-    <ErrorBoundary FallbackComponent={Fallback} onReset={() => { }}>
-      <Suspense fallback={<div>Loading...</div>} >
-        <Layout
+    <Layout
           individual={siteEngineer}
-          links={{
-            profile: "/siteEngineer/profile",
-            logout: { link: "/login", token: 'siteEngineerToken' },
-            attendence: "/siteEngineer/attendence",
-            notifications: "/siteEngineer/notifications",
-            connections: "/siteEngineer/connections",
-            projects: "/siteEngineer/project",
-            tasks: "/siteEngineer/tasks",
-            materialRequest: "/siteEngineer/material/request",
-            reports: "/siteEngineer/reports",
-            chat: '/siteEngineer/chat',
-            dashBoard: "/siteEngineer/dashboard",
-          }}
+          sideBarLinks={sideBarLinks}
+          navBarLinks={navBarLinks}
         >
           <Routes>
             <Route path="/dashboard" element={<SiteEngineerDashBoardBody />} />
@@ -45,8 +46,6 @@ function SiteEngineerRoutes() {
             <Route path="/chat" element={<Messenger individual={siteEngineer} />} />
           </Routes>
         </Layout>
-      </Suspense>
-    </ErrorBoundary>
   );
 }
 

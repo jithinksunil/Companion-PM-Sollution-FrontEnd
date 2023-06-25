@@ -6,6 +6,7 @@ import Services from "../../components/companionLanding/Services";
 import Pricing2 from "../../components/companionLanding/Pricing2";
 import Footer from "../../components/companionLanding/Footer";
 import Rail from "../../components/companionLanding/Rail";
+import React from "react";
 
 function LandingPage() {
   return (
@@ -13,13 +14,13 @@ function LandingPage() {
       <Navbar />
       <Banner />
       <Writing />
-      <Separator/>
+      <Separator />
       <Services />
-      <Rail/>
+      <Rail />
       <Pricing2 />
       <Footer />
     </div>
   );
 }
 
-export default LandingPage;
+export default React.memo(LandingPage);

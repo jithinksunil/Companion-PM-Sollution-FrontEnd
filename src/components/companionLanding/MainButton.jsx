@@ -10,4 +10,4 @@ function MainButton({textSize,onClick,children}) {
     )
 }
 
-export default MainButton
+export default React.memo(MainButton)

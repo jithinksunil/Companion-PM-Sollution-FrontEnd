@@ -43,4 +43,4 @@ function NotificationsBody() {
     )
 }
 
-export default NotificationsBody
+export default React.memo(NotificationsBody)

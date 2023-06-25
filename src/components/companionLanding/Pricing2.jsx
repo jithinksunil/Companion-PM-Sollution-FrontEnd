@@ -88,4 +88,4 @@ function Pricing() {
     </Fragment>
   );
 }
-export default Pricing;
+export default React.memo(Pricing)

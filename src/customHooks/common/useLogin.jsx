@@ -2,12 +2,13 @@ import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useCallback } from "react";
 
 
 const useLogin = (loginApi, setIndividual, tokenName, navigateTo) => {
     const dispatch=useDispatch()
     const navigate = useNavigate()
-    const handleLoginFunction = (formData) => {
+    const handleLoginFunction = useCallback((formData) => {
         loginApi(formData).then((response) => {
             const { data, verified, message, token } = response.data
             if (verified) {
@@ -18,7 +19,7 @@ const useLogin = (loginApi, setIndividual, tokenName, navigateTo) => {
             toast(message);
         }).catch(()=>
         toast.error('axios-error'))
-    }
+    },[])
     return handleLoginFunction
 }
 

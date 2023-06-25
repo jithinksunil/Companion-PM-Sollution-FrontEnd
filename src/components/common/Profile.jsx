@@ -1,8 +1,7 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import CenterModalContaier from "./CenterModalContaier";
 
 function Profile({ individual, UpdateProfileElement,UpdateImageElement, children }) {
-  console.log(UpdateImageElement);
   return (
     <Fragment>
       <link
@@ -109,4 +108,4 @@ function Profile({ individual, UpdateProfileElement,UpdateImageElement, children
   );
 }
 
-export default Profile;
+export default React.memo(Profile)

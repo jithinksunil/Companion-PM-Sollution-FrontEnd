@@ -52,4 +52,4 @@ function Rail() {
     )
 }
 
-export default Rail
+export default React.memo(Rail)

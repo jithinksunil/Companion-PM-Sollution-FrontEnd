@@ -24,4 +24,4 @@ function CenterModalContaier({ openModalButtonId, children }) {
   )
 }
 
-export default CenterModalContaier
+export default React.memo(CenterModalContaier)

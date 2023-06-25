@@ -1,7 +1,8 @@
+import { useCallback } from "react"
 import { toast } from "react-toastify"
 
 function useAddProject(addProjectApi, setProjects) {
-    const handleSubmit = (formData) => {
+    const handleSubmit = useCallback((formData) => {
         addProjectApi(formData).then((resolve) => {
             const { data, message,status } = resolve.data
             if(status&&data){
@@ -13,7 +14,7 @@ function useAddProject(addProjectApi, setProjects) {
         }).catch(()=>{
             toast.error('axios error')
         })
-    }
+    },[])
     return handleSubmit
 }
 

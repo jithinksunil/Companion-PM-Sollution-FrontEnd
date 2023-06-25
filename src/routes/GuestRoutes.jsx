@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 const Layout = React.lazy(() => import("../layout/Layout"));
@@ -13,21 +13,25 @@ import GuestDashBoardBody from "../pages/guest/GuestDashBoardBody";
 
 function GuestRoutes() {
   const guest = useSelector((state) => state.guest.value);
+  const sideBarLinks=useCallback({
+    profile: "/guest/profile",
+    logout: { link: "/login", token: 'guestToken' },
+    notifications: "/guest/notifications",
+    chat: '/guest/chat',
+  },[])
+  const navBarLinks=useCallback({
+    profile: "/guest/profile",
+    logout: { link: "/login", token: 'guestToken' },
+    notifications: "/guest/notifications",
+    chat: '/guest/chat',
+  },[])
+  
   return (
 
     <Layout
       individual={guest}
-      links={{
-        profile: "/guest/profile",
-        logout: { link: "/login", token: 'guestToken' },
-        notifications: "/guest/notifications",
-        connections: "/guest/connections",
-        siteEngineers: "/guest/siteengineers",
-        chat: '/guest/chat',
-        projects: "/guest/projects",
-        reports: "/guest/reports",
-        dashBoard: "/guest/dashboard",
-      }}
+      sideBarLinks={sideBarLinks}
+      navBarLinks={navBarLinks}
     >
       <Routes>
         <Route path="/dashboard" element={<GuestDashBoardBody />} />

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useMemo } from 'react'
 import Profile from '../../components/common/Profile'
 import ChangeMembershipButton from '../../components/superUser/ChangeMembershipButton'
 import { setSuperUser } from "../../store/slices/SuperUserSice";
@@ -9,7 +9,7 @@ import updateImage from '../../hoc/updateImage';
 
 function SuperUserProfileBody() {
     const superUser = useSelector((state) => state.superUser.value);
-    const UpdateImageElement = updateImage(updateImageApi, superUser, setSuperUser)
+    const UpdateImageElement = useMemo(()=>updateImage(updateImageApi, superUser, setSuperUser),[superUser])
 
     return (
         <Fragment>
@@ -20,4 +20,4 @@ function SuperUserProfileBody() {
     )
 }
 
-export default SuperUserProfileBody
+export default React.memo(SuperUserProfileBody)

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useMemo } from 'react'
 import ProjectManagerProfileUpdate from "../../components/projectManager/ProjectManagerProfileUpdate"
 import { setProjectManager } from "../../store/slices/ProjectManagerSlice";
 import { useSelector } from 'react-redux';
@@ -8,7 +8,7 @@ import updateImage from '../../hoc/updateImage';
 
 function ProjectManagerProfileBody() {
   const projectManager = useSelector((state) => state.projectManager.value);
-  const UpdateImageElement=updateImage(updateImageApi,projectManager,setProjectManager)
+  const UpdateImageElement=useMemo(()=>updateImage(updateImageApi,projectManager,setProjectManager),[projectManager])
 
     return (
         <Fragment>
@@ -17,4 +17,4 @@ function ProjectManagerProfileBody() {
     )
 }
 
-export default ProjectManagerProfileBody
+export default React.memo(ProjectManagerProfileBody)

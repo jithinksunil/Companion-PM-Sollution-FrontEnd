@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 
 function GuestDashBoardBody() {
   return (
@@ -8,4 +8,4 @@ function GuestDashBoardBody() {
   );
 }
 
-export default GuestDashBoardBody;
+export default React.memo(GuestDashBoardBody);

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useMemo, useState } from "react";
 import DataTable from "react-data-table-component";
 import "react-toastify/dist/ReactToastify.css";
 import useSearchHook from "../../customHooks/admin/useSearchHook";
@@ -26,6 +26,19 @@ function AdminUserManagementBody() {
   ];
 
   const { search, setSearch } = useSearchHook(setData)
+  const searchElement=useMemo(()=>{
+    return(
+      <input
+            className="text-black"
+            type="text"
+            placeholder="Search here"
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
+          />
+    )
+  },[search])
   return (
     <Fragment>
       <DataTable
@@ -37,22 +50,12 @@ function AdminUserManagementBody() {
         highlightOnHover
         actions={<button>Export</button>}
         subHeader
-        subHeaderComponent={
-          <input
-            className="text-black"
-            type="text"
-            placeholder="Search here"
-            value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
-            }}
-          />
-        }
+        subHeaderComponent={searchElement}
         subHeaderAlign="center"
       />
     </Fragment>
   );
 }
 
-export default AdminUserManagementBody;
+export default React.memo(AdminUserManagementBody);
 

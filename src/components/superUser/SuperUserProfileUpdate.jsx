@@ -3,6 +3,7 @@ import CommonForm from "../common/CommonForm";
 import { superUserUpdateProfileApi } from "../../api/superUser/profileBodyApiCalls";
 import { setSuperUser } from "../../store/slices/SuperUserSice";
 import useUpdateProfile from "../../customHooks/common/useUpdateProfile";
+import React from "react";
 
 function SuperUserProfileUpdate() {
 
@@ -27,4 +28,4 @@ function SuperUserProfileUpdate() {
   )
 }
 
-export default SuperUserProfileUpdate
+export default React.memo(SuperUserProfileUpdate)

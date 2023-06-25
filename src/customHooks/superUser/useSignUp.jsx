@@ -1,7 +1,8 @@
+import { useCallback } from 'react'
 import { toast } from 'react-toastify'
 
 function useSignUp(signUpApi, closeSignUpModalFunction, openLoginModalFunction) {
-    const handleSignUp = (formData) => {
+    const handleSignUp = useCallback((formData) => {
         signUpApi(formData).then((res) => {
             const { message, status } = res.data
             toast(message)
@@ -10,7 +11,7 @@ function useSignUp(signUpApi, closeSignUpModalFunction, openLoginModalFunction) 
                 openLoginModalFunction()
             }
         })
-    }
+    }, [])
     return handleSignUp
 }
 

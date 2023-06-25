@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import useFetchData from '../../customHooks/common/useFetchData'
 import { fetchDashBoard } from "../../api/superUser/fetchSuperUserData";
 
@@ -14,4 +14,4 @@ function SuperUserDashBoardBody() {
   );
 }
 
-export default SuperUserDashBoardBody;
+export default React.memo(SuperUserDashBoardBody)

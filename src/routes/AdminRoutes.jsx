@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import AdminDashBoardBody from "../pages/admin/AdminDashBoardBody";
 import AdminProfileBody from "../pages/admin/AdminProfileBody";
 import { Route, Routes } from "react-router-dom";
@@ -7,14 +7,19 @@ import AdminUserManagementBody from "../pages/admin/AdminUserManagementBody";
 
 
 function AdminRoutes() {
+  const sideBarLinks=useCallback({
+    dashBoard: "/admin/dashboard",
+    userManagement: "/admin/usermanagement",
+  },[])
+  const navBarLinks=useCallback({
+    profile: "/admin/profile",
+    logout: { link: "/admin/login", token: 'adminToken' },
+  },[])
+  
   return (
     <Layout
-      links={{
-        profile: "/admin/profile",
-        logout: { link: "/admin/login", token: 'adminToken' },
-        dashBoard: "/admin/dashboard",
-        userManagement: "/admin/usermanagement",
-      }}
+      sideBarLinks={sideBarLinks}
+      navBarLinks={navBarLinks}
     >
       <Routes>
         <Route path="/dashboard" element={<AdminDashBoardBody />} />
@@ -25,4 +30,4 @@ function AdminRoutes() {
   );
 }
 
-export default AdminRoutes;
+export default React.memo(AdminRoutes);

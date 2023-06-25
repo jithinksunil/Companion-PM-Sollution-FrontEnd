@@ -1,3 +1,4 @@
+import React from "react";
 import handleClick from "../../api/admin/userManagementBodyApiCalls";
 
 function UserBlockUnBlockButton({ row,fullData, setData }) {
@@ -16,4 +17,4 @@ function UserBlockUnBlockButton({ row,fullData, setData }) {
   );
 }
 
-export default UserBlockUnBlockButton
+export default React.memo(UserBlockUnBlockButton)

@@ -15,4 +15,5 @@ function MyModal({ modalState, children }) {
   )
 }
 
-export default MyModal
+export default React.memo(MyModal)
+

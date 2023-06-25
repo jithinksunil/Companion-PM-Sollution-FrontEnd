@@ -5,33 +5,18 @@ import Body from "../components/common/Body";
 import "./layout.css";
 import image from './pexels-cmonphotography-1809644.jpg'
 
-function Layout({ individual, links, children }) {
+function Layout({ individual, navBarLinks, sideBarLinks, children }) {
   const [showSideBar, setShowSideBar] = useState(false);
-  const {
-    profile,
-    logout,
-    notifications,
-    attendence,
-    projects,
-    tasks,
-    reports,
-    materialRequest,
-    dashBoard,
-    userManagement,
-    connections,
-    siteEngineers,
-    chat
-  } = links;
   return (
     <div className={`bg-black background h-screen flex`} style={{ backgroundImage: `url(${image})` }}>
       <SideBar
         showSideBar={showSideBar}
-        links={{ dashBoard, projects, tasks, reports, materialRequest, userManagement, connections, siteEngineers }}
+        links={sideBarLinks}
       />
       <div className="w-full h-full overflow-x-hidden flex flex-col">
         <Navbar
           individual={individual}
-          links={{ profile, logout, notifications, attendence, chat }}
+          links={navBarLinks}
           showSideBar={showSideBar}
           setShowSideBar={setShowSideBar}
         />
@@ -42,4 +27,4 @@ function Layout({ individual, links, children }) {
   );
 }
 
-export default Layout;
+export default React.memo(Layout)

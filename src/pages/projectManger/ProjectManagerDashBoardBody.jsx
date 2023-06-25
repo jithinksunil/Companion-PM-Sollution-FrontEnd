@@ -1,3 +1,4 @@
+import React from "react";
 
 function ProjectManagerDashBoardBody() {
 
@@ -9,4 +10,4 @@ function ProjectManagerDashBoardBody() {
   )
 }
 
-export default ProjectManagerDashBoardBody;
+export default React.memo(ProjectManagerDashBoardBody);

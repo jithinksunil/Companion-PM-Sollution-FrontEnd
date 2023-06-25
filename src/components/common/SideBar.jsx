@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
 function SideBar({ showSideBar, links }) {
@@ -229,4 +230,4 @@ function SideBar({ showSideBar, links }) {
     );
 }
 
-export default SideBar;
+export default React.memo(SideBar)

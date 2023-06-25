@@ -14,4 +14,4 @@ function Writing() {
   );
 }
 
-export default Writing;
+export default React.memo(Writing)

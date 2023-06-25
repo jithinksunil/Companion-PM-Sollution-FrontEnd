@@ -1,5 +1,5 @@
 import mapboxgl from '!mapbox-gl'
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './map.css'
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { toast } from 'react-toastify';
@@ -109,4 +109,4 @@ function Attendence({ url }) {
     );
 }
 
-export default Attendence
+export default React.memo(Attendence)

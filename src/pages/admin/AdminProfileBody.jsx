@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
 import useTokenCheck from '../../customHooks/common/useTokenCheck'
 import adminTokenCheck from '../../api/admin/adminTokenCheck'
 
@@ -14,4 +14,4 @@ function AdminProfileBody() {
   );
 }
 
-export default AdminProfileBody;
+export default React.memo(AdminProfileBody);

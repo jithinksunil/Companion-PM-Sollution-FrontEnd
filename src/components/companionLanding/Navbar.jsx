@@ -1,4 +1,4 @@
-import {  useContext, useEffect, useRef, useState } from "react";
+import React, {  useContext, useEffect, useRef, useState } from "react";
 import SuperUserSignUp from "../superUser/SuperUserSignUp";
 import SuperUserLogin from "../superUser/SuperUserLogin";
 import useCreateModal from "../../customHooks/common/useCreateModal"
@@ -108,4 +108,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default React.memo(Navbar)

@@ -26,4 +26,4 @@ function ProjectManagerLogginPage() {
   );
 }
 
-export default ProjectManagerLogginPage;
+export default React.memo(ProjectManagerLogginPage);

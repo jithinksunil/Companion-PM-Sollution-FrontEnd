@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import CommonForm from '../common/CommonForm'
 import { addTask } from '../../api/projectManager/taskBodyApiCalls'
 import { toast } from 'react-toastify'
 
 function AddTask({ addButtonColumn, projectId, setData }) {
-  const handleSubmit = (formData) => {
+  const handleSubmit = useCallback((formData) => {
     addTask(formData, addButtonColumn, projectId).then((response) => {
       toast.success(response.data.message)
       if (response.data.data) {
@@ -14,7 +14,7 @@ function AddTask({ addButtonColumn, projectId, setData }) {
     ).catch(() => {
       toast.error('axios error')
     })
-  }
+  },[])
 
   return (
     <div>
@@ -28,4 +28,4 @@ function AddTask({ addButtonColumn, projectId, setData }) {
   )
 }
 
-export default AddTask
+export default React.memo(AddTask)

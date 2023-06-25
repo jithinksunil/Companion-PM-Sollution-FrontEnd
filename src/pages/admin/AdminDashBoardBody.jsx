@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import useFetchData from "../../customHooks/common/useFetchData";
 import { fetchDashBoard } from "../../api/admin/fetchAdminData";
 
@@ -18,4 +18,4 @@ function AdminDashBoardBody() {
   );
 }
 
-export default AdminDashBoardBody;
+export default React.memo(AdminDashBoardBody);
