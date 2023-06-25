@@ -4,12 +4,12 @@ import SiteEngineerProfileUpdate from "../../components/siteEngineer/SiteEnginee
 import { useSelector } from 'react-redux';
 import { Fragment } from 'react';
 import Profile from '../../components/common/Profile';
-import UpdateImage from '../../hoc/UpdateImage';
+import updateImage from '../../hoc/updateImage';
 import updateImageApi from '../../api/siteEngineer/updateImageApi';
 
 function SiteEngineerProfileBody() {
     const siteEngineer = useSelector((state) => state.siteEngineer.value);
-    const UpdateImageElement=UpdateImage(updateImageApi,siteEngineer,setSiteEngineer)
+    const UpdateImageElement=updateImage(updateImageApi,siteEngineer,setSiteEngineer)
     return (
         <Fragment>
             <Profile individual={siteEngineer} setIndividual={setSiteEngineer} UpdateProfileElement={SiteEngineerProfileUpdate} UpdateImageElement={UpdateImageElement}/>

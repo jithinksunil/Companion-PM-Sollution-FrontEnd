@@ -6,10 +6,9 @@ function useTokenCheck(tokenCheckApi,navigateTo) {
     const navigate = useNavigate()
     useEffect(() => {
         tokenCheckApi().then((res) => {
-            const { message, tokenVerified } = res.data
+            const { tokenVerified } = res.data
             if (tokenVerified)
                 navigate(navigateTo)
-            toast(message)
         }).catch(() => {
             toast.error('axios error')
         })

@@ -5,11 +5,11 @@ import { setSuperUser } from "../../store/slices/SuperUserSice";
 import SuperUserProfileUpdate from "../../components/superUser/SuperUserProfileUpdate"
 import { useSelector } from 'react-redux';
 import updateImageApi from '../../api/superUser/updateImageApi';
-import UpdateImage from '../../hoc/UpdateImage';
+import updateImage from '../../hoc/updateImage';
 
 function SuperUserProfileBody() {
     const superUser = useSelector((state) => state.superUser.value);
-    const UpdateImageElement = UpdateImage(updateImageApi, superUser, setSuperUser)
+    const UpdateImageElement = updateImage(updateImageApi, superUser, setSuperUser)
 
     return (
         <Fragment>

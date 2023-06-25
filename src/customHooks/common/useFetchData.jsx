@@ -7,12 +7,13 @@ function useFetchData(fetchDataFunction, navigateTo, navigateToWhenNotVerified, 
   const navigate = useNavigate()
   useEffect(() => {
     fetchDataFunction().then((res) => {
-      const { data, tokenVerified } = res.data
+      const { message, data, tokenVerified } = res.data
       if (tokenVerified) {
         setFetchedData(data)
         navigate(navigateTo)
       }else{
         navigate(navigateToWhenNotVerified)
+        toast.error(message)
       }
     }).catch(() => {
       toast.error('axios error')

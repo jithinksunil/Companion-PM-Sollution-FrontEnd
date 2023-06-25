@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from 'react-toastify'
 
-function UpdateImage(upadateImageApi, individual, setIndividual) {
+function updateImage(upadateImageApi, individual, setIndividual) {
   return function NewComponent() {
     const [image, setImage] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
     const dispatch = useDispatch();
     const handleSubmit = (e) => {
       e.preventDefault()
-      upadateImageApi({ image }).then((res) => {
+      const formData=new FormData()
+      formData.append('file',image)
+
+      upadateImageApi(formData).then((res) => {
         const { status, data, message } = res.data
         if (status) {
           dispatch(setIndividual(data))
@@ -56,4 +59,4 @@ function UpdateImage(upadateImageApi, individual, setIndividual) {
   }
 }
 
-export default UpdateImage;
+export default updateImage;
