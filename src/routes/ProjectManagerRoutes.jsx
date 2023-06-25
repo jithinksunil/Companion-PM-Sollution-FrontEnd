@@ -7,6 +7,7 @@ import Messenger from "../pages/common/MessengerBody";
 import Notifications from "../pages/common/NotificationsBody";
 import ProjectManagerTaskBody from "../pages/projectManger/ProjectManagerTaskBody";
 import ProjectManagerProfileBody from "../pages/projectManger/ProjectManagerProfileBody";
+import PageNotFound from "../components/errorPages/PageNotFound";
 function ProjectManagerRoutes() {
   const projectManager = useSelector((state) => state.projectManager.value);
   const sideBarLinks = useCallback({
@@ -38,6 +39,7 @@ function ProjectManagerRoutes() {
         <Route path="/chat" element={<Messenger individual={projectManager} />} />
         <Route path="/profile" element={<ProjectManagerProfileBody />} />
         <Route path="/task" element={<ProjectManagerTaskBody />} />
+        <Route path="*" element={<PageNotFound/>} />
       </Routes>
     </Layout>
   );

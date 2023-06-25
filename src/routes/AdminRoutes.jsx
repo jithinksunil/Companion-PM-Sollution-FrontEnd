@@ -4,6 +4,7 @@ import AdminProfileBody from "../pages/admin/AdminProfileBody";
 import { Route, Routes } from "react-router-dom";
 import Layout from "../layout/Layout";
 import AdminUserManagementBody from "../pages/admin/AdminUserManagementBody";
+import PageNotFound from "../components/errorPages/PageNotFound";
 
 
 function AdminRoutes() {
@@ -25,6 +26,7 @@ function AdminRoutes() {
         <Route path="/dashboard" element={<AdminDashBoardBody />} />
         <Route path="/usermanagement" element={<AdminUserManagementBody />} />
         <Route path="/profile" element={<AdminProfileBody />} />
+        <Route path=" *" element={<PageNotFound/>} />
       </Routes>
     </Layout>
   );

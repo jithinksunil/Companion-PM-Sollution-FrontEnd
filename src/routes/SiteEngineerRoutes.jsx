@@ -10,6 +10,7 @@ import SiteEngineerMaterialRequestBody from "../pages/siteEngineer/SiteEngineerM
 import SiteEngineerReportsBody from "../pages/siteEngineer/SiteEngineerReportsBody";
 import SiteEngineerProfileBody from "../pages/siteEngineer/SiteEngineerProfileBody";
 import { useSelector } from "react-redux";
+import PageNotFound from "../components/errorPages/PageNotFound";
 
 function SiteEngineerRoutes() {
   const siteEngineer = useSelector((state) => state.siteEngineer.value);
@@ -44,6 +45,7 @@ function SiteEngineerRoutes() {
             <Route path="/notifications" element={<Notifications />} />
             <Route path="/profile" element={<SiteEngineerProfileBody />} />
             <Route path="/chat" element={<Messenger individual={siteEngineer} />} />
+            <Route path="*" element={<PageNotFound/>} />
           </Routes>
         </Layout>
   );

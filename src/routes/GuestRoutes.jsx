@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 const Layout = React.lazy(() => import("../layout/Layout"));
 import GuestDashBoardBody from "../pages/guest/GuestDashBoardBody";
+import PageNotFound from "../components/errorPages/PageNotFound";
 // import guestConnectionsBody from "../pages/guest/guestConnectionsBody";
 // import MembershipCheckout from "../components/guest/MembershipCheckout";
 // import guestProjectsBody from "../pages/guest/guestProjectsBody";
@@ -43,6 +44,7 @@ function GuestRoutes() {
         <Route path="/siteengineers" element={<guestSiteEngineersAssignmentBody />} />
         <Route path="/membershipupgrade" element={<MembershipCheckout />} />
         <Route path="/chat" element={<Messenger individual={guest} />} /> */}
+        <Route path="*" element={<PageNotFound/>} />
       </Routes>
 
     </Layout>

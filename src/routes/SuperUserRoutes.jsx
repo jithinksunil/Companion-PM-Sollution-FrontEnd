@@ -10,6 +10,7 @@ import Messenger from "../pages/common/MessengerBody";
 import Notifications from "../pages/common/NotificationsBody";
 import SuperUserSiteEngineersAssignmentBody from "../pages/superUser/SuperUserSiteEngineersAssignmentBody";
 import SuperUserProfileBody from "../pages/superUser/SuperUserProfileBody";
+import PageNotFound from "../components/errorPages/PageNotFound";
 
 function SuperUserRoutes() {
   const superUser = useSelector((state) => state.superUser.value);
@@ -44,6 +45,7 @@ function SuperUserRoutes() {
         <Route path="/siteengineers" element={<SuperUserSiteEngineersAssignmentBody />} />
         <Route path="/membershipupgrade" element={<MembershipCheckout />} />
         <Route path="/chat" element={<Messenger individual={superUser} />} />
+        <Route path="*" element={<PageNotFound/>} />
       </Routes>
     </Layout>
 

@@ -1,13 +1,15 @@
 import React from "react";
+import InternalError from "../components/errorPages/InternalError";
 
 function Fallback({ error }) {
   // Call resetErrorBoundary() to reset the error boundary and retry the render.
 
   return (
-    <div role="alert">
-      <p>Something went wrong:</p>
-      <pre style={{ color: "red" }}>{error.message}</pre>
-    </div>
+    <>
+      <InternalError>
+        <pre style={{ color: "red" }}>{error.message}</pre>
+      </InternalError>
+    </>
   );
 }
 
