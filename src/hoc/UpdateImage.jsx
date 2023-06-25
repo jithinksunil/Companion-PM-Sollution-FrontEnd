@@ -9,7 +9,6 @@ const updateImage = (upadateImageApi, individual, setIndividual) => {
     const dispatch = useDispatch();
     const handleSubmit = (e) => {
       e.preventDefault()
-
       const formData = new FormData()
       formData.append('file', image)
 

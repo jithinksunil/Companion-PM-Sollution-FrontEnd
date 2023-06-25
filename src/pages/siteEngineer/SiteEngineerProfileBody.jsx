@@ -4,7 +4,7 @@ import SiteEngineerProfileUpdate from "../../components/siteEngineer/SiteEnginee
 import { useSelector } from 'react-redux';
 import { Fragment } from 'react';
 import Profile from '../../components/common/Profile';
-import updateImage from '../../hoc/updateImage';
+import updateImage from '../../hoc/UpdateImage';
 import updateImageApi from '../../api/siteEngineer/updateImageApi';
 
 function SiteEngineerProfileBody() {
