@@ -1,18 +1,22 @@
-import LandingPage from "./pages/companionLanding/LandingPage";
-import SuperUserRoutes from "./routes/SuperUserRoutes";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AdminLoginPage from "./pages/admin/AdminLoginPage";
-import AdminRoutes from "./routes/AdminRoutes";
 import { ToastContainer } from "react-toastify";
-import ProjectManagerLogginPage from "./pages/projectManger/ProjectManagerLogginPage";
-import ProjectManagerRoutes from "./routes/ProjectManagerRoutes";
+
+const LandingPage =React.lazy(()=>import("./pages/companionLanding/LandingPage"))
+const SuperUserRoutes =React.lazy(()=>import("./routes/SuperUserRoutes"))
+const AdminLoginPage =React.lazy(()=>import("./pages/admin/AdminLoginPage"))
+const AdminRoutes =React.lazy(()=>import("./routes/AdminRoutes"))
+const ProjectManagerLogginPage =React.lazy(()=>import("./pages/projectManger/ProjectManagerLogginPage"))
+const ProjectManagerRoutes =React.lazy(()=>import("./routes/ProjectManagerRoutes"))
+const SiteEngineerRoutes =React.lazy(()=>import("./routes/SiteEngineerRoutes"))
+const SiteEngineerLogginPage =React.lazy(()=>import("./pages/siteEngineer/SiteEngineerLogginPage"))
+const GuestRoutes =React.lazy(()=>import("./routes/GuestRoutes"))
+
 import VideoCallBody from "./pages/common/VideoCallBody";
-import SiteEngineerRoutes from "./routes/SiteEngineerRoutes";
-import SiteEngineerLogginPage from "./pages/siteEngineer/SiteEngineerLogginPage";
-import GuestRoutes from "./routes/GuestRoutes";
 import PageNotFound from "./components/errorPages/PageNotFound";
 import Loading from "./components/common/Loading";
 import LoadingContainer from "./components/common/LoadingContainer";
+
 
 function App() {
 

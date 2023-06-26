@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import AdminDashBoardBody from "../pages/admin/AdminDashBoardBody";
 import AdminProfileBody from "../pages/admin/AdminProfileBody";
 import { Route, Routes } from "react-router-dom";
-import Layout from "../layout/Layout";
+const Layout = React.lazy(() => import("../layout/Layout"));
 import AdminUserManagementBody from "../pages/admin/AdminUserManagementBody";
 import PageNotFound from "../components/errorPages/PageNotFound";
 

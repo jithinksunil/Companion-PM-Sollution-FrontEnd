@@ -5,6 +5,7 @@ import { setProjectManager } from "../../store/slices/ProjectManagerSlice";
 import useTokenCheck from '../../customHooks/common/useTokenCheck'
 import projectManagerTokenCheck from "../../api/projectManager/projectManagerTokenCheck";
 import useLogin from "../../customHooks/common/useLogin";
+import '../admin/admin.css'
 
 function ProjectManagerLogginPage() {
   useTokenCheck(projectManagerTokenCheck,"/projectManager/dashboard")
