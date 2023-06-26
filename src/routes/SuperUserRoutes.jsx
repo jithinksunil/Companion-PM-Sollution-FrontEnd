@@ -9,7 +9,7 @@ import SuperUserProjectsBody from "../pages/superUser/SuperUserProjectsBody";
 import Messenger from "../pages/common/MessengerBody";
 import Notifications from "../pages/common/NotificationsBody";
 import SuperUserSiteEngineersAssignmentBody from "../pages/superUser/SuperUserSiteEngineersAssignmentBody";
-import SuperUserProfileBody from "../pages/superUser/SuperUserProfileBody";
+const SuperUserProfileBody=React.lazy(()=>import ("../pages/superUser/SuperUserProfileBody"))
 import PageNotFound from "../components/errorPages/PageNotFound";
 
 function SuperUserRoutes() {

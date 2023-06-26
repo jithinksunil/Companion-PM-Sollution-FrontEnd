@@ -8,7 +8,7 @@ import SiteEngineerProjectBody from "../pages/siteEngineer/SiteEngineerProjectBo
 import SiteEngineerTasksBody from "../pages/siteEngineer/SiteEngineerTasksBody";
 import SiteEngineerMaterialRequestBody from "../pages/siteEngineer/SiteEngineerMaterialRequestBody";
 import SiteEngineerReportsBody from "../pages/siteEngineer/SiteEngineerReportsBody";
-import SiteEngineerProfileBody from "../pages/siteEngineer/SiteEngineerProfileBody";
+const SiteEngineerProfileBody=React.lazy(()=>import ("../pages/siteEngineer/SiteEngineerProfileBody"))
 import { useSelector } from "react-redux";
 import PageNotFound from "../components/errorPages/PageNotFound";
 

@@ -6,7 +6,7 @@ const Layout = React.lazy(() => import("../layout/Layout"));
 import Messenger from "../pages/common/MessengerBody";
 import Notifications from "../pages/common/NotificationsBody";
 import ProjectManagerTaskBody from "../pages/projectManger/ProjectManagerTaskBody";
-import ProjectManagerProfileBody from "../pages/projectManger/ProjectManagerProfileBody";
+const ProjectManagerProfileBody=React.lazy(()=>import ("../pages/projectManger/ProjectManagerProfileBody"))
 import PageNotFound from "../components/errorPages/PageNotFound";
 function ProjectManagerRoutes() {
   const projectManager = useSelector((state) => state.projectManager.value);

@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import AdminDashBoardBody from "../pages/admin/AdminDashBoardBody";
-import AdminProfileBody from "../pages/admin/AdminProfileBody";
+const AdminProfileBody=React.lazy(()=>import ("../pages/admin/AdminProfileBody"))
 import { Route, Routes } from "react-router-dom";
 const Layout = React.lazy(() => import("../layout/Layout"));
 import AdminUserManagementBody from "../pages/admin/AdminUserManagementBody";
