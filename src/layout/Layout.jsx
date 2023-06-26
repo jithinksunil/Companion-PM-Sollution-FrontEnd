@@ -3,7 +3,7 @@ import Navbar from "../components/common/Navbar";
 import SideBar from "../components/common/SideBar";
 import Body from "../components/common/Body";
 import "./layout.css";
-import image from './pexels-cmonphotography-1809644.jpg'
+import image from './pexels-cmonphotography-1809644.webp'
 
 function Layout({ individual, navBarLinks, sideBarLinks, children }) {
   const [showSideBar, setShowSideBar] = useState(false);

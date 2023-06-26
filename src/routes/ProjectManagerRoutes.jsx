@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import ProjectManagerDashBoardBody from "../pages/projectManger/ProjectManagerDashBoardBody";
-import Layout from "../layout/Layout";
+const Layout = React.lazy(() => import("../layout/Layout"));
 import Messenger from "../pages/common/MessengerBody";
 import Notifications from "../pages/common/NotificationsBody";
 import ProjectManagerTaskBody from "../pages/projectManger/ProjectManagerTaskBody";

@@ -11,6 +11,8 @@ import SiteEngineerRoutes from "./routes/SiteEngineerRoutes";
 import SiteEngineerLogginPage from "./pages/siteEngineer/SiteEngineerLogginPage";
 import GuestRoutes from "./routes/GuestRoutes";
 import PageNotFound from "./components/errorPages/PageNotFound";
+import Loading from "./components/common/Loading";
+import LoadingContainer from "./components/common/LoadingContainer";
 
 function App() {
 
@@ -34,10 +36,12 @@ function App() {
           <Route path="/admin/*" element={<AdminRoutes />} />
 
           <Route path="/videocall/:roomId" element={<VideoCallBody />} />
+          <Route path="/trial" element={<Loading/>} />
           <Route path="*" element={<PageNotFound/>} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />
+      <LoadingContainer/>
     </div>
   );
 }

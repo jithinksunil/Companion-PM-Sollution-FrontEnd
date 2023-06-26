@@ -20,8 +20,9 @@ const useDragAndDrop=(dragAndDropApi, setData)=>{
             else{
                 toast.error(message)
             }
-        }).catch(()=>
-        toast.error('axios-error'))
+        }).catch((err) => {
+            toast.error(err.response.data.message||err.message)
+        })
     },[])
     return handleDragAndDrop
 }

@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from 'react-toastify'
+import { MyContext } from "../context/Context";
 
 const updateImage = (upadateImageApi, individual, setIndividual) => {
   return React.memo(function NewComponent() {
     const [image, setImage] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
+    const {setLoading}=useContext(MyContext)
     const dispatch = useDispatch();
     const handleSubmit = (e) => {
       e.preventDefault()
+      setLoading(true)
+      
       const formData = new FormData()
       formData.append('file', image)
 
@@ -22,7 +26,7 @@ const updateImage = (upadateImageApi, individual, setIndividual) => {
         }
       }).catch(() => {
         toast.error('Axios error')
-      })
+      }).finally(()=>setLoading(false))
     };
 
     const url = `${individual?.image}`;

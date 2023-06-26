@@ -23,7 +23,7 @@ function SuperUserRoutes() {
   }, [])
   const navBarLinks = useCallback({
     profile: "/superUser/profile",
-    logout: { link: "/login", token: 'superUserToken' },
+    logout: { link: "/", token: 'superUserToken' },
     notifications: "/superUser/notifications",
     chat: '/superUser/chat',
   }, [])

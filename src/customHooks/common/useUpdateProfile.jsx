@@ -1,10 +1,13 @@
-import { useCallback } from "react"
+import { useCallback, useContext } from "react"
 import { useDispatch } from "react-redux"
 import { toast } from "react-toastify"
+import { MyContext } from "../../context/Context"
 
 const useUpdateProfile = (updateProfileApi, setIndividual) => {
     const dispatch =useDispatch()
+    const {setLoading}=useContext(MyContext)
     const handleSubmitForm = useCallback((formData) => {
+        setLoading(true)
         updateProfileApi(formData).then((response) => {
             const { status, message, data } = response.data
             if (status) {
@@ -14,8 +17,10 @@ const useUpdateProfile = (updateProfileApi, setIndividual) => {
             else {
                 toast.error(message)
             }
-        }).catch(() => {
-            toast.error('Axios Error')
+        }).catch((err) => {
+            toast.error(err.response.data.message||err.message)
+        }).finally(()=>{
+            setLoading(false)
         })
     },[])
     return handleSubmitForm
