@@ -5,4 +5,10 @@ const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_SERVER_BASE_URL,
 });
 
+axiosInstance.interceptors.request.use((request) => {
+  request.withCredentials = true
+  return request
+})
+
+
 export default axiosInstance;

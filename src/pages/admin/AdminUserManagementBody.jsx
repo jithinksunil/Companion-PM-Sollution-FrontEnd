@@ -1,8 +1,9 @@
 import React, { Fragment, useMemo, useState } from "react";
 import DataTable from "react-data-table-component";
 import "react-toastify/dist/ReactToastify.css";
-import useSearchHook from "../../customHooks/admin/useSearchHook";
+import useSearchHook from "../../customHooks/common/useSearchHook";
 import UserBlockUnBlockButton from "../../components/admin/UserBlockUnBlockButton";
+import {searchUserApi} from '../../api/admin/userManagementBodyApiCalls'
 
 function AdminUserManagementBody() {
   const [data, setData] = useState([]);
@@ -25,7 +26,7 @@ function AdminUserManagementBody() {
     },
   ];
 
-  const { search, setSearch } = useSearchHook(setData)
+  const { search, setSearch } = useSearchHook(searchUserApi,setData)
   const searchElement=useMemo(()=>{
     return(
       <input

@@ -1,7 +1,9 @@
 import axiosInstance from "../../instances/axiosInstance";
 
-const handleLoginApi = (formData) =>
-  axiosInstance.post("/login", formData, {withCredentials:true})
+const handleLoginApi = (formData) =>{
+  
+  return axiosInstance.post("/login", formData)
+}
   export default handleLoginApi
 
 

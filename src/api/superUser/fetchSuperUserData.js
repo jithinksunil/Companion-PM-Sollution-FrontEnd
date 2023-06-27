@@ -1,9 +1,9 @@
 import axiosInstance from '../../instances/axiosInstance'
 export const fetchDashBoard = () =>
-    axiosInstance.get("/dashboard", { withCredentials: true })
+    axiosInstance.get("/dashboard" )
 export const fetchSiteEngineers = () =>
-    axiosInstance.get('/siteengineerlist', { withCredentials: true })
+    axiosInstance.get('/siteengineerlist' )
 export const fetchConnections = () =>
-    axiosInstance.get("/connections", { withCredentials: true })
+    axiosInstance.get("/connections" )
 export const fetchProjects = () =>
-    axiosInstance.get('/project', { withCredentials: true })
+    axiosInstance.get('/project' )

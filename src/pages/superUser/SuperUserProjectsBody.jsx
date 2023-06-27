@@ -1,14 +1,15 @@
 import React, { useMemo } from 'react'
 import CreateProject from '../../components/superUser/CreateProject'
 import DataTable from 'react-data-table-component';
-import useSearchHook from '../../customHooks/superUser/useSearchHook';
+import useSearchHook from '../../customHooks/common/useSearchHook';
 import CenterModalContaier from '../../components/common/CenterModalContaier';
 import useFetchData from '../../customHooks/common/useFetchData';
 import { fetchProjects } from '../../api/superUser/fetchSuperUserData';
+import { searchProject } from '../../api/superUser/projectBodyApiCalls';
 
 function SuperUserProjectsBody() {
   const [data, setData] = useFetchData(fetchProjects, '/superUser/projects', '/', {})
-  const { search, setSearch } = useSearchHook(setData)
+  const { search, setSearch } = useSearchHook(searchProject,setData)
   const searchField = useMemo(() => {
     return (
       <input

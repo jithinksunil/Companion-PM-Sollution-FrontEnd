@@ -1,5 +1,5 @@
 import axiosInstance from "../../instances/axiosInstance";
 
 const projectManagerTokenCheck = () =>
-    axiosInstance.get("/projectManager/verifyToken",{ withCredentials: true })
+    axiosInstance.get("/projectManager/verifyToken"   )
 export default projectManagerTokenCheck

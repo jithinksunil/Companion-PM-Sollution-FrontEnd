@@ -1,5 +1,5 @@
 import axiosInstance from "../../instances/axiosInstance";
 
 const superUserTokenCheck = () =>
-    axiosInstance.get("/verifyToken",{ withCredentials: true })
+    axiosInstance.get("/verifyToken"   )
 export default superUserTokenCheck

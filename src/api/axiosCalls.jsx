@@ -10,7 +10,7 @@ export const getApi = (
   }
 ) => {
   axios
-    .get(endPoint, { withCredentials: true })
+    .get(endPoint )
     .then(resolveCallback)
     .catch(rejectCallback);
 };
@@ -25,7 +25,7 @@ export const postApi = (
   }
 ) => {
   axios
-    .post(endPoint, body, { withCredentials: true })
+    .post(endPoint, body )
     .then(resolveCallback)
     .catch(rejectCallback);
 };
