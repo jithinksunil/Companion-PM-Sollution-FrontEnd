@@ -3,7 +3,7 @@ import { fetchMaterialRequest } from "../../api/siteEngineer/fetchSiteEngineerDa
 import React from "react";
 function SiteEngineerMaterialRequestBody() {
 
-  const [data,setData]=useFetchData(fetchMaterialRequest,'/siteEngineer/materialRequest','/siteEngineer/login',[]);
+  const [data,setData]=useFetchData(fetchMaterialRequest,'/siteEngineer/login',[]);
   console.log(data,setData)
 
   return (

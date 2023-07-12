@@ -1,5 +1,5 @@
 import React from "react";
-import InternalError from "../components/errorPages/InternalError";
+import InternalError from "../pages/errorPages/InternalError";
 
 function Fallback({ error }) {
   // Call resetErrorBoundary() to reset the error boundary and retry the render.

@@ -1,35 +1,35 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { debounce } from 'lodash';
+import { debounce } from 'jithin-debounce';
 
 function useSearchHook(searchApi, setData) {
   const [search, setSearch] = useState("");
   const [allowWorking, setAllowWorking] = useState(false)
+  
+  const debounceSearch = useMemo(() => {
+    return debounce((search, request) => {
+      searchApi(search, request.token).then((response) => {
+        console.log(response);
+        const { data } = response.data;
+        setData(data)
+      }).catch((err) => {
+        console.log(err);
+        if (err.name !== "CanceledError") {
+          toast.error(err.response?.data?.message || err.message)
+        }
+      })
+    }, 500)
+  },[])
 
   useEffect(() => {
     const request = axios.CancelToken.source()
     if (allowWorking) {
-
-      const debounceSearch = debounce((search) => {
-        searchApi(search, request.token).then((response) => {
-          console.log(response);
-          const { data } = response.data;
-          setData(data)
-        }).catch((err) => {
-          console.log(err);
-          if (err.name !== "CanceledError") {
-            toast.error(err.response?.data?.message || err.message)
-          }
-        })
-      }, 400)
-
-      debounceSearch(search)
+      debounceSearch(search, request)
     }
-    return (() => {
+    return(()=>{
       request.cancel()
     })
-
   }, [search]);
 
   useEffect(() => {

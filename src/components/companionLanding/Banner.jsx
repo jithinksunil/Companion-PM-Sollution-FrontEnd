@@ -1,13 +1,14 @@
 import React, { Fragment } from "react";
 import useAnimate from "../../customHooks/common/useAnimate";
-import guestLoginApi from "../../api/guest/guestLoginApi";
+import {guestLoginApi} from "../../api/superUser/handleLoginApi";
 import useLogin from "../../customHooks/common/useLogin";
-import { setGuest } from '../../store/slices/GuestSlice'
+import useSuperUserAuth from "../../customHooks/superUser/useSuperUserAuth";
 
 
 function Banner() {
   const [showBannerImage,ref]=useAnimate(false)
-  const handleLoginFunction=useLogin(guestLoginApi,setGuest,'guestToken','/guest/dashboard')
+  const {setSuperUserLogedIn}=useSuperUserAuth()
+  const handleLoginFunction=useLogin(guestLoginApi,setSuperUserLogedIn,'superUserToken','/superUser/dashboard')
   return (
     <Fragment>
       <div ref={ref} className="bg-gray-200 px-4 grid md:grid-cols-2 md:flex md:items-center pt-24 md:pt-36 md:px-10 font-sans overflow-hidden">
@@ -28,7 +29,7 @@ function Banner() {
             </button>
           </div>
         </div>
-        <div className={`${showBannerImage?"md:mr-0":"md:-mr-[600px]"} duration-1000`}>
+        <div className={`${showBannerImage?"md:mr-0":"md:-mr-[50px]"} duration-1000`}>
           <img
             className=""
             src="./images/banner/hero-image-left-pmo-600x382.png"

@@ -8,7 +8,7 @@ import { fetchProjects } from '../../api/superUser/fetchSuperUserData';
 import { searchProject } from '../../api/superUser/projectBodyApiCalls';
 
 function SuperUserProjectsBody() {
-  const [data, setData] = useFetchData(fetchProjects, '/superUser/projects', '/', {})
+  const [data, setData] = useFetchData(fetchProjects,'/', {})
   const { search, setSearch } = useSearchHook(searchProject,setData)
   const searchField = useMemo(() => {
     return (

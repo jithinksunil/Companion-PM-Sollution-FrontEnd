@@ -11,7 +11,7 @@ import useDragAndDrop from "../../customHooks/common/useDragAndDrop";
 
 function SuperUserConnectionsBody() {
 
-    const [projects, setProjects] = useFetchData(fetchConnections,'/superUser/connections','/', {})
+    const [projects, setProjects] = useFetchData(fetchConnections,'/', {})
     const handleAddConnection = useAddConnection(addConnectionApi, setProjects)
     const handleDragAndDrop=useDragAndDrop(projectDragAndDropApi,setProjects)
 
@@ -23,7 +23,10 @@ function SuperUserConnectionsBody() {
                         className='bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-3xl'>Add Connection</button>
                 </div>
             </div>
-            <Kankan objectOfArrays={projects}
+            <Kankan 
+                heading={'PM'}
+                tileHeading={'Project'}
+                objectOfArrays={projects}
                 Div={ProjectDragAndDropTile}
                 dataBaseFunction={handleDragAndDrop}
             />

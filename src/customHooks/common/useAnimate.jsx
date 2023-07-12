@@ -11,7 +11,7 @@ function useAnimate(initialValue) {
               const notInitial=!initialValue
               setShow(notInitial)
             }else{
-                setShow(initialValue)
+              // setShow(initialValue)
             }
           });
         }

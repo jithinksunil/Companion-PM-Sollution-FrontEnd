@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import './body.css'
 import CenterModalContaier from './CenterModalContaier';
 
-function Kankan({ objectOfArrays, Div, dataBaseFunction, addButton, addButtonModalComponent, setAddButtonColumn }) {
+function Kankan({ heading,tileHeading, objectOfArrays, Div, dataBaseFunction, addButton, addButtonModalComponent, setAddButtonColumn }) {
+
     const [movingItem, setMovingItem] = useState({})
 
     let dragStartIndex = undefined
@@ -71,7 +72,7 @@ function Kankan({ objectOfArrays, Div, dataBaseFunction, addButton, addButtonMod
                                 (e) => {
                                     onDrop(e, key)
                                 }}>
-                            <span className=" text-gray-300 px-3 font-bold">{key}</span>
+                            <span className=" text-gray-300 px-3 font-bold">{heading? heading+':- ':''} {key}</span>
                             {addButton && <Div element={<div id={'clickHereToOpenModal' + key} onClick={() => { setAddButtonColumn(key) }} className="text-center cursor-pointer"><p className="font-extrabold text-xl">+</p></div>} />}
                             {
                                 objectOfArrays[key].map((element, index) => {
@@ -86,7 +87,7 @@ function Kankan({ objectOfArrays, Div, dataBaseFunction, addButton, addButtonMod
                                                 }
                                             }
                                             onDragEnter={(e) => { onDragEnter(e, index) }}>
-                                            <Div element={element.name ? element.name : element._id} />
+                                            <Div element={element.name ?tileHeading+':- '+ element.name :tileHeading+':- '+ element._id} />
                                         </div>
                                     )
                                 })

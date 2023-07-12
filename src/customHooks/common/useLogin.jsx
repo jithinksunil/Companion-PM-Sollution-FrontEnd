@@ -1,14 +1,14 @@
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useCallback, useContext } from "react";
 import { MyContext } from "../../context/Context"
 
 
-const useLogin = (loginApi, setIndividual, tokenName, navigateTo) => {
+const useLogin = (loginApi, setLogedIn, tokenName, navigateTo) => {
+    const location=useLocation()
+    const redirectPath=location.state?.path||navigateTo
     const {setLoading}=useContext(MyContext)
-    const dispatch=useDispatch()
     const navigate = useNavigate()
     const handleLoginFunction = useCallback((formData) => {
         setLoading(true)
@@ -16,8 +16,9 @@ const useLogin = (loginApi, setIndividual, tokenName, navigateTo) => {
             const { data, verified, message, token } = response.data
             if (verified) {
                 Cookies.set(tokenName, token, { domain: `.${process.env.REACT_APP_DOMAIN_NAME?.split('://')[1].split(':')[0]}`, expires: 7000, sameSite: 'Lax' });
-                dispatch(setIndividual(data))
-                navigate(navigateTo);
+                setLogedIn(data)
+                navigate(redirectPath,{replace:true});
+                location.state=null
             }
             toast(message);
         }).catch((err) => {

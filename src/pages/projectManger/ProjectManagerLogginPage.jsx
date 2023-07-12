@@ -1,15 +1,16 @@
 import React from "react";
 import CommonForm from "../../components/common/CommonForm";
 import projectManagerLoginApi from "../../api/projectManager/projectManagerLoginApi";
-import { setProjectManager } from "../../store/slices/ProjectManagerSlice";
 import useTokenCheck from '../../customHooks/common/useTokenCheck'
 import projectManagerTokenCheck from "../../api/projectManager/projectManagerTokenCheck";
 import useLogin from "../../customHooks/common/useLogin";
 import '../admin/admin.css'
+import useProjectManagerAuth from '../../customHooks/projectManager/useProjectManagerAuth'
 
 function ProjectManagerLogginPage() {
+  const {setProjectManagerLogedIn}=useProjectManagerAuth()
   useTokenCheck(projectManagerTokenCheck,"/projectManager/dashboard")
-  const projectManagerLoginFunction= useLogin(projectManagerLoginApi,setProjectManager,'projectManagerToken',"/projectManager/dashboard")
+  const projectManagerLoginFunction= useLogin(projectManagerLoginApi,setProjectManagerLogedIn,'projectManagerToken',"/projectManager/dashboard")
   return (
     <div className="background bg-black h-screen">
       <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2">

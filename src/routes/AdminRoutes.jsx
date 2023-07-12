@@ -4,7 +4,7 @@ const AdminProfileBody=React.lazy(()=>import ("../pages/admin/AdminProfileBody")
 import { Route, Routes } from "react-router-dom";
 const Layout = React.lazy(() => import("../layout/Layout"));
 import AdminUserManagementBody from "../pages/admin/AdminUserManagementBody";
-import PageNotFound from "../components/errorPages/PageNotFound";
+import PageNotFound from "../pages/errorPages/PageNotFound";
 
 
 function AdminRoutes() {

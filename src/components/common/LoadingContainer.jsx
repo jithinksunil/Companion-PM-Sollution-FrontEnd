@@ -3,10 +3,10 @@ import Loading from './Loading'
 import { MyContext } from '../../context/Context'
 
 function LoadingContainer() {
-    const {loading}=useContext(MyContext)
+    const {isLoading}=useContext(MyContext)
     return (
     <>
-        {loading && <Loading />}
+        {isLoading && <Loading />}
     </>
     )
 }

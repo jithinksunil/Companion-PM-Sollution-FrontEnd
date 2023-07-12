@@ -10,6 +10,7 @@ import updateImage from '../../hoc/UpdateImage';
 function SuperUserProfileBody() {
     const superUser = useSelector((state) => state.superUser.value);
     const UpdateImageElement = useMemo(()=>updateImage(updateImageApi, superUser, setSuperUser),[superUser])
+    console.log(superUser);
 
     return (
         <Fragment>

@@ -5,7 +5,6 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { toast } from 'react-toastify';
 import { getApi } from '../../api/axiosCalls';
 
-
 function Attendence({ url }) {
     // eslint-disable-next-line no-undef
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;

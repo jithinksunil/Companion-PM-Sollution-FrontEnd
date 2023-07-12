@@ -7,11 +7,13 @@ import useDragAndDrop from '../../customHooks/common/useDragAndDrop'
 import siteEngineerAssignmentApi from '../../api/superUser/siteEngineerAssignmentApi'
 
 function SuperUserSiteEngineersAssignmentBody() {
-  const [siteEngineers, setSiteEngineers] = useFetchData(fetchSiteEngineers,'/superUser/siteengineers','/',{})
+  const [siteEngineers, setSiteEngineers] = useFetchData(fetchSiteEngineers,'/',{})
   const siteEngineerAssignment=useDragAndDrop(siteEngineerAssignmentApi,setSiteEngineers)
   return (
-    <div>
+    <div className='h-full'>
       <Kankan
+        heading={'Project'}
+        tileHeading={'SE'}
         Div={ProjectDragAndDropTile}
         objectOfArrays={siteEngineers}
         dataBaseFunction={siteEngineerAssignment}

@@ -3,18 +3,18 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { MyContext } from '../../context/Context'
 
-function useFetchData(fetchDataFunction, navigateTo, navigateToWhenNotVerified, initialValue) {
+function useFetchData(fetchDataFunction, navigateToWhenNotVerified, initialValue) {
   const [fetchedData, setFetchedData] = useState(initialValue)
   const {setLoading}=useContext(MyContext)
   const navigate = useNavigate()
   useEffect(() => {
     setLoading(true)
     fetchDataFunction().then((res) => {
-      const { data } = res.data
+      const { data,message } = res.data
       if (data) {
         setFetchedData(data)
       }
-      navigate(navigateTo)
+      toast.warning(message)
     }).catch((err) => {
       toast.error(err.response.data.message||err.message)
       navigate(navigateToWhenNotVerified)

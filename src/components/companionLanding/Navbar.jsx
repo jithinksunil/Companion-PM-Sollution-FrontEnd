@@ -1,4 +1,4 @@
-import React, {  useContext, useEffect, useRef, useState } from "react";
+import React, {  useCallback, useContext, useEffect, useRef, useState } from "react";
 import SuperUserSignUp from "../superUser/SuperUserSignUp";
 import SuperUserLogin from "../superUser/SuperUserLogin";
 import useCreateModal from "../../customHooks/common/useCreateModal"
@@ -7,29 +7,32 @@ import { MyContext } from "../../context/Context";
 function Navbar() {
   const [hideList, setHideList] = useState(true);
   const [showSignUpModal, openSignUpModalFunction, closeSignUpModalFunction] = useCreateModal('signUp-modal')
-  const [showLoginModal, openLoginModalFunction,closeLoginModalFunction] = useCreateModal('login-modal')
+  const [showLoginModal, openLoginModalFunction] = useCreateModal('login-modal')
   const { featuresRef, pricingRef, resourceRef } = useContext(MyContext)
   const [showNavBarOnScroll,setShowNavbarOnScroll]=useState(true)
   const scrollRef=useRef(0)
   function handleToggle() {
     setHideList((hideList) => !hideList);
   }
+
+  const scrollHandler=useCallback(()=>{
+    const currentScrollY=window.scrollY
+    if(scrollRef.current<currentScrollY){
+      setShowNavbarOnScroll(false)
+    }else{
+      setShowNavbarOnScroll(true)
+    }
+    scrollRef.current=currentScrollY
+  },[])
   useEffect(()=>{
-    window.addEventListener('scroll',()=>{
-      const currentScrollY=window.scrollY
-      if(scrollRef.current<currentScrollY){
-        setShowNavbarOnScroll(false)
-        closeSignUpModalFunction()
-        closeLoginModalFunction()
-      }else{
-        setShowNavbarOnScroll(true)
-      }
-      scrollRef.current=currentScrollY
+    window.addEventListener('scroll',scrollHandler)
+    return (()=>{
+      window.removeEventListener('scroll',scrollHandler)
     })
   },[])
 
   return (
-    <div className={`fixed z-10 w-full ${showNavBarOnScroll?"mt-0":"-mt-[300px] md:-mt-[100px]"} duration-300`}>
+    <div className={`fixed z-10 w-full ${showNavBarOnScroll?"mt-0":"-mt-[260px] md:-mt-[75px]"} duration-300`}>
       <nav
         className={`md:flex items-center px-3 md:px-10 relative gap-4 shadow-xl ${hideList ? "h-20" : "h-64"
           } md:h-auto duration-200 text-gray-500 font-bold font-sans bg-white`}
@@ -42,16 +45,16 @@ function Navbar() {
           className={`${hideList ? "hidden" : ""
             } transition-opacity duration-1000 lg:flex md:gap-4 pr-10`}
         >
-          <li className="py-1 cursor-pointer">
+          <li className="py-1 cursor-pointer hover:text-blue-800  ">
             <h5>Why Us</h5>
           </li>
-          <li className="py-1 cursor-pointer" onClick={() => { featuresRef.current.scrollIntoView({ behavior: 'smooth' }) }}>
+          <li className="py-1 cursor-pointer hover:text-blue-800" onClick={() => { featuresRef.current.scrollIntoView({ behavior: 'smooth' }) }}>
             <h5>Features</h5>
           </li>
-          <li className="py-1 cursor-pointer" onClick={() => { resourceRef.current.scrollIntoView({ behavior: 'smooth' }) }}>
+          <li className="py-1 cursor-pointer hover:text-blue-800" onClick={() => { resourceRef.current.scrollIntoView({ behavior: 'smooth' }) }}>
             <h5>Resources</h5>
           </li>
-          <li className="py-1 cursor-pointer " onClick={() => { pricingRef.current.scrollIntoView({ behavior: 'smooth' }) }}>
+          <li className="py-1 cursor-pointer hover:text-blue-800 " onClick={() => { pricingRef.current.scrollIntoView({ behavior: 'smooth' }) }}>
             <h5>Pricing</h5>
           </li>
           <li className="pt-1 cursor-pointer pb-5 md:hidden">
@@ -65,7 +68,7 @@ function Navbar() {
 
         <div className=" flex absolute right-3 top-5 md:top-auto md:right-10 gap-4">
           <h1
-            className="items-center hidden md:flex cursor-pointer hover:border-blue-700  border-2 rounded-3xl px-5"
+            className="items-center hidden md:flex cursor-pointer hover:border-blue-700  border-2 rounded-3xl px-5 hover:text-blue-700"
             onClick={openLoginModalFunction}
           >
             Login

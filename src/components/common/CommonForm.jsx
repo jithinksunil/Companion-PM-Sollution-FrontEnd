@@ -11,8 +11,8 @@ function CommonForm({
 }) {
   const [formData, setFormData] = useState(() => formValues ? formValues : {})
   const handleLogin = (e) => {
-    e.preventDefault();
-
+    e.preventDefault()
+    
     let allDropDownsSelected = true
     const dropDowns = fieldArray.filter(item => item.type == 'dropDown')
     dropDowns.map((item) => {

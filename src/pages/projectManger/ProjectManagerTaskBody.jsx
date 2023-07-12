@@ -9,7 +9,7 @@ import { fetchTasks } from "../../api/projectManager/fetchProjectManagerData";
 import useDragAndDrop from '../../customHooks/common/useDragAndDrop'
 
 function ProjectManagerTaskBody() {
-  const [data, setData] = useFetchData(fetchTasks, '/projectManager/task', '/projectManager/login', [])
+  const [data, setData] = useFetchData(fetchTasks, '/projectManager/login', [])
   const [showSideBar, setShowSideBar] = useState(true)
   const [kankanData, setKankanData] = useState({})
   const [addButtonColumn, setAddButtonColumn] = useState('')

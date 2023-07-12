@@ -3,7 +3,7 @@ import useFetchData from "../../customHooks/common/useFetchData";
 import { fetchDashBoard } from "../../api/admin/fetchAdminData";
 
 function AdminDashBoardBody() {
-  const [data,setData]=useFetchData(fetchDashBoard,'/admin/dashboard','/admin/login',[ ])
+  const [data,setData]=useFetchData(fetchDashBoard,'/admin/login',[ ])
   console.log(data,setData);
 
   return (

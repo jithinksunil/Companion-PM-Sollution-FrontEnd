@@ -8,8 +8,8 @@ import { Provider } from "react-redux";
 import { ErrorBoundary } from "react-error-boundary";
 import Fallback from "./errorBoundaries/ErrorBoundary";
 import { Suspense } from "react";
-import Loading from "./components/common/Loading";
 import './index.css'
+import Processing from "./pages/common/Processing";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const persistor = persistStore(store);
@@ -17,7 +17,7 @@ root.render(<Provider store={store}>
     <PersistGate persistor={persistor}>
         <MyProvider>
             <ErrorBoundary FallbackComponent={Fallback} onReset={() => { }}>
-                <Suspense fallback={<Loading />}>
+                <Suspense fallback={<Processing />}>
                     <App />
                 </Suspense>
             </ErrorBoundary>

@@ -10,7 +10,7 @@ import SiteEngineerMaterialRequestBody from "../pages/siteEngineer/SiteEngineerM
 import SiteEngineerReportsBody from "../pages/siteEngineer/SiteEngineerReportsBody";
 const SiteEngineerProfileBody=React.lazy(()=>import ("../pages/siteEngineer/SiteEngineerProfileBody"))
 import { useSelector } from "react-redux";
-import PageNotFound from "../components/errorPages/PageNotFound";
+import PageNotFound from "../pages/errorPages/PageNotFound";
 
 function SiteEngineerRoutes() {
   const siteEngineer = useSelector((state) => state.siteEngineer.value);

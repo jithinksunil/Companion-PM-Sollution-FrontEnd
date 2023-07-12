@@ -4,7 +4,7 @@ import { fetchDashBoard } from "../../api/superUser/fetchSuperUserData";
 
 
 function SuperUserDashBoardBody() {
-  const [data,setData]=useFetchData(fetchDashBoard,'/superUser/dashboard','/',[])
+  const [data,setData]=useFetchData(fetchDashBoard,'/',[])
   console.log(data,setData)
   return (
     <Fragment>

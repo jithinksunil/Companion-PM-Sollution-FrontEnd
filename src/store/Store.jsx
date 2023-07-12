@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import superUserReducer from "./slices/SuperUserSice";
-import guestReducer from "./slices/GuestSlice";
 import projectManagerReducer from "./slices/ProjectManagerSlice";
 import siteEngineerReducer from "./slices/SiteEngineerSlice";
 import adminReducer from "./slices/AdminSlice";
@@ -19,7 +18,6 @@ const reducer = combineReducers({
   projectManager: projectManagerReducer,
   siteEngineer: siteEngineerReducer,
   admin: adminReducer,
-  guest:guestReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
