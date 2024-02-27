@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const axiosInstance = axios.create({
   // eslint-disable-next-line no-undef
@@ -6,9 +6,9 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use((request) => {
-  request.withCredentials = true
-  return request
-})
-
+  request.withCredentials = true;
+  request.headers.Authorization = localStorage.getItem('superUserToken');
+  return request;
+});
 
 export default axiosInstance;
