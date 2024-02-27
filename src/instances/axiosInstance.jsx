@@ -6,7 +6,6 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use((request) => {
-  request.withCredentials = true;
   request.headers.Authorization = localStorage.getItem('superUserToken');
   return request;
 });
