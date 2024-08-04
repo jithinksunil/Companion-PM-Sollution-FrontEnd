@@ -1,13 +1,14 @@
-import React, { Fragment, useContext } from "react";
+import React, { useContext } from "react";
 import useAnimate from '../../customHooks/common/useAnimate'
 import { MyContext } from "../../context/Context";
+import LayoutWidth from "../common/LayoutWidth";
 
 
 function Services() {
   const [showServices,ref]=useAnimate(false)
   const {featuresRef}=useContext(MyContext)
   return (
-    <Fragment>
+    <LayoutWidth>
       <div ref={ref} className={`grid md:grid-cols-4 pb-5 md:px-10 text-xl text-gray-600 ${showServices?"ml-0":"-ml-[1200px]"} duration-1000`}>
         <div ref={featuresRef} className="px-4 py-5 md:col-span-2 lg:col-span-1 ">
           <img className="w-72" src="./images/services/analyse.jpg" alt="" />
@@ -63,7 +64,7 @@ function Services() {
           Set Up Your Team
         </button>
       </div>
-    </Fragment>
+    </LayoutWidth>
   );
 }
 

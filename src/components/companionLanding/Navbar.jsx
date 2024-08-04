@@ -32,10 +32,10 @@ function Navbar() {
   },[])
 
   return (
-    <div className={`fixed z-10 w-full ${showNavBarOnScroll?"mt-0":"-mt-[260px] md:-mt-[75px]"} duration-300`}>
+    <div className={`fixed z-10 w-full ${showNavBarOnScroll?"mt-0":"-mt-[260px] md:-mt-[75px]"} duration-300 bg-white shadow-xl`}>
       <nav
-        className={`md:flex items-center px-3 md:px-10 relative gap-4 shadow-xl ${hideList ? "h-20" : "h-64"
-          } md:h-auto duration-200 text-gray-500 font-bold font-sans bg-white`}
+        className={`md:flex items-center px-3 md:px-10 relative gap-4 ${hideList ? "h-20" : "h-64"
+          } md:h-auto duration-200 text-gray-500 font-bold font-sans  max-w-[1240px] mx-auto`}
       >
         <img
           className="w-28 py-7 md:w-40 md:py-6 cursor-pointer"
